@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'diary.apps.DiaryConfig',
+    'hotel.apps.HotelConfig',
     'accounts.apps.AccountsConfig',
 
     'django.contrib.sites',
