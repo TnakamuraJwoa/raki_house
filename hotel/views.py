@@ -1,13 +1,14 @@
 from django.shortcuts import render
 
 # Create your views here.
-
-
-from django.shortcuts import render
+from .models import Store
 from django.views import generic
 
-# def store(request):
-#     return render(request, './store.html')
+class StoreView(generic.TemplateView):
 
-class IndexView(generic.TemplateView):
-    template_name = "store.html"
+    def get(self, request, *args, **kwargs):
+        store_data = Store.objects.all()
+
+        return render(request, 'store.html', {
+            'store_data': store_data,
+        })
