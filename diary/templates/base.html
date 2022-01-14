@@ -17,6 +17,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
         <link href="{% static 'css/mystyle.css' %}" rel="stylesheet" />
+
         {% block head %} {% endblock %}
     </head>
     <body id="wrapper">
@@ -28,17 +29,17 @@
                   <span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'hotel:house' %}">ホテル一覧 </a>
+                            </li>
+                            <li class="nav-item {% block active_diary_list %}{% endblock %}">
+                                <a class="nav-link" href="{% url 'hotel:room_list' %}">客室 </a>
+                            </li>
+                        {% endif %}
                         <li class="nav-item {% block active_inquiry %}{% endblock%}">
                           <a class="nav-link" href="{% url 'diary:inquiry' %}">お問い合わせ</a>
                         </li>
-                        {% if user.is_authenticated %}
-                            <li class="nav-item {% block active_diary_list %}{% endblock %}">
-                                <a class="nav-link" href="{% url 'diary:diary_list' %}">DIARY LIST </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'hotel:store' %}">ホテル一覧 </a>
-                            </li>
-                        {% endif %}
                     </ul>
                      <ul class="navbar-nav ml-auto">
                         {% if user.is_authenticated %}

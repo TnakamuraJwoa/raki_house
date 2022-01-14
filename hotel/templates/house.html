@@ -10,20 +10,20 @@
         <div class="my-div-style w-100">
           <div class="text-center my-5">
             <div class="mb-5">
-              <h1>店舗一覧</h1>
+              <h1>ホテル一覧</h1>
             </div>
             <div class="row">
-              {% for store in store_data %}
+              {% for house in house_data %}
               <div class="col-lg-3 col-md-6">
-                <div class="card img-thumbnail storelist mb-3">
+                <a href="{% url 'hotel:room_list' %}" class="font-weight-bold">{{ house.name }}店</a>
+                <div class="card img-thumbnail houselist mb-3">
                   <img
                     class="card-img-top card-thum"
-                    src="{{ store.image.url }}"
+                    src="{{ house.image.url }}"
                     alt=""
                   />
                   <div class="card-body text-center px-2 py-3">
-                    <h5 class="font-weight-bold">{{ store.name }}店</h5>
-                    <p>{{ store.address }}</p>
+                    <p>{{ house.address }}</p>
                   </div>
                   <a class="stretched-link" href=""></a>
                 </div>

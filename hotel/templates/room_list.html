@@ -15,16 +15,17 @@
 <!--                <div class="clearfix">-->
 <!--                     <a class="btn btn-primary float-right" href="{% url 'diary:diary_create' %}">新規作成</a>-->
 <!--                </div>-->
-                {% for diary in diary_list%}
+                {% for room in room_list%}
                     <div class="post-preview">
-                        <a href="{% url 'diary:diary_detail' diary.pk %}">
+                        <a href="{{ house.image.url }}">
                             <div>
-                                <svg xmlns="http://www.w3.org/2000/svg">aaa</svg>
-                                <span class="label label-tag">朝食付</span>
-                                <span class="label label-tag">バス付</span>
-                                <span class="label label-tag">禁煙ルーム</span>
+                                <p>{{ room.room_name }}</p>
+                                <input type="checkbox" name="tags" id="id_tags_0">
+                                <a>喫煙</a>
+                                <span class="label label-tag">{{ room.in_date }}</span>
+<!--                                <span class="label label-tag">禁煙ルーム</span>-->
                                 <div>
-                                    <img class="img-fluid rounded-circle" src="/media/301_1.png" width="135px" alt="" />
+                                    <img class="img-fluid rounded-circle" src="{{ room.image.url }}" width="135px" alt="" />
                                     {{ diary.content }}
                                 </div>
                             </div>
@@ -41,7 +42,7 @@
                     </div>
                     <hr>
                 {% empty %}
-                    <p>空室がありません</p>
+                    <p>部屋がありません</p>
                 {% endfor %}
 
                 <!--ページネーション処理-->
