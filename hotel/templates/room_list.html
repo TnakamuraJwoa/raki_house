@@ -4,7 +4,6 @@
 {% block active_diary_list %}active{% endblock %}
 
 {% block head %}
-<link href="{% static 'css/clean-blog.min.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block contents %}
@@ -23,6 +22,7 @@
                                 <input type="checkbox" name="tags" id="id_tags_0">
                                 <a>喫煙</a>
                                 {{ form.birthday }}
+                                <input type="button" class= "btn1" value="アラートを表示" style= "margin: 20px;">
                                 <span class="label label-tag">{{ room.in_date }}</span>
 <!--                                <span class="label label-tag">禁煙ルーム</span>-->
                                 <div>
