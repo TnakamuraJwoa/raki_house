@@ -9,6 +9,30 @@ footer{
   margin-top: auto;
 }
 
+.side {
+/*
+  background-color:#ff838b;
+  text-align:center;
+*/
+  width: 165px;
+}
+
+.side-list {
+  position: absolute;
+  top: 100px;
+}
+
+input#id_person {
+  width: 85px;
+}
+
+input#id_kids {
+  width: 85px;
+}
+
+article {
+  display:flex;/*サイドバーとメインコンテンツを横並びにする                指定をした*/
+}
 
 .my-div-style{
   margin-top: 5rem;
@@ -19,4 +43,47 @@ footer{
 	color: #FF0000;
 	font-size: 20px;
 	font-weight: bold;
+}
+
+.room-status{
+	border: solid;
+	border-radius: 8px;
+}
+
+.form-box{
+  border: none !important; /*枠線を消す*/
+  border-radius: 4px; /*外角の丸み*/
+  border: 1px solid #ddd; /*枠線*/
+  margin: 20px; /*外余白*/
+  height: 29px; /*縦幅*/
+}
+
+/*フォーム内*/
+.form-title{
+  color: #808080; /*文字色*/
+  margin: 10px; /*外余白*/
+}
+
+.form-container{
+  background: white;
+  padding: 20px; /*内側余白*/
+  margin: auto; /*中央揃え*/
+  margin-top: 10px; /*上部余白*/
+  width: 400px; /*横幅*/
+  border-radius: 4px; /*外角の丸み*/
+  border: 1px solid #ddd; /*枠線*/
+  text-align: center; /*内部の要素を中央ぞろえ*/
+  position: relative;
+}
+
+.form-text{
+  color: #808080; /*文字色*/
+}
+
+input.btn1 {
+    margin-top: 16px;
+    width: 112px;
+    height: 41px;
+    text-align: center;
+    background-color: cornsilk;
 }

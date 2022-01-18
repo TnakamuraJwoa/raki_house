@@ -5,21 +5,21 @@
 
 {% block contents %}
 <div class="container">
-    <div class="row">
-        <div class="my-div-style">
-            <h1>Log In</h1>
-            <form method="post" action="{% url 'account_login' %}">
-                {% csrf_token%}
+    <div class="form-container">
+        <h1 class="form-title">Log In</h1>
+        <form id='login-form' method="post" action="{% url 'account_login' %}">
+            {% csrf_token%}
+            <div class="form-box">{{ form.login }}</div>
+            <div class="form-box">{{ form.password }}</div>
+            <div class="form-text">ログインしたままにする{{ form.remember }}</div>
+<!--                {{ form.as_p }}-->
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
 
-                {{ form.as_p }}
-                {% if redirect_field_value %}
-                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                {% endif %}
-
-                <button class="btn btn-primary" type="submit">ログイン</button>
-                <p><a class="button secondary Action" href="{% url 'account_reset_password' %}">パスワードを忘れましたか？</a></p>
-            </form>
-        </div>
+            <button class="btn btn-primary" type="submit">ログイン</button>
+            <p><a class="button secondary Action" href="{% url 'account_reset_password' %}">パスワードを忘れましたか？</a></p>
+        </form>
     </div>
 </div>
 {% endblock %}

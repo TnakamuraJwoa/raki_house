@@ -27,7 +27,7 @@ class Room(models.Model):
     smoking = models.BooleanField('喫煙', default=False)
     description = models.TextField('説明', default="", blank=True)
     image = models.ImageField(upload_to='images', verbose_name='部屋画像メイン', null=True, blank=True)
-    in_date = models.DateField('チェックイン', blank=True, null=True)
+
 
     class Meta:
         verbose_name_plural = 'Room'

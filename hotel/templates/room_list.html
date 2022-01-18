@@ -8,77 +8,90 @@
 
 {% block contents %}
 <div class="container">
-    <div class="row">
-        <div class="my-div-style w-100">
-            <div class="col-lg-8 col-md-10 mx-auto">
-<!--                <div class="clearfix">-->
-<!--                     <a class="btn btn-primary float-right" href="{% url 'diary:diary_create' %}">新規作成</a>-->
-<!--                </div>-->
-                {% for room in object_list %}
-                    <div class="post-preview">
-                        <a href="{{ house.image.url }}">
-                            <div>
-                                <p>{{ room.room_name }}</p>
-                                <input type="checkbox" name="tags" id="id_tags_0">
-                                <a>喫煙</a>
-                                {{ form.birthday }}
-                                <input type="button" class= "btn1" value="アラートを表示" style= "margin: 20px;">
-                                <span class="label label-tag">{{ room.in_date }}</span>
-<!--                                <span class="label label-tag">禁煙ルーム</span>-->
+    <article>
+        <div class="side">
+            <div class="side-list">
+                <span>チェックイン日</span>
+                <p>{{ form.birthday }}</p>
+                <span></span>チェックアウト日
+                <p>{{ form.birthday }}</p>
+                <span>客室</span>
+                <p>{{ form.room }}</p>
+                <span>大人</span>
+                <p>{{ form.person }}</p>
+                <span>子供</span>
+                <p>{{ form.kids }}</p>
+                <input type="button" class= "btn1" value="空室を検索">
+            </div>
+
+        </div>
+        <div class="row w-100">
+            <div class="my-div-style">
+                <div class="col-lg-8 col-md-10 mx-auto">
+    <!--                <div class="clearfix">-->
+    <!--                     <a class="btn btn-primary float-right" href="{% url 'diary:diary_create' %}">新規作成</a>-->
+    <!--                </div>-->
+                    {% for room in object_list %}
+                        <div class="post-preview">
+                            <a href="{{ house.image.url }}">
                                 <div>
-                                    <img class="img-fluid rounded-circle" src="{{ room.image.url }}" width="135px" alt="" />
-                                    {{ diary.content }}
+                                    <p>{{ room.room_name }}</p>
+                                    <a class="room-status" id="example" value="{{ room.smoking }}">喫煙</a>
+                                    <div>
+                                        <img class="img-fluid rounded-circle" src="{{ room.image.url }}" width="135px" alt="" />
+                                        {{ diary.content }}
+                                    </div>
                                 </div>
-                            </div>
 
 
-<!--                            <h2 class="post-title">-->
-<!--                                {{ diary.title }}-->
-<!--                            </h2>-->
-<!--                            <h3 class="post-subtitle">-->
-<!--                            {{ diary.content|truncatechars:20 }}-->
-<!--                            </h3>-->
-                        </a>
-<!--                        <p class="post-meta">{{ diary.created_at }}</p>-->
-                    </div>
-                    <hr>
-                {% empty %}
-                    <p>部屋がありません</p>
-                {% endfor %}
+    <!--                            <h2 class="post-title">-->
+    <!--                                {{ diary.title }}-->
+    <!--                            </h2>-->
+    <!--                            <h3 class="post-subtitle">-->
+    <!--                            {{ diary.content|truncatechars:20 }}-->
+    <!--                            </h3>-->
+                            </a>
+    <!--                        <p class="post-meta">{{ diary.created_at }}</p>-->
+                        </div>
+                        <hr>
+                    {% empty %}
+                        <p>部屋がありません</p>
+                    {% endfor %}
 
-                <!--ページネーション処理-->
-                {% if is_paginated %}
-                    <ul class="pagination">
-                        <!-- 前ページへのリンク -->
-                        {% if page_obj.has_previous %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
-                                    <span aria-hidden="true"> &laquo;</span>
-                                </a>
-                            </li>
-                        {% endif %}
-
-                        <!-- ページ数表示 -->
-                        {% for page_num in page_obj.paginator.page_range %}
-                            {% if page_obj.number == page_num %}
-                                <li class="page-item active"> <a class="page-link" href="#">{{page_num }}</a></li>
-                            {% else %}
-                                <li class="page-item"><a class="page-link" href="?page={{ page_num }}">{{ page_num }} </a></li>
+                    <!--ページネーション処理-->
+                    {% if is_paginated %}
+                        <ul class="pagination">
+                            <!-- 前ページへのリンク -->
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                        <span aria-hidden="true"> &laquo;</span>
+                                    </a>
+                                </li>
                             {% endif %}
-                        {% endfor %}
 
-                        <!-- 次ページへのリンク -->
-                        {% if page_obj.has_next %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">
-                                    <span aria-hidden="true"> &raquo;</span>
-                                </a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                {% endif %}
+                            <!-- ページ数表示 -->
+                            {% for page_num in page_obj.paginator.page_range %}
+                                {% if page_obj.number == page_num %}
+                                    <li class="page-item active"> <a class="page-link" href="#">{{page_num }}</a></li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ page_num }}">{{ page_num }} </a></li>
+                                {% endif %}
+                            {% endfor %}
+
+                            <!-- 次ページへのリンク -->
+                            {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                        <span aria-hidden="true"> &raquo;</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </div>
+    <article>
 </div>
 {% endblock %}

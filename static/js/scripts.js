@@ -7,10 +7,14 @@
 // Use this file to add JavaScript to your project
 
 
-
 $(function(){
   $(".btn1").on("click", function(){
-    //listBの高さを取得
-    alert("アラートを表示します。")
+
+//    var targetClass = $("a").attr("room-status");
+//    //listBの高さを取得
+//    console.log(targetClass);
+    var input = document.getElementById('example');
+    var value = input.getAttribute('value');
+    console.log(value); // 入力内容
   });
 });
