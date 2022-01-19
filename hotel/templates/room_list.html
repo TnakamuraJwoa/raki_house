@@ -35,7 +35,7 @@
                         <div class="post-preview">
                             <a href="{{ house.image.url }}">
                                 <div>
-                                    <p>{{ room.room_name }}</p>
+                                    <p><a href="{% url 'hotel:room' %}">{{ room.room_name }}</a></p>
                                     <a class="room-status" id="example" value="{{ room.smoking }}">喫煙</a>
                                     <div>
                                         <img class="img-fluid rounded-circle" src="{{ room.image.url }}" width="135px" alt="" />
