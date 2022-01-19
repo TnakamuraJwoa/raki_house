@@ -18,14 +18,9 @@ class HouseView(LoginRequiredMixin, generic.TemplateView):
         })
 
 
-class RoomView(LoginRequiredMixin, generic.TemplateView):
-
-    def get(self, request, *args, **kwargs):
-        house_data = House.objects.all()
-
-        return render(request, 'room.html', {
-            'house_data': house_data,
-        })
+class RoomView(LoginRequiredMixin, generic.DetailView):
+    model = Room
+    template_name = 'room.html'
 
 
 class RoomsView(LoginRequiredMixin, generic.ListView):
