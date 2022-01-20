@@ -76,7 +76,7 @@ article {
   position: relative;
 }
 
-.form-text{
+.form-text {
   color: #808080; /*文字色*/
 }
 
@@ -86,4 +86,10 @@ input.btn1 {
     height: 41px;
     text-align: center;
     background-color: cornsilk;
+}
+
+.form-container {
+    position: fixed;
+    top: 135px;
+    left: 500px;
 }
