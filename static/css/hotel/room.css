@@ -95,3 +95,22 @@ a:active{
 div#room-slider{
     width: 40%;
 }
+
+.room-detail > a {
+    margin-bottom: 10px;
+}
+
+div#room-main {
+    display: flex;
+}
+
+div.room-detail {
+    margin-left: 6em;
+}
+
+input.room-btn {
+    width: 112px;
+    height: 41px;
+    background-color: lightyellow;
+    margin-bottom: 2em;
+}

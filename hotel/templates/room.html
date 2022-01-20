@@ -8,7 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-<link href="{% static 'css/room.css' %}" rel="stylesheet">
+<link href="{% static 'css/hotel/room.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block contents %}
@@ -16,18 +16,33 @@
     <div class="row">
         <div class="my-div-style w-100">
             <div class="col-lg-8 col-md-10 mx-auto">
-                <div id="room-slider">
-                    {{ object.room_name }}
-                    <ul class="slider">
-                      <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_01.jpg" alt=""></li>
-                      <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_02.jpg" alt=""></li>
-                      <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_03.jpg" alt=""></li>
-                      <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_04.jpg" alt=""></li>
-                      <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_05.jpg" alt=""></li>
-                      <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_06.jpg" alt=""></li>
-                    </ul>
+                <div id="room-main">
+                    <div id="room-slider">
+                        <ul class="slider">
+                          <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_01.jpg" alt=""></li>
+                          <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_02.jpg" alt=""></li>
+                          <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_03.jpg" alt=""></li>
+                          <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_04.jpg" alt=""></li>
+                          <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_05.jpg" alt=""></li>
+                          <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_06.jpg" alt=""></li>
+                        </ul>
+                    </div>
+                    <div class="room-detail">
+                        <input type="button" class= "room-btn" value="予約">
+                        <pre>部屋タイプ&#009;&#009;:{{ object.room_name }}</pre>
+                        <pre>室番&#009;&#009;&#009;:{{ object.room_number }}号室</pre>
+                        <pre>大人(最大人数)&#009;&#009;:{{ object.persons }}人</pre>
+                        <pre>子供(最大人数)&#009;&#009;:{{ object.kids }}人</pre>
+                        <pre>ダブルベッド数&#009;&#009;:{{ object.Double_bed }}</pre>
+                        <pre>クイーンベッド数&#009;:{{ object.Queen_bed }}</pre>
+                        <pre>シングルベッド数&#009;:{{ object.Single_Bed }}</pre>
+                        <pre>喫煙&#009;&#009;&#009;:{{ object.smoking }}</pre>
+                    </div>
                 </div>
+
             </div>
+
+
         </div>
     </div>
 </div>
