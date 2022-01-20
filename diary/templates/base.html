@@ -43,15 +43,18 @@
                             <li class="nav-item {% block active_diary_list %}{% endblock %}">
                                 <a class="nav-link" href="{% url 'hotel:room_list' %}">客室 </a>
                             </li>
+                              <li class="nav-item">
+                                <a class="nav-link" href="">マイページ </a>
+                            </li>
                         {% endif %}
                         <li class="nav-item {% block active_inquiry %}{% endblock%}">
-                          <a class="nav-link" href="{% url 'diary:inquiry' %}">お問い合わせ</a>
+                          <a class="nav-link" href="{% url 'diary:inquiry' %}">お問い合わせ </a>
                         </li>
                     </ul>
                      <ul class="navbar-nav ml-auto">
                         {% if user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
+                                <a class="nav-link" href="{% url 'account_logout' %}">Log Out </a>
                             </li>
                         {% else %}
 <!--                            <li class="nav-item {% block active_signup %}{% endblock %}">-->

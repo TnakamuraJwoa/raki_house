@@ -36,13 +36,14 @@
                         <pre>ダブルベッド数&#009;&#009;:{{ object.Double_bed }}</pre>
                         <pre>クイーンベッド数&#009;:{{ object.Queen_bed }}</pre>
                         <pre>シングルベッド数&#009;:{{ object.Single_Bed }}</pre>
-                        <pre>喫煙&#009;&#009;&#009;:{{ object.smoking }}</pre>
+                        {% if object.smoking %}
+                            <pre>喫煙&#009;&#009;&#009;:喫煙可</pre>
+                        {% else %}
+                            <pre>喫煙&#009;&#009;&#009;:禁煙</pre>
+                        {% endif %}
                     </div>
                 </div>
-
             </div>
-
-
         </div>
     </div>
 </div>
