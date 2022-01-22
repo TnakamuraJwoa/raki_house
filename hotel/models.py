@@ -8,10 +8,12 @@ class House(models.Model):
     description = models.TextField('説明', default="", blank=True)
     image = models.ImageField(upload_to='images', verbose_name='イメージ画像', null=True, blank=True)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name_plural = 'House'
-        def __str__(self):
-            return self.name
+
 
 
 
@@ -28,9 +30,19 @@ class Room(models.Model):
     description = models.TextField('説明', default="", blank=True)
     image = models.ImageField(upload_to='images', verbose_name='部屋画像メイン', null=True, blank=True)
 
+    def __str__(self):
+        return self.room_number
 
     class Meta:
         verbose_name_plural = 'Room'
 
-        def __str__(self):
-            return self.name
+
+class Reserve(models.Model):
+    room_number = models.ForeignKey(Room, on_delete=models.CASCADE)
+    reserve_date = models.DateField()
+
+    def __str__(self):
+        return str(self.room_number) + ':' + str(self.reserve_date)
+
+    class Meta:
+        verbose_name_plural = 'Reserve'

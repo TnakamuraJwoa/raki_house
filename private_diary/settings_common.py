@@ -62,6 +62,7 @@ AUTHENTICATION_BACKENDS = (
 
 #メールアドレス認証に変更する設定
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_AUTHENTICATION_METHOD = 'member_id'
 ACCOUNT_USERNAME_REQUIRED = False
 
 # サインアップにメールアドレス確認をはさむよう設定
