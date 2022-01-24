@@ -108,7 +108,7 @@ div.room-detail {
     margin-left: 6em;
 }
 
-input.room-btn {
+button.room-btn {
     width: 112px;
     height: 41px;
     background-color: lightyellow;
