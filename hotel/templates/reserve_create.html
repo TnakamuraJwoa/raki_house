@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}room_list{% endblock %}
+{% block active_diary_list %}active{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block contents %}
+<div class="container">
+    <div class="row">
+        <div class="my-div-style w-100">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="text-center my-5">
+                  <h1 class="mb-5">ご予約ありがとうございました。</h1>
+                  <p class="mb-2">
+                    担当より予約確定のお電話がありますので、少々お待ちください。
+                  </p>
+                  <p class="mb-4">お客様のご来店をスタッフ一同心よりお待ちしております。</p>
+                  <a class="btn btn-primary" href="{% url 'hotel:house' %}">ホテル一覧戻る</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

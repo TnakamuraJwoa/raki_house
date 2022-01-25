@@ -17,7 +17,7 @@
                         <form method="post" action="{% url 'hotel:reserve_create' %}">
                             {% csrf_token %}
                             {{ form.as_p }}
-                            <button class= "room-btn" type="submit">予約</button>
+                            <button class= "btn btn-primary" type="submit">予約</button>
                         </form>
                     </div>
                 </div>

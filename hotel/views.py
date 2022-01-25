@@ -71,4 +71,4 @@ class ReserveCreateView(LoginRequiredMixin, generic.View):
         profile_content.save()
 
 
-        return render(request, "room_list.html")
+        return render(request, "reserve_create.html")
