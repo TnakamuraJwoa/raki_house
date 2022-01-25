@@ -18,7 +18,7 @@ class House(models.Model):
 
 
 class Room(models.Model):
-    room_number = models.CharField('部屋番号', max_length=10, null=True, blank=True)
+    room_number = models.CharField('部屋番号', primary_key=True, max_length=10, null=False, blank=True)
     room_name = models.CharField('部屋名', max_length=30, null=True, blank=True)
     persons = models.IntegerField('大人 - 人数', default=0, null=True, blank=True)
     kids = models.IntegerField('子供 - 人数', default=0, null=True, blank=True)

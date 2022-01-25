@@ -65,7 +65,7 @@ class ReserveConfirmationView(LoginRequiredMixin, generic.View):
 class ReserveCreateView(LoginRequiredMixin, generic.View):
     def post(self, request, *args, **kwargs):
         reserve_date = date.today()
-        room_number_id = 1
+        room_number_id = request.POST['room_number']
 
         profile_content = Reserve(reserve_date=reserve_date, room_number_id=room_number_id)
         profile_content.save()
