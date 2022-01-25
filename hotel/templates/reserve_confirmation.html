@@ -14,10 +14,9 @@
                 <div id="room-main">
 
                     <div class="room-detail">
-                        <form method="post" action="{% url 'hotel:reserve_confirmation' %}">
+                        <form method="post" action="{% url 'hotel:reserve_create' %}">
                             {% csrf_token %}
-                            {{ room_name }}
-                            {{ room_number }}
+                            {{ form.as_p }}
                             <button class= "room-btn" type="submit">予約</button>
                         </form>
                     </div>

@@ -11,4 +11,5 @@ urlpatterns = [
     path('room/<int:pk>/', views.RoomView.as_view(), name = "room"),
     path('room_list/', views.RoomsView.as_view(), name = "room_list"),
     path('reserve_confirmation/', views.ReserveConfirmationView.as_view(), name = "reserve_confirmation"),
+    path('reserve_create/', views.ReserveCreateView.as_view(), name = "reserve_create"),
 ]
