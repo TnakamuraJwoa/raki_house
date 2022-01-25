@@ -1,14 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>test</title>
-</head>
-<body>
-<form>
-  {{ room_name }}
-  {{ room_number }}
-  {{ persons }}
-</form>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}room_list{% endblock %}
+{% block active_diary_list %}active{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block contents %}
+<div class="container">
+    <div class="row">
+        <div class="my-div-style w-100">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div id="room-main">
+
+                    <div class="room-detail">
+                        <form method="post" action="{% url 'hotel:reserve_confirmation' %}">
+                            {% csrf_token %}
+                            {{ room_name }}
+                            {{ room_number }}
+                            <button class= "room-btn" type="submit">予約</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
