@@ -93,3 +93,22 @@ input.btn1 {
     top: 135px;
     left: 500px;
 }
+
+input#id_login {
+    width: 100% !important;
+    text-align: center;
+}
+
+input#id_password {
+    width: 100% !important;
+    text-align: center;
+}
+
+div.form-text {
+    margin: 1em;
+
+}
+
+p#login_message {
+    margin-top: 1.5em;
+}

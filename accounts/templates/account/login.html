@@ -7,7 +7,7 @@
 <div class="container">
     <div class="form-container">
         <h1 class="form-title">Log In</h1>
-        <form id='login-form' method="post" action="{% url 'account_login' %}">
+        <form method="post" action="{% url 'account_login' %}">
             {% csrf_token%}
             <div class="form-box">{{ form.login }}</div>
             <div class="form-box">{{ form.password }}</div>
@@ -18,7 +18,7 @@
             {% endif %}
 
             <button class="btn btn-primary" type="submit">ログイン</button>
-            <p><a class="button secondary Action" href="{% url 'account_reset_password' %}">パスワードを忘れましたか？</a></p>
+            <p id="login_message"><a class="button secondary Action" href="{% url 'account_reset_password' %}">パスワードを忘れましたか？</a></p>
         </form>
     </div>
 </div>
