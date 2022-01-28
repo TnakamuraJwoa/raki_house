@@ -11,18 +11,17 @@
     </div>
     <div class="row">
       {% for house in house_data %}
-      <div class="col-lg-3 col-md-6">
+      <div class="col-lg-3 col-md-6 mb-5">
         <a href="{% url 'hotel:room_list' %}" class="font-weight-bold">{{ house.name }}店</a>
         <div class="card img-thumbnail houselist mb-3">
-          <img
-            class="card-img-top card-thum"
-            src="{{ house.image.url }}"
-            alt=""
-          />
-          <div class="card-body text-center px-2 py-3">
-            <p>{{ house.address }}</p>
-          </div>
-          <a class="stretched-link" href=""></a>
+            <div class="flex-item">
+                <div class="image-wrap">
+                    <img class="house-img" src="{{ house.image.url }}">
+                </div>
+                <div class="card-body text-center px-2 py-3">
+                  <p>{{ house.address }}</p>
+                </div>
+            </div>
         </div>
       </div>
       {% empty %}
