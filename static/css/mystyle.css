@@ -64,7 +64,7 @@ article {
   margin: 10px; /*外余白*/
 }
 
-.form-container{
+.form-container {
   background: white;
   padding: 20px; /*内側余白*/
   margin: auto; /*中央揃え*/
@@ -73,7 +73,12 @@ article {
   border-radius: 4px; /*外角の丸み*/
   border: 1px solid #ddd; /*枠線*/
   text-align: center; /*内部の要素を中央ぞろえ*/
-  position: relative;
+}
+
+#login-contents {
+    position: absolute;
+    top: 9em;
+    width: 100%;
 }
 
 .form-text {
@@ -86,12 +91,6 @@ input.btn1 {
     height: 41px;
     text-align: center;
     background-color: cornsilk;
-}
-
-.form-container {
-    position: fixed;
-    top: 135px;
-    left: 500px;
 }
 
 input#id_login {
@@ -111,4 +110,9 @@ div.form-text {
 
 p#login_message {
     margin-top: 1.5em;
+}
+
+
+h1#house-h1 {
+    margin-top: 2em;
 }
