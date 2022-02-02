@@ -8,7 +8,7 @@
   <div id="room-list-frame">
     <div class="side">
         <div class="side-list">
-            <div>
+            <div id="side-list-item">
                 <span>チェックイン日</span>
                 <p>{{ form.birthday }}</p>
                 <span></span>チェックアウト日
@@ -30,8 +30,16 @@
                     <div class="post-preview">
                         <a href="{{ house.image.url }}">
                             <div>
-                                <a href="{% url 'hotel:room' room.pk %}">{{ room.room_name }}</a>
-                                <span class="room-status" id="example" value="{{ room.smoking }}">喫煙</span>
+                                <div id="room-list-title">
+                                    <a id="room-list-title-a" href="{% url 'hotel:room' room.pk %}">{{ room.room_name }}</a>
+                                    {% if room.smoking %}
+                                        <span class="room-status" value="{{ room.smoking }}"><strong>喫煙</strong></span>
+                                    {% endif %}
+                                    <span class="room-status" value="{{ room.smoking }}"><strong>コーナー</strong></span>
+                                    <span class="room-status" value="{{ room.smoking }}"><strong>洋室</strong></span>
+                                    <span class="room-status" value="{{ room.smoking }}"><strong>和室</strong></span>
+                                    <span class="room-status" value="{{ room.smoking }}"><strong>露天風呂</strong></span>
+                                </div>
                                 <div id="room-list-content-main">
                                     <div id="room-list-img-fram">
                                         <img id="room-list-main-img" class="rounded-circle" src="{{ room.image.url }}" alt="" />
