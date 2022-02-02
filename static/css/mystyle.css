@@ -10,16 +10,14 @@ footer{
 }
 
 .side {
-/*
-  background-color:#ff838b;
-  text-align:center;
-*/
-  width: 165px;
+    margin-top: 5rem;
+    width: 25%;
 }
 
 .side-list {
-  position: absolute;
-  top: 100px;
+    background-color: aquamarine;
+    width: 80%;
+    height: 55%;
 }
 
 input#id_person {
@@ -30,12 +28,14 @@ input#id_kids {
   width: 85px;
 }
 
-article {
-  display:flex;/*サイドバーとメインコンテンツを横並びにする                指定をした*/
+
+.my-div-style {
+  margin-top: 5rem;
 }
 
-.my-div-style{
+.room-list-content {
   margin-top: 5rem;
+  width: 90%;
 }
 
 
@@ -131,5 +131,37 @@ h1#house-h1 {
 }
 
 .house-img {
+    width: 100%;
+}
+
+#room-list-frame {
+    display: flex;
+    background-color: antiquewhite;
+}
+
+#room-list-main {
+    width: 100%;
+    background-color: aliceblue;
+}
+
+#room-list-img-fram {
+    height: 100px;
+    width: 16%;
+    background-color: aqua;
+}
+
+#room-list-main-img {
+    width: 100%;
+    height: 100%;
+}
+
+#room-list-content-main {
+    background-color: antiquewhite;
+    display: flex;
+}
+
+#room-list-text {
+    background-color: cadetblue;
+    display: flex;
     width: 100%;
 }

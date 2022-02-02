@@ -27,7 +27,7 @@ class RoomView(LoginRequiredMixin, generic.DetailView):
 class RoomsView(LoginRequiredMixin, generic.ListView):
     model = Room
     template_name = 'room_list.html'
-    paginate_by = 2
+    paginate_by = 5
     ordering = '-room_number'  # order_by('-title')
 
     # def get_queryset(self):
