@@ -29,6 +29,7 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
     template_name = 'room_list.html'
     paginate_by = 5
     ordering = '-room_number'  # order_by('-title')
+    queryset = Room.objects.filter(house_name_id='1')
 
     # def get_queryset(self):
     #     room = Room.objects.all().order_by('-room_number')
