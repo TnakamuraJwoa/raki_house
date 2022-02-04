@@ -29,12 +29,16 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
     template_name = 'room_list.html'
     paginate_by = 5
     ordering = '-room_number'  # order_by('-title')
-    queryset = Room.objects.filter(house_name_id='1')
+    # queryset = Room.objects.filter(house_name_id='1')
 
-    # def get_queryset(self):
-    #     room = Room.objects.all().order_by('-room_number')
-    #
-    #     return room
+    def get_queryset(self):
+        q_word = self.request.GET.get('house_number')
+
+        if q_word:
+            object_list = Room.objects.filter(house_name_id=q_word)
+        else:
+            object_list = Room.objects.all()
+        return object_list
 
     def get_context_data(self, **kwargs):
         self.context = super().get_context_data( **kwargs )
