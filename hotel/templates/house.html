@@ -16,7 +16,7 @@
             {% csrf_token %}
             <input type="hidden" name="house_number" value={{ house.id }}>
 <!--            <a href="{% url 'hotel:room_list' %}" onclick="document.a_form.submit();">{{ house.house_name }}</a>-->
-            <input type="submit" value={{ house.house_name }}>
+            <input id="house-button" type="submit" value={{ house.house_name }}>
         </form>
         <div class="card img-thumbnail houselist mb-3">
             <div class="flex-item">

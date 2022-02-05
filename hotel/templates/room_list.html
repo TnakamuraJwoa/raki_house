@@ -34,17 +34,27 @@
                                     <a id="room-list-title-a" href="{% url 'hotel:room' room.pk %}">{{ room.room_name }}</a>
                                     {% if room.smoking %}
                                         <span class="room-status" value="{{ room.smoking }}"><strong>喫煙</strong></span>
+                                    {% else %}
+                                        <span class="room-status" <strong>禁煙</strong></span>
                                     {% endif %}
-                                    <span class="room-status" value="{{ room.smoking }}"><strong>コーナー</strong></span>
-                                    <span class="room-status" value="{{ room.smoking }}"><strong>洋室</strong></span>
-                                    <span class="room-status" value="{{ room.smoking }}"><strong>和室</strong></span>
-                                    <span class="room-status" value="{{ room.smoking }}"><strong>露天風呂</strong></span>
+                                    {% if room.corner_room %}
+                                        <span class="room-status" value="{{ room.corner_room }}"><strong>コーナー</strong></span>
+                                    {% endif %}
+                                    {% if room.we_style %}
+                                        <span class="room-status" value="{{ room.we_style }}"><strong>洋室</strong></span>
+                                    {% endif %}
+                                    {% if room.ja_style %}
+                                        <span class="room-status" value="{{ room.ja_style }}"><strong>和室</strong></span>
+                                    {% endif %}
+                                    {% if room.open_bath %}
+                                        <span class="room-status" value="{{ room.open_bath }}"><strong>露天風呂</strong></span>
+                                    {% endif %}
                                 </div>
                                 <div id="room-list-content-main">
                                     <div id="room-list-img-fram">
                                         <img id="room-list-main-img" class="rounded-circle" src="{{ room.image.url }}" alt="" />
                                     </div>
-                                    <div id="room-list-text">これは、テスト説明です。あああああああああああ</div>
+                                    <div id="room-list-text">{{ room.description }}</div>
                                 </div>
                             </div>
                         </a>
