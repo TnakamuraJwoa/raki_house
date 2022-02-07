@@ -49,6 +49,9 @@
                                     {% if room.open_bath %}
                                         <span class="room-status" value="{{ room.open_bath }}"><strong>露天風呂</strong></span>
                                     {% endif %}
+                                    {% if room.dog %}
+                                        <span class="room-status" value="{{ room.dog }}"><strong>介助犬対応</strong></span>
+                                    {% endif %}
                                 </div>
                                 <div id="room-list-content-main">
                                     <div id="room-list-img-fram">

@@ -35,10 +35,12 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
         q_word = self.request.GET.get('house_number')
 
         if q_word:
-            object_list = Room.objects.filter(house_name_id=q_word)
+            queryset = Room.objects.filter(house_name_id=q_word)
         else:
-            object_list = Room.objects.all()
-        return object_list
+            queryset = Room.objects.all()
+
+        print(queryset .query)
+        return queryset
 
     def get_context_data(self, **kwargs):
         self.context = super().get_context_data( **kwargs )

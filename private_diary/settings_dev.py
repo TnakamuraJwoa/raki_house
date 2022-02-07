@@ -27,6 +27,10 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'DEBUG',
         },
+        'hotel': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
     },
 
     #ハンドラの設定

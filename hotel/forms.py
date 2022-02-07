@@ -3,9 +3,8 @@ from django import forms
 
 
 room_type = (
-    ("1", "ファミリータイプ"),
-    ("2", "クイーンルーム"),
-    ("3", "シングルルーム"),
+    ("1", "ロイヤルルーム"),
+    ("2", "デラックスルーム"),
 )
 
 class AddUserForm(forms.Form):
