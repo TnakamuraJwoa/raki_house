@@ -1,10 +1,11 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
+from accounts.models import CustomUser
 # Create your models here.
 
 class House(models.Model):
-    house_name = models.CharField('店舗',  max_length=100)
+    house_name = models.CharField('店舗',  unique=True, max_length=100)
     address = models.CharField('住所', max_length=100, null=True, blank=True)
     tel = models.CharField('電話番号', max_length=100, null=True, blank=True)
     description = models.TextField('説明', default="", null=True, blank=True)
@@ -16,9 +17,9 @@ class House(models.Model):
     class Meta:
         verbose_name_plural = 'House'
 
-        constraints = [
-                    models.UniqueConstraint(fields=['house_name'], name='unique_constraint')
-                ]
+        # constraints = [
+        #             models.UniqueConstraint(fields=['house_name'], name='unique_constraint')
+        #         ]
 
 
 
@@ -72,6 +73,7 @@ class Reserve(models.Model):
     room_number = models.ForeignKey(Room, on_delete=models.CASCADE)
     reserve_date = models.DateField()
     Ticket_number = models.ForeignKey(Ticket, on_delete=models.CASCADE)
+    member_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.room_number) + ':　' + str(self.reserve_date)

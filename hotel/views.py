@@ -35,7 +35,7 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
         q_word = self.request.GET.get('house_number')
 
         if q_word:
-            queryset = Room.objects.filter(house_name_id=q_word)
+            queryset = Room.objects.filter(house_name_id='1')
         else:
             queryset = Room.objects.all()
 
