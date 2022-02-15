@@ -44,6 +44,7 @@ class Room(models.Model):
     dog = models.BooleanField('介助犬', default=False)
     description = models.TextField('説明', default="", blank=True)
     image = models.ImageField(upload_to='images', verbose_name='部屋画像メイン', null=True, blank=True)
+    room_active = models.BooleanField('アクティブ', default=False)
 
     def __str__(self):
         return str(self.house_name) + ':　' + self.room_number
@@ -71,6 +72,7 @@ class Ticket(models.Model):
 
 class Reserve(models.Model):
     room_number = models.ForeignKey(Room, on_delete=models.CASCADE)
+    Representative_name = models.CharField('代表者名', max_length=20, null=True, blank=True)
     reserve_date = models.DateField()
     Ticket_number = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     member_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -85,30 +87,31 @@ class Reserve(models.Model):
 
 
 class Calendar(models.Model):
-    cale_number = models.IntegerField('カレンダー番号', validators=[MinValueValidator(1)], null=True, blank=True)
+    member_id = models.ForeignKey(CustomUser, verbose_name="所有者", on_delete=models.CASCADE)
+    no = models.IntegerField('チケット番号', validators=[MinValueValidator(0)], default=0, null=False, blank=False)
     date = models.DateField('日付')
 
     def __str__(self):
-        return str(self.cale_number) + ": " + str(self.date)
+        return str(self.no) + ': ' + str(self.date)
 
     class Meta:
         verbose_name_plural = 'Calendar'
 
-
-class Movie(models.Model):
-    # 動画
-    title = models.CharField(max_length=30)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-      db_table = 'movie'
-
-
-class DailyViews(models.Model):
-# """日間再生数"""
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    views = models.IntegerField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-      db_table = 'daily_views'
+#
+# class Movie(models.Model):
+#     # 動画
+#     title = models.CharField(max_length=30)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#
+#     class Meta:
+#       db_table = 'movie'
+#
+#
+# class DailyViews(models.Model):
+# # """日間再生数"""
+#     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+#     views = models.IntegerField()
+#     created_at = models.DateTimeField(auto_now_add=True)
+#
+#     class Meta:
+#       db_table = 'daily_views'

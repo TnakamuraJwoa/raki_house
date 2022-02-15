@@ -8,6 +8,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime
 from .forms import AddUserForm, ReserveConfirmationForm
+from django.db.models import Q
 
 
 class HouseView(LoginRequiredMixin, generic.TemplateView):
@@ -36,9 +37,11 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
         q_word = self.request.GET.get('house_number')
         date = datetime.datetime.now() - datetime.timedelta(days=14)
 
+        print(date)
+
         if q_word:
             # queryset = Room.objects.filter(house_name_id='1')
-            queryset = Room.objects.filter(reserve__reserve_date__gt=date, house_name_id=q_word).select_related().all()
+            queryset = Room.objects.filter(Q(house_name_id=q_word), Q(reserve__reserve_date__isnull=True) | Q(reserve__reserve_date__gt=date)).select_related().all()
         else:
             queryset = Room.objects.all()
 
