@@ -29,7 +29,7 @@ class RoomView(LoginRequiredMixin, generic.DetailView):
 class RoomsView(LoginRequiredMixin, generic.ListView):
     model = Room
     template_name = 'room_list.html'
-    paginate_by = 5
+    paginate_by = 4
     ordering = '-room_number'  # order_by('-title')
     # queryset = Room.objects.filter(house_name_id='1')
 
@@ -38,9 +38,12 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
         out_date = '2022-02-19'
 
         get_house_id = self.request.GET.get('house_number')
-        self.request.session['house_id'] = get_house_id
 
-        house_id = self.request.session['house_id']
+        if get_house_id is None:
+            house_id = self.request.session['house_id']
+        else:
+            house_id = get_house_id
+
         member_id_id = self.request.user.id
         member_type = self.request.user.member_type
 
@@ -51,9 +54,9 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
         # 使用可能カレンダの件数
         available_cal_cnt = Calendar.objects.filter(date__gte=in_date, date__lte=out_date, used=False, cal_active=True).count()
         #部屋の数
-        active_room_cnt = Room.objects.filter(house_name_id=get_house_id, room_active=True).count()
+        active_room_cnt = Room.objects.filter(house_name_id=house_id, room_active=True).count()
         # 予約の件数
-        reserve_cnt = Room.objects.filter(Q(house_name_id=get_house_id), Q(room_active=True) | Q(reserve__reserve_date__gte=in_date), Q(reserve__reserve_date__lte=out_date)).select_related().all().count()
+        reserve_cnt = Room.objects.filter(Q(house_name_id=house_id), Q(room_active=True) | Q(reserve__reserve_date__gte=in_date), Q(reserve__reserve_date__lte=out_date)).select_related().all().count()
 
         print("使用可能カレンダの件数: %d" % available_cal_cnt)
         print("部屋の数: %d" % active_room_cnt)
@@ -70,8 +73,8 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
 
         date = datetime.datetime.now() - datetime.timedelta(days=14)
 
-        if get_house_id and flg == True:
-            queryset = Room.objects.filter(Q(house_name_id=get_house_id), Q(reserve__reserve_date__isnull=True) | Q(reserve__reserve_date__gt=date)).select_related().all()
+        if house_id and flg == True:
+            queryset = Room.objects.filter(Q(house_name_id=house_id), Q(reserve__reserve_date__isnull=True) | Q(reserve__reserve_date__gt=date)).select_related().all()
         else:
             queryset = Room.objects.none()
         return queryset
