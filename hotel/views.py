@@ -34,7 +34,7 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
     # queryset = Room.objects.filter(house_name_id='1')
 
     def get_queryset(self):
-        in_date = '2022-02-18'
+        in_date = '2022-02-17'
         out_date = '2022-02-19'
 
         get_house_id = self.request.GET.get('house_number')
@@ -74,10 +74,15 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
         date = datetime.datetime.now() - datetime.timedelta(days=14)
 
         if house_id and flg == True:
-            queryset = Room.objects.filter(Q(house_name_id=house_id), Q(reserve__reserve_date__isnull=True) | Q(reserve__reserve_date__gt=date)).select_related().all()
+            queryset = Room.objects.filter(Q(house_name_id=house_id), Q(reserve__reserve_date__isnull=True) | Q(reserve__reserve_date__gt=date)).select_related().all().filter(Q(reserve__reserve_date__gt=out_date) | Q(reserve__reserve_date__lt=in_date) | Q(reserve__reserve_date__isnull=True))
         else:
             queryset = Room.objects.none()
+
+        print(queryset.query)
+
         return queryset
+
+
 
     def get_context_data(self, **kwargs):
         self.context = super().get_context_data( **kwargs )
