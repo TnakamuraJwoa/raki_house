@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from .models import House
-from .models import Room, Reserve
+from .models import Room, Reserve, Calendar
 from datetime import date
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -34,18 +34,46 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
     # queryset = Room.objects.filter(house_name_id='1')
 
     def get_queryset(self):
-        q_word = self.request.GET.get('house_number')
+        in_date = '2022-02-18'
+        out_date = '2022-02-19'
+
+        get_house_id = self.request.GET.get('house_number')
+        self.request.session['house_id'] = get_house_id
+
+        house_id = self.request.session['house_id']
+        member_id_id = self.request.user.id
+        member_type = self.request.user.member_type
+
+        # print(house_id)
+        print("member_id_id: %d" % member_id_id)
+        print("member_type: %d" % member_type)
+
+        # 使用可能カレンダの件数
+        available_cal_cnt = Calendar.objects.filter(date__gte=in_date, date__lte=out_date, used=False, cal_active=True).count()
+        #部屋の数
+        active_room_cnt = Room.objects.filter(house_name_id=get_house_id, room_active=True).count()
+        # 予約の件数
+        reserve_cnt = Room.objects.filter(Q(house_name_id=get_house_id), Q(room_active=True) | Q(reserve__reserve_date__gte=in_date), Q(reserve__reserve_date__lte=out_date)).select_related().all().count()
+
+        print("使用可能カレンダの件数: %d" % available_cal_cnt)
+        print("部屋の数: %d" % active_room_cnt)
+        print("予約の件数: %d" % reserve_cnt)
+
+        if (active_room_cnt - reserve_cnt) > available_cal_cnt:
+            flg = True
+        else:
+            if member_type >= 3 and (active_room_cnt - reserve_cnt) >= 1:
+                flg = True
+            else:
+                flg = False
+
+
         date = datetime.datetime.now() - datetime.timedelta(days=14)
 
-        print(date)
-
-        if q_word:
-            # queryset = Room.objects.filter(house_name_id='1')
-            queryset = Room.objects.filter(Q(house_name_id=q_word), Q(reserve__reserve_date__isnull=True) | Q(reserve__reserve_date__gt=date)).select_related().all()
+        if get_house_id and flg == True:
+            queryset = Room.objects.filter(Q(house_name_id=get_house_id), Q(reserve__reserve_date__isnull=True) | Q(reserve__reserve_date__gt=date)).select_related().all()
         else:
-            queryset = Room.objects.all()
-
-        print(queryset .query)
+            queryset = Room.objects.none()
         return queryset
 
     def get_context_data(self, **kwargs):

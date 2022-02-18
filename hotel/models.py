@@ -87,9 +87,11 @@ class Reserve(models.Model):
 
 
 class Calendar(models.Model):
-    member_id = models.ForeignKey(CustomUser, verbose_name="所有者", on_delete=models.CASCADE)
+    member_id = models.ForeignKey(CustomUser, verbose_name="所有者", on_delete=models.SET_DEFAULT, default='不明')
     no = models.IntegerField('チケット番号', validators=[MinValueValidator(0)], default=0, null=False, blank=False)
     date = models.DateField('日付')
+    used = models.BooleanField('使用済', default=False)
+    cal_active = models.BooleanField('アクティブ', default=False)
 
     def __str__(self):
         return str(self.no) + ': ' + str(self.date)
