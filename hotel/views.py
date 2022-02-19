@@ -29,7 +29,7 @@ class RoomView(LoginRequiredMixin, generic.DetailView):
 class RoomsView(LoginRequiredMixin, generic.ListView):
     model = Room
     template_name = 'room_list.html'
-    paginate_by = 4
+    paginate_by = 3
     ordering = '-room_number'  # order_by('-title')
     # queryset = Room.objects.filter(house_name_id='1')
 
@@ -42,12 +42,13 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
         if get_house_id is None:
             house_id = self.request.session['house_id']
         else:
+            self.request.session['house_id'] = get_house_id
             house_id = get_house_id
 
         member_id_id = self.request.user.id
         member_type = self.request.user.member_type
 
-        # print(house_id)
+        print(house_id)
         print("member_id_id: %d" % member_id_id)
         print("member_type: %d" % member_type)
 
@@ -78,7 +79,7 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
         else:
             queryset = Room.objects.none()
 
-        print(queryset.query)
+        # print(queryset.query)
 
         return queryset
 
