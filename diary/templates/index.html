@@ -14,7 +14,7 @@
         $(document).ready(function(){
             $('.slider').bxSlider({
                 auto: true,
-                pause: 5000,
+                pause: 8000,
                 mode: 'fade',
                 pager: false,
                 controls: false,
@@ -25,8 +25,11 @@
 <header>
     <div id="index-main-slider" class="masthead-content">
         <div class="slider">
+            <img id="main-img" src="{% static 'assets/imgs/title3.jpg' %}" alt="" />
             <img id="main-img" src="{% static 'assets/imgs/slide4.jpg' %}" alt="" />
+            <img id="main-img" src="{% static 'assets/imgs/title4.jpg' %}" alt="" />
             <img id="main-img" src="{% static 'assets/imgs/slide3.jpg' %}" alt="" />
+            <img id="main-img" src="{% static 'assets/imgs/title5.jpg' %}" alt="" />
         </div>
         <div id="login">
                 <a id="login-btn" href="{% url 'account_login' %}" class="btn btn-primary btn-xl rounded-pill mt-5">LOG IN</a>
