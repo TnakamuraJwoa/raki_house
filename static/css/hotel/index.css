@@ -1,0 +1,37 @@
+
+img#main-img {
+    width: 100%;
+}
+
+div#login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    margin:0;
+    padding:0;
+}
+
+#index-main-slider {
+    position: relative;
+}
+
+
+#main-img {
+    animation: hogehoge 5s infinite;
+}
+
+
+@keyframes hogehoge {
+  42% {
+    filter: brightness(300%)
+  }
+  50% {
+    filter: brightness(200%)
+  }
+  ....
+  70% {
+    filter: brightness(100%)
+  }
