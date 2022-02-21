@@ -189,3 +189,9 @@ input#house-button {
     color: red;
     margin-bottom: 1em;
 }
+
+#base-home-img {
+    position: fixed;
+    top: 5px;
+    left: 46px;
+}

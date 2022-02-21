@@ -25,7 +25,7 @@ div#login {
 
 
 @keyframes hogehoge {
-  42% {
+  30% {
     filter: brightness(300%)
   }
   50% {
@@ -35,3 +35,4 @@ div#login {
   70% {
     filter: brightness(100%)
   }
+
