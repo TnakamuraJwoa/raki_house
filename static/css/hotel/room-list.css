@@ -1,0 +1,76 @@
+
+
+img.ui-datepicker-trigger {
+    width: 29px;
+    background-color: beige;
+}
+
+.layout_search {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background: #f9f9f8;
+    list-style: none;
+}
+
+img.ui-datepicker-trigger {
+    width: 29px;
+    background-color: beige;
+}
+
+.layout_search {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background: #f9f9f8;
+    list-style: none;
+}
+
+li.serch-item {
+    margin: 1em;
+    text-align: left;
+}
+
+.serch-item-ico {
+    width: 2em;
+}
+
+.room-list-search-btn {
+    background: #615b54;
+    color: aliceblue;
+}
+
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.modal{
+    display: none;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.modal__bg{
+    background: rgba(0,0,0,0.8);
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+}
+.modal__content{
+    background: #fff;
+    left: 50%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 60%;
+
+#modalBody {
+  white-space: pre-wrap;
+}

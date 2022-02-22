@@ -7,7 +7,7 @@ from datetime import date
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime
-from .forms import AddUserForm, ReserveConfirmationForm
+from .forms import BoxSearchForm, ReserveConfirmationForm
 from django.db.models import Q
 
 
@@ -87,7 +87,7 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, **kwargs):
         self.context = super().get_context_data( **kwargs )
-        form = AddUserForm()
+        form = BoxSearchForm()
         # page_title を追加する
         self.context['form'] = form
 

@@ -1,5 +1,6 @@
 from django.contrib.admin.widgets import AdminDateWidget
 from django import forms
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 room_type = (
@@ -7,11 +8,11 @@ room_type = (
     ("2", "デラックスルーム"),
 )
 
-class AddUserForm(forms.Form):
-    birthday = forms.DateField(widget=forms.SelectDateWidget())
+class BoxSearchForm(forms.Form):
     room = forms.ChoiceField(choices=room_type)
     person = forms.IntegerField(label='大人')
     kids = forms.IntegerField(label='子供')
+    stays = forms.IntegerField(label='宿泊数', validators=[MinValueValidator(1), MaxValueValidator(5)])
 
 
 class ReserveConfirmationForm(forms.Form):

@@ -4,63 +4,87 @@
 {% block title %}ホテル一覧{% endblock %}
 {% block active_diary_list%}active{% endblock %}
 
+
+{% block head %}
+<link href="{% static 'css/hotel/room-list.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block contents %}
-  <div id="room-list-frame">
-    <div class="side">
-        <div class="side-list">
-            <div id="side-list-item">
-                <span>チェックイン日</span>
-                <p>{{ form.birthday }}</p>
-                <span></span>チェックアウト日
-                <p>{{ form.birthday }}</p>
-                <span>客室</span>
-                <p>{{ form.room }}</p>
-                <span>大人</span>
-                <p>{{ form.person }}</p>
-                <span>子供</span>
-                <p>{{ form.kids }}</p>
-                <input type="button" class= "btn1" value="空室を検索">
+<div class="container">
+    <div class="row">
+        <div class="my-div-style w-100">
+            <div class="modal js-modal">
+                <div class="modal__bg js-modal-close"></div>
+                <div class="modal__content">
+                    <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+                    <a class="js-modal-close" href="">閉じる</a>
+                </div><!--modal__inner-->
+            </div><!--modal-->
+            <div class="room-list-box_search">
+                <form method="get" action="{% url 'hotel:room_list' %}">
+                    {% csrf_token %}
+                    <ui class="layout_search">
+                        <li class="serch-item">
+                            <p>チェックイン日</p>
+                            <span>
+                               <input type="date">
+                            </span>
+                        </li>
+                        <li class="serch-item">
+                            <p>客室</p>
+                            <span>
+                                {{ form.room }}
+                            </span>
+                        </li>
+                        <li class="serch-item">
+                            <p>宿泊数</p>
+                            <span>
+                                {{ form.stays }}
+                            </span>
+                        </li>
+                        <li class="serch-item">
+                            <span>
+                                <a class="js-modal-open my-point" href="">詳細選択<img class="serch-item-ico" src="{% static 'assets/zoom.gif' %}" alt="次へ"></a>
+                            </span>
+                        </li>
+                        <li class="serch-item">
+                            <button class= "btn room-list-search-btn" type="submit">検索する<img src="{% static 'assets/serch_ico.png' %}" width="20px" height="20px"></button>
+                        </li>
+                    </ui>
+                </form>
+
+
+
             </div>
-        </div>
-     </div>
-    <div id="room-list-main">
-        <div class="room-list-content">
-            <div>
+            <div class="col-lg-8 col-md-10 mx-auto">
+<!--                <div class="clearfix">-->
+<!--                     <a class="btn btn-primary float-right" href="{% url 'diary:diary_create' %}">新規作成</a>-->
+<!--                </div>-->
                 {% for room in object_list %}
                     <div class="post-preview">
                         <a href="{{ house.image.url }}">
                             <div>
-                                <div id="room-list-title">
-                                    <a id="room-list-title-a" href="{% url 'hotel:room' room.pk %}">{{ room.room_name }}</a>
-                                    {% if room.smoking %}
-                                        <span class="room-status" value="{{ room.smoking }}"><strong>喫煙</strong></span>
-                                    {% else %}
-                                        <span class="room-status"><strong>禁煙</strong></span>
-                                    {% endif %}
-                                    {% if room.corner_room %}
-                                        <span class="room-status" value="{{ room.corner_room }}"><strong>コーナー</strong></span>
-                                    {% endif %}
-                                    {% if room.we_style %}
-                                        <span class="room-status" value="{{ room.we_style }}"><strong>洋室</strong></span>
-                                    {% endif %}
-                                    {% if room.ja_style %}
-                                        <span class="room-status" value="{{ room.ja_style }}"><strong>和室</strong></span>
-                                    {% endif %}
-                                    {% if room.open_bath %}
-                                        <span class="room-status" value="{{ room.open_bath }}"><strong>露天風呂</strong></span>
-                                    {% endif %}
-                                    {% if room.dog %}
-                                        <span class="room-status" value="{{ room.dog }}"><strong>介助犬対応</strong></span>
-                                    {% endif %}
-                                </div>
-                                <div id="room-list-content-main">
-                                    <div id="room-list-img-fram">
-                                        <img id="room-list-main-img" class="rounded-circle" src="{{ room.image.url }}" alt="" />
-                                    </div>
-                                    <div id="room-list-text">{{ room.description }}</div>
+                                <p>{{ room.room_name }}</p>
+                                <input type="checkbox" name="tags" id="id_tags_0">
+                                <a>喫煙</a>
+                                {{ form.birthday }}
+                                <span class="label label-tag">{{ room.in_date }}</span>
+<!--                                <span class="label label-tag">禁煙ルーム</span>-->
+                                <div>
+                                    <img class="img-fluid rounded-circle" src="{{ room.image.url }}" width="135px" alt="" />
+                                    {{ diary.content }}
                                 </div>
                             </div>
+
+
+<!--                            <h2 class="post-title">-->
+<!--                                {{ diary.title }}-->
+<!--                            </h2>-->
+<!--                            <h3 class="post-subtitle">-->
+<!--                            {{ diary.content|truncatechars:20 }}-->
+<!--                            </h3>-->
                         </a>
+<!--                        <p class="post-meta">{{ diary.created_at }}</p>-->
                     </div>
                     <hr>
                 {% empty %}
@@ -101,6 +125,5 @@
             </div>
         </div>
     </div>
-
-  </div>
+</div>
 {% endblock %}

@@ -20,36 +20,15 @@ footer{
     padding-top: 2em;
 }
 
-input#id_person {
-  width: 85px;
-}
-
-input#id_kids {
-  width: 85px;
-}
-
 
 .my-div-style {
   margin-top: 5rem;
 }
 
-.room-list-content {
-  margin-top: 5rem;
-  width: 90%;
-}
-
-
 .font-weight-bold:hover{
 	color: #FF0000;
 	font-size: 20px;
 	font-weight: bold;
-}
-
-.room-status{
-	border-radius: 8px;
-	margin: 0 0.5em;
-	background-color: beige;
-	color: chocolate;
 }
 
 .form-box{
@@ -141,48 +120,6 @@ h1#house-h1 {
     background-color: floralwhite;
 }
 
-#room-list-main {
-    width: 100%;
-    background-color: aliceblue;
-}
-
-#room-list-img-fram {
-    height: 100px;
-    width: 16%;
-}
-
-#room-list-main-img {
-    width: 100%;
-    height: 100%;
-}
-
-#room-list-content-main {
-    background-color: powderblue;
-    display: flex;
-}
-
-#room-list-text {
-    background-color: aliceblue;
-    display: flex;
-    width: 100%;
-    margin: 0.1em 0.1em;
-}
-
-#room-list-title {
-    display: flex;
-    margin-bottom: 0.5em;
-}
-
-#room-list-title-a {
-    width: 20em;
-    padding-left: 1em;
-}
-
-#side-list-item {
-    position: relative;
-    left: 2em;
-}
-
 input#house-button {
     border: none;
     background: transparent;
@@ -194,4 +131,8 @@ input#house-button {
     position: fixed;
     top: 5px;
     left: 46px;
+}
+
+.my-point {
+    cursor : pointer;
 }
