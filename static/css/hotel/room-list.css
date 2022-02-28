@@ -76,3 +76,16 @@ li.serch-item {
 #modalBody {
   white-space: pre-wrap;
 }
+
+img.js-modal-close {
+    width: 1em;
+    height:1em;
+    position: absolute;
+    right: 1em;
+}
+
+.js-modal-title {
+    text-align: center;
+    border-bottom: 1px
+    solid #ccc;
+}
