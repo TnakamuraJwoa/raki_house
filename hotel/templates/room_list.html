@@ -58,7 +58,7 @@
                     <div class="post-preview">
                         <a href="{{ house.image.url }}">
                             <div>
-                                <p>{{ room.room_name }}</p>
+                                <p><a href="{% url 'hotel:room' room.pk %}">{{ room.room_name }}</a></p>
                                 <input type="checkbox" name="tags" id="id_tags_0">
                                 <a>喫煙</a>
                                 {{ form.birthday }}

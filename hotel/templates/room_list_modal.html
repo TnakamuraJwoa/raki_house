@@ -3,15 +3,34 @@
 <div class="modal js-modal">
     <div class="modal__bg js-modal-close"></div>
     <div class="modal__content">
-      <div>
         <div>
-          <img class="js-modal-close" src="{% static 'assets/batu.png' %}" alt="閉じる">
+            <div>
+                <img class="js-modal-close" src="{% static 'assets/batu.png' %}" alt="閉じる">
+            </div>
+            <div>
+                <p class="modal-title">条件の追加</p>
+            </div>
         </div>
-        <div>
-          <p class="js-modal-title">条件の追加</p>
-        </div>
-      </div>
-        <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
-        <a class="js-modal-close" href="">閉じる</a>
-    </div><!--modal__inner-->
+        <div class="modal-main">
+            <table class="modal-main-table">
+                <tr>
+                    <th>客室の種類</th>
+                    <td colspan="3">{{ form.room }}</td>
+                </tr>
+                <tr>
+                    <th>詳細</th>
+                    <td>
+                        <ul>
+                            <li><label >喫煙{{ form.smoking }}</label></li>
+                            <li><label >露天風呂{{ form.open_bath }}</label></li>
+                            <li><label >ペット可{{ form.dog }}</label></li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
+            <button class= "modal-close-btn js-modal-close" type="submit">閉じる</button>
+<!--            <a class="js-modal-close" href="">閉じる</a>-->
+        </div><!--modal__inner-->
+    </div>
 </div><!--modal-->

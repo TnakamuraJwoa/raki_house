@@ -13,6 +13,9 @@ class BoxSearchForm(forms.Form):
     person = forms.IntegerField(label='大人')
     kids = forms.IntegerField(label='子供')
     stays = forms.IntegerField(label='宿泊数', validators=[MinValueValidator(1), MaxValueValidator(5)])
+    smoking = forms.BooleanField(help_text='喫煙')
+    open_bath = forms.BooleanField(help_text='露天風呂')
+    dog = forms.BooleanField(help_text='介護犬')
 
 
 class ReserveConfirmationForm(forms.Form):
