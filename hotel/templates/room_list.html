@@ -13,13 +13,7 @@
 <div class="container">
     <div class="row">
         <div class="my-div-style w-100">
-            <div class="modal js-modal">
-                <div class="modal__bg js-modal-close"></div>
-                <div class="modal__content">
-                    <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
-                    <a class="js-modal-close" href="">閉じる</a>
-                </div><!--modal__inner-->
-            </div><!--modal-->
+            {% include 'room_list_modal.html' %}
             <div class="room-list-box_search">
                 <form method="get" action="{% url 'hotel:room_list' %}">
                     {% csrf_token %}

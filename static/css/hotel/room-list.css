@@ -62,6 +62,7 @@ li.serch-item {
     position: absolute;
     width: 100%;
 }
+
 .modal__content{
     background: #fff;
     left: 50%;
@@ -70,6 +71,7 @@ li.serch-item {
     top: 50%;
     transform: translate(-50%,-50%);
     width: 60%;
+}
 
 #modalBody {
   white-space: pre-wrap;
