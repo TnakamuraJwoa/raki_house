@@ -174,3 +174,29 @@ select#id_person {
 #room_list_messege_table th {
     padding: 11px;
 }
+
+div#room-number > a {
+    font-size: larger;
+}
+
+#style-flg {
+    margin: 20px;
+}
+
+#style-flg > span {
+    margin: 0px 13px;
+    padding: 7px;
+    border-radius: 10px 10px 10px 10px;
+    border-color: burlywood !important;
+    border: 1px solid;
+}
+
+#room-description {
+    display: flex;
+    margin-top: 53px;
+}
+
+.room-description-img {
+    width: 370px;
+    height: auto;
+}

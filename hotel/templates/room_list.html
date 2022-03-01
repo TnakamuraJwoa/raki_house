@@ -20,7 +20,7 @@
                     {% csrf_token %}
                     <ui class="layout_search">
                         <li class="serch-item">
-                            <p>チェックイン日</p>
+                            <p>宿泊日</p>
                             <span>
                                <input type="date">
                             </span>
@@ -48,43 +48,53 @@
                     </ui>
                 </form>
             </div>
-            <div class="room_list_messege">
-                <table id="room_list_messege_table">
-                    <tr>
-                        <th>検索条件</th>
-                        <td>全部屋 表示（上記の条件は加味されておりません。）</td>
-                    </tr>
-                </table>
-            </div>
+
             <div class="col-lg-8 col-md-10 mx-auto">
-<!--                <div class="clearfix">-->
-<!--                     <a class="btn btn-primary float-right" href="{% url 'diary:diary_create' %}">新規作成</a>-->
-<!--                </div>-->
+                <div class="room_list_messege">
+                    <table id="room_list_messege_table">
+                        <tr>
+                            <th>検索条件</th>
+                            <td>全部屋 表示（上記の条件は加味されておりません。）</td>
+                        </tr>
+                    </table>
+                </div>
                 {% for room in object_list %}
                     <div class="post-preview">
-                        <a href="{{ house.image.url }}">
                             <div>
-                                <p><a href="{% url 'hotel:room' room.pk %}">{{ room.room_name }}</a></p>
-                                <input type="checkbox" name="tags" id="id_tags_0">
-                                <a>喫煙</a>
-                                {{ form.birthday }}
-                                <span class="label label-tag">{{ room.in_date }}</span>
-<!--                                <span class="label label-tag">禁煙ルーム</span>-->
-                                <div>
-                                    <img class="img-fluid rounded-circle" src="{{ room.image.url }}" width="135px" alt="" />
-                                    {{ diary.content }}
+                                <div id="room-number">
+                                    <span><a href="{% url 'hotel:room' room.pk %}">{{ room.room_number }}号室　【</span>
+                                    <span><a href="{% url 'hotel:room' room.pk %}">{{ room.room_name }}】</a></span>
                                 </div>
+                                <div id="style-flg">
+                                    {% if room.smoking %}
+                                        <span>喫煙可</span>
+                                    {% endif %}
+                                    {% if room.open_bath %}
+                                        <span>露天風呂</span>
+                                    {% endif %}
+                                    {% if room.dog %}
+                                        <span>介護犬対応</span>
+                                    {% endif %}
+                                    {% if room.corner_room %}
+                                        <span>角部屋</span>
+                                    {% endif %}
+                                    {% if room.ja_style %}
+                                        <span>和室</span>
+                                    {% endif %}
+                                    {% if room.we_style %}
+                                        <span>洋室</span>
+                                    {% endif %}
+                                </div>
+                                <div id="room-description">
+                                    <div>
+                                        <img class="img-fluid room-description-img" src="{{ room.image.url }}" width="135px" alt="" />
+                                    </div>
+                                    <div id="room-description-text">
+                                        {{ room.description }}
+                                    </div>
+                                </div>
+
                             </div>
-
-
-<!--                            <h2 class="post-title">-->
-<!--                                {{ diary.title }}-->
-<!--                            </h2>-->
-<!--                            <h3 class="post-subtitle">-->
-<!--                            {{ diary.content|truncatechars:20 }}-->
-<!--                            </h3>-->
-                        </a>
-<!--                        <p class="post-meta">{{ diary.created_at }}</p>-->
                     </div>
                     <hr>
                 {% empty %}
