@@ -163,3 +163,14 @@ select#id_person {
 .modal-close-btn:hover {
     opacity: 0.5;
 }
+
+.room_list_messege table {
+    width: 100%;
+    margin: 40px 0 40px 0;
+    border-top: 1px solid #DBDBDB;
+    border-bottom: 1px solid #DBDBDB;
+}
+
+#room_list_messege_table th {
+    padding: 11px;
+}
