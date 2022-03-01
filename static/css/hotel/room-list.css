@@ -121,6 +121,11 @@ select#id_room {
     height: 38px;
 }
 
+select#id_person {
+    width: 100%;
+    height: 38px;
+}
+
 .modal-main-table ul {
     display: flex;
     list-style: none;

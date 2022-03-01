@@ -1,0 +1,41 @@
+{% load static %}
+
+<div class="modal js-modal-people">
+    <div class="modal__bg js-modal-close"></div>
+    <div class="modal__content">
+        <div>
+            <div>
+                <img class="js-modal-close js-modal-people-close" src="{% static 'assets/batu.png' %}" alt="閉じる">
+            </div>
+            <div>
+                <p class="modal-title">ご利用人数</p>
+            </div>
+        </div>
+        <div class="modal-main">
+            <table class="modal-main-table">
+                <tr>
+                    <th>大人</th>
+                    <td colspan="5">{{ form.person }}</td>
+                </tr>
+                <tr>
+                    <th rowspan="2">こども</th>
+                    <td>寝具 〇<br>食事 〇</td>
+                    <td>寝具 〇<br>食事 ✕</td>
+                    <td>寝具 ✕<br>食事 〇</td>
+                    <td>寝具 ✕<br>食事 ✕</td>
+                    <td>寝具 ✕<br>食事 ✕</td>
+                </tr>
+                <tr>
+                    <td>{{ form.kids }}</td>
+                    <td>{{ form.kids }}</td>
+                    <td>{{ form.kids }}</td>
+                    <td>{{ form.kids }}</td>
+                    <td>{{ form.kids }}</td>
+                </tr>
+            </table>
+
+            <button class= "modal-close-btn js-modal-people-close" type="submit">閉じる</button>
+<!--            <a class="js-modal-close" href="">閉じる</a>-->
+        </div><!--modal__inner-->
+    </div>
+</div><!--modal-->

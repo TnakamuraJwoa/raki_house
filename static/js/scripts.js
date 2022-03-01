@@ -13,17 +13,21 @@ $(function(){
         $('.js-modal').fadeIn();
         return false;
     });
+
     $('.js-modal-close').on('click',function(){
         $('.js-modal').fadeOut();
         return false;
     });
 
-
-    $('.serch_box-detail').on('click', function() {
-      alert("クリックされました");
+    $('.js-modal-people-open').on('click',function(){
+        $('.js-modal-people').fadeIn();
+        return false;
     });
 
-
+    $('.js-modal-people-close').on('click',function(){
+        $('.js-modal-people').fadeOut();
+        return false;
+    });
 
 
     $('.slider').slick({
