@@ -93,7 +93,7 @@ a:active{
 }
 
 div#room-slider{
-    width: 40%;
+    width: 440px;
 }
 
 .room-detail > a {
@@ -113,4 +113,38 @@ button.room-btn {
     height: 41px;
     background-color: lightyellow;
     margin-bottom: 2em;
+}
+
+.room-detail-table {
+    width: 420px;
+    margin-top: 33px;
+}
+
+.room-detail-table th {
+    padding: 5px 0;
+    text-align: left;
+    width: 50%;
+}
+
+.room-detail-table td {
+    padding: 5px 40px;
+    text-align: left;
+}
+
+#room-reserve-text {
+    text-align: center;
+    margin: 30px 0 0 0;
+}
+
+#room-reserve-btn {
+    width: 157px;
+    height: 50px;
+    border: 2px solid #000;
+    border-radius: 0;
+    background: #fff;
+}
+
+#room-reserve-btn:hover {
+    color: #fff;
+    background: dimgrey;
 }

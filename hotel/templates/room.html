@@ -13,78 +13,56 @@
 
 {% block contents %}
 <div class="container">
-    <div class="row">
-        <div class="my-div-style w-100">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div id="room-main">
-                    <div id="room-slider">
-                        <ul class="slider">
-                          <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_01.jpg" alt=""></li>
-                          <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_02.jpg" alt=""></li>
-                          <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_03.jpg" alt=""></li>
-                          <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_04.jpg" alt=""></li>
-                          <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_05.jpg" alt=""></li>
-                          <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_06.jpg" alt=""></li>
-                        </ul>
-                    </div>
-                    <div class="room-detail">
-                        <form method="post" action="{% url 'hotel:reserve_confirmation' %}">
-                            {% csrf_token %}
+    <div class="my-div-style w-100">
+        <div id="room-main">
+            <div id="room-slider">
+                <ul class="slider">
+                  <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_01.jpg" alt=""></li>
+                  <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_02.jpg" alt=""></li>
+                  <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_03.jpg" alt=""></li>
+                  <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_04.jpg" alt=""></li>
+                  <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_05.jpg" alt=""></li>
+                  <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_06.jpg" alt=""></li>
+                </ul>
+            </div>
+            <div class="room-detail">
+                <form method="post" action="{% url 'hotel:reserve_confirmation' %}">
+                    {% csrf_token %}
 <!--                            <input type="button" class= "room-btn" value="予約">-->
-                            <button class= "btn btn-primary" type="submit">予約</button>
+                    <div id="room-reserve-text">
+                        <button id= "room-reserve-btn" type="submit"><span>予約</span></button>
+                        <div class="room-detail-table">
                             <table>
-                                <tbody>
+                                <tr>
+                                    <th>部屋タイプ</th>
+                                    <td>{{ object.room_name }}</td>
+                                </tr>
                                     <tr>
-                                        <td>部屋タイプ</td>
-                                        <td>
-                                            <input type="text" name="room_name" value={{ object.room_name }} disabled>
-                                            <input type="hidden" name="room_name" value={{ object.room_name }}>
-                                        </td>
+                                        <th>室番</th>
+                                        <td>{{ object.room_number }}号室</td>
                                     </tr>
                                     <tr>
-                                        <td>室番</td>
-                                        <td>
-                                            <input type="text" name="room_number" value={{ object.room_number }}号室 disabled>
-                                            <input type="hidden" name="room_number" value={{ object.room_number }}>
-                                        </td>
+                                        <th>大人(最大人数)</th>
+                                        <td>{{ object.persons }}人</td>
                                     </tr>
                                     <tr>
-                                        <td>大人(最大人数)</td>
-                                        <td>
-                                            <input type="text" name="persons" value={{ object.persons }}人 disabled>
-                                            <input type="hidden" name="persons" value={{ object.persons }}>
-                                        </td>
+                                        <th>子供(最大人数)</th>
+                                        <td>{{ object.kids }}人</td>
                                     </tr>
                                     <tr>
-                                        <td>子供(最大人数)</td>
-                                        <td>
-                                            <input type="text" name="kids" value={{ object.kids }}人 disabled>
-                                            <input type="hidden" name="kids" value={{ object.kids }}>
-                                        </td>
+                                        <th>ダブルベッド数</th>
+                                        <td>{{ object.Double_bed }}</td>
                                     </tr>
                                     <tr>
-                                        <td>ダブルベッド数</td>
-                                        <td>
-                                            <input type="text" name="Double_bed" value={{ object.Double_bed }} disabled>
-                                            <input type="hidden" name="Double_bed" value={{ object.Double_bed }}>
-                                        </td>
+                                        <th>クイーンベッド数</th>
+                                        <td>{{ object.Queen_bed }}</td>
                                     </tr>
                                     <tr>
-                                        <td>クイーンベッド数</td>
-                                        <td>
-                                            <input type="text" name="Queen_bed" value={{ object.Queen_bed }} disabled>
-                                            <input type="hidden" name="Queen_bed" value={{ object.Queen_bed }}>
-                                        </td>
+                                        <th>シングルベッド数</th>
+                                        <td>{{ object.Single_Bed }}</td>
                                     </tr>
                                     <tr>
-                                        <td>シングルベッド数</td>
-                                        <td>
-                                            <input type="text" name="Single_Bed"  value={{ object.Single_Bed }} disabled>
-                                            <input type="hidden" name="Single_Bed" value={{ object.Single_Bed }}>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>喫煙</td>
+                                        <th>喫煙</th>
                                         <td>
                                             {% if object.smoking %}
                                                 <input type="text" name="smoking" value="喫煙可" disabled>
@@ -93,19 +71,21 @@
                                             {% endif %}
                                         </td>
                                     </tr>
-                                </tbody>
                             </table>
-
-<!--                            <pre>ダブルベッド数&#009;&#009;:{{ object.Double_bed }}</pre>-->
-
-<!--                            {% if object.smoking %}-->
-<!--                                <pre>喫煙&#009;&#009;&#009;:喫煙可</pre>-->
-<!--                            {% else %}-->
-<!--                                <pre>喫煙&#009;&#009;&#009;:禁煙</pre>-->
-<!--                            {% endif %}-->
-                        </form>
+                        </div>
                     </div>
-                </div>
+
+
+                    <input type="hidden" name="room_name" value={{ object.room_name }}>
+                    <input type="hidden" name="room_number" value={{ object.room_number }}>
+                    <input type="hidden" name="persons" value={{ object.persons }}>
+                    <input type="hidden" name="kids" value={{ object.kids }}>
+                    <input type="hidden" name="Double_bed" value={{ object.Double_bed }}>
+                    <input type="hidden" name="Queen_bed" value={{ object.Queen_bed }}>
+                    <input type="hidden" name="Single_Bed" value={{ object.Single_Bed }}>
+
+
+                </form>
             </div>
         </div>
     </div>
