@@ -38,8 +38,21 @@ li.serch-item {
 }
 
 .room-list-search-btn {
-    background: #615b54;
-    color: aliceblue;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    background-image: -webkit-gradient(linear, left top, right top, from(#fa709a), to(#fee140));
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+}
+
+.room-list-search-btn:hover {
+    -webkit-transform: translate(0, -2px);
+    transform: translate(0, -2px);
+    color: #fff;
+    -webkit-box-shadow: 0 8px 15px rgba(0, 0, 0, .2);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .2);
 }
 
 
@@ -175,7 +188,7 @@ select#id_person {
     padding: 11px;
 }
 
-div#room-number > a {
+div#room-number > span {
     font-size: larger;
 }
 
@@ -193,10 +206,49 @@ div#room-number > a {
 
 #room-description {
     display: flex;
-    margin-top: 53px;
+    margin-top: 41px;
 }
 
 .room-description-img {
     width: 370px;
     height: auto;
+}
+
+#room-description-text {
+    width: 470px;
+    margin: 20px 0 20px;
+    margin-left: 35px;
+}
+
+#room-description-text div > table {
+    width: 470px;
+    border:solid gainsboro ;
+    border-width:1px 0px 1px 0px;
+}
+
+#room-description-text > div > table td::before {
+    content: ":";
+}
+
+#room-description-text > div > table th {
+    padding: 6px 15px;
+}
+
+#room-description-text > div > table td {
+    padding: 6px 15px;
+}
+
+#room-description-text > div {
+    margin-bottom: 26px;
+}
+
+#room-description-btn {
+    text-align: center;
+    margin: 30px 0 0 0;
+}
+
+#room-description-btn > button {
+    height: 48px;
+    padding: 0px 36px;
+    background: #fff;
 }

@@ -43,7 +43,7 @@
                             </span>
                         </li>
                         <li class="serch-item">
-                            <button class= "btn room-list-search-btn" type="submit">検索する<img src="{% static 'assets/serch_ico.png' %}" width="20px" height="20px"></button>
+                            <button class= "room-list-search-btn" type="submit">検索する<img src="{% static 'assets/serch_ico.png' %}" width="20px" height="20px"></button>
                         </li>
                     </ui>
                 </form>
@@ -62,7 +62,7 @@
                     <div class="post-preview">
                             <div>
                                 <div id="room-number">
-                                    <span><a href="{% url 'hotel:room' room.pk %}">{{ room.room_number }}号室　【</span>
+                                    <span><a href="{% url 'hotel:room' room.pk %}">{{ room.room_number }}号室　【</a></span>
                                     <span><a href="{% url 'hotel:room' room.pk %}">{{ room.room_name }}】</a></span>
                                 </div>
                                 <div id="style-flg">
@@ -90,7 +90,24 @@
                                         <img class="img-fluid room-description-img" src="{{ room.image.url }}" width="135px" alt="" />
                                     </div>
                                     <div id="room-description-text">
-                                        {{ room.description }}
+                                        <div>
+                                            {{ room.description }}
+                                        </div>
+                                        <div>
+                                            <table>
+                                                <tr>
+                                                    <th>食事</th>
+                                                    <td>2食付（夕食・朝食）</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>アメニティー</th>
+                                                    <td>タオル</td>
+                                                </tr>
+                                            </table>
+                                            <div id="room-description-btn">
+                                                <button onclick="location.href='{% url 'hotel:room' room.pk %}'">部屋の詳細</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
