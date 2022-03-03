@@ -88,6 +88,23 @@
                 </form>
             </div>
         </div>
+        <div>
+            <div id="room-description">{{ object.description }}</div>
+        </div>
+        <div id="room-checkin-table">
+            <table>
+                <tr>
+                    <th>チェックイン</th>
+                    <td>15：00～</td>
+                </tr>
+                <tr>
+                    <th>チェックアウト</th>
+                    <td>～11：00</td>
+                </tr>
+            </table>
+
+            <button id="room-return-btn" onclick="location.href='{{request.META.HTTP_REFERER}}'"><span>一覧へ戻る</span></button>
+        </div>
     </div>
 </div>
 {% endblock %}
