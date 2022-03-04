@@ -43,10 +43,10 @@ class BoxSearchForm(forms.Form):
 
 
 class ReserveConfirmationForm(forms.Form):
-    room_name = forms.CharField(label = '客室')
-    room_number = forms.IntegerField(label='室番')
-    person = forms.IntegerField(label='大人')
-    kids = forms.IntegerField(label='子供')
-    Double_bed = forms.IntegerField(label='ダブルベッド')
-    Queen_bed = forms.IntegerField(label='クイーン')
-    Single_Bed = forms.IntegerField(label='シングルベッド')
+    room_name = forms.CharField(label = '客室', disabled=True)
+    room_number = forms.IntegerField(label='室番', disabled=True)
+    persons = forms.IntegerField(label='大人', disabled=True)
+    kids = forms.IntegerField(label='子供', disabled=True)
+    Double_bed = forms.IntegerField(label='ダブルベッド', disabled=True)
+    Queen_bed = forms.IntegerField(label='クイーン', disabled=True)
+    Single_Bed = forms.IntegerField(label='シングルベッド', disabled=True)

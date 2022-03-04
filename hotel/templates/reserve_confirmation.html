@@ -4,6 +4,7 @@
 {% block active_diary_list %}active{% endblock %}
 
 {% block head %}
+<link href="{% static 'css/hotel/reserve_confirmation.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block contents %}
@@ -11,16 +12,83 @@
     <div class="row">
         <div class="my-div-style w-100">
             <div class="col-lg-8 col-md-10 mx-auto">
-                <div id="room-main">
-
-                    <div class="room-detail">
-                        <form method="post" action="{% url 'hotel:reserve_create' %}">
-                            {% csrf_token %}
-                            {{ form.as_p }}
-                            <button class= "btn btn-primary" type="submit">予約</button>
-                        </form>
-                    </div>
+                <div>
+                    <h1>予約詳細確認</h1>
                 </div>
+                <div class="main-content">
+                    <form method="post" action="{% url 'hotel:reserve_create' %}">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-3">
+                                <strong>客室名</strong>
+                            </div>
+                            <div class="col-4">
+                                {{ form.room_name }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-3">
+                                <strong>室番</strong>
+                            </div>
+                            <div class="col-4">
+                                {{ form.room_number }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-3">
+                                <strong>大人</strong>
+                            </div>
+                            <div class="col-4">
+                                {{ form.persons }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-3">
+                                <strong>子供</strong>
+                            </div>
+                            <div class="col-4">
+                                {{ form.kids }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-3">
+                                <strong>ダブルベッド</strong>
+                            </div>
+                            <div class="col-4">
+                                {{ form.Double_bed }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-3">
+                                <strong>クイーンベッド</strong>
+                            </div>
+                            <div class="col-4">
+                                {{ form.Queen_bed }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-3">
+                                <strong>シングルベッド</strong>
+                            </div>
+                            <div class="col-4">
+                                {{ form.Single_Bed }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="div-btn">
+<!--                            <a href="" class="btn btn-flat"><span>PUSH！</span></a>-->
+                            <button class="btn-flat"type="submit">予約</button>
+                        </div>
+                    </form>
+                    <button class="return-btn" onclick="location.href='{{request.META.HTTP_REFERER}}'"><span>一覧へ戻る</span></button>
+                </div>
+
             </div>
         </div>
     </div>
