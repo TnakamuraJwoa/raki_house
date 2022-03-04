@@ -136,3 +136,12 @@ input#house-button {
 .my-point {
     cursor : pointer;
 }
+
+.house-img-fram {
+    width: 500px;
+    margin: 0 34px;
+}
+
+.house-img-fram-in {
+    background-color: ghostwhite;
+}
