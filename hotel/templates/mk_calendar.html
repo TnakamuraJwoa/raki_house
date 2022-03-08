@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}room_list{% endblock %}
+{% block active_diary_list %}active{% endblock %}
+
+{% block head %}
+<link href="{% static 'css/hotel/mk_calendar.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block contents %}
+<div class="container">
+    <div class="row">
+        <div class="my-div-style w-100">
+                <div class="my-inline">
+                    <h1><span>楽気ハウスタイムシェアー<span>カレンダー</span></span></h1>
+                </div>
+                <div>
+                    <table id="mk-calennder-table">
+                        <tr>
+                            <th>No</th>
+                            <th>1月</th>
+                            <th>2月</th>
+                            <th>3月</th>
+                            <th>4月</th>
+                            <th>5月</th>
+                            <th>6月</th>
+                            <th>7月</th>
+                            <th>8月</th>
+                            <th>9月</th>
+                            <th>10月</th>
+                            <th>11月</th>
+                            <th>12月</th>
+                        </tr>
+                        {% for calendar in object_list %}
+                            <tr>
+                                {% if calendar.no_sub == 1 %}
+                                    <td class="td-one">{{ calendar.no }}</td>
+                                {% else %}
+                                    <td><br></td>
+                                {% endif %}
+<!--                                1月-->
+                                {% if calendar.no_sub == 1 %}
+                                    <td class="td-one">{{ calendar.Jan|date:"j" }}</td>
+                                {% else %}
+                                    <td>{{ calendar.Jan|date:"n/j" }}</td>
+                                {% endif %}
+<!--                                ２月-->
+                                {% if calendar.no_sub == 1 %}
+                                    <td class="td-one">{{ calendar.Feb|date:"j" }}</td>
+                                {% else %}
+                                    <td>{{ calendar.Feb|date:"n/j" }}</td>
+                                {% endif %}
+<!--                                ３月-->
+                                {% if calendar.no_sub == 1 %}
+                                    <td class="td-one">{{ calendar.Mar|date:"j" }}</td>
+                                {% else %}
+                                    <td>{{ calendar.Mar|date:"n/j" }}</td>
+                                {% endif %}
+<!--                                ４月-->
+                                {% if calendar.no_sub == 1 %}
+                                    <td class="td-one">{{ calendar.Apr|date:"j" }}</td>
+                                {% else %}
+                                    <td>{{ calendar.Apr|date:"n/j" }}</td>
+                                {% endif %}
+<!--                                ５月-->
+                                {% if calendar.no_sub == 1 %}
+                                    <td class="td-one">{{ calendar.May|date:"j" }}</td>
+                                {% else %}
+                                    <td>{{ calendar.May|date:"n/j" }}</td>
+                                {% endif %}
+<!--                                ６月-->
+                                {% if calendar.no_sub == 1 %}
+                                    <td class="td-one">{{ calendar.Jun|date:"j" }}</td>
+                                {% else %}
+                                    <td>{{ calendar.Jun|date:"n/j" }}</td>
+                                {% endif %}
+<!--                                ７月-->
+                                {% if calendar.no_sub == 1 %}
+                                    <td class="td-one">{{ calendar.Jul|date:"j" }}</td>
+                                {% else %}
+                                    <td>{{ calendar.Jul|date:"n/j" }}</td>
+                                {% endif %}
+<!--                                ８月-->
+                                {% if calendar.no_sub == 1 %}
+                                    <td class="td-one">{{ calendar.Aug|date:"j" }}</td>
+                                {% else %}
+                                    <td>{{ calendar.Aug|date:"n/j" }}</td>
+                                {% endif %}
+<!--                                ９月-->
+                                {% if calendar.no_sub == 1 %}
+                                    <td class="td-one">{{ calendar.Sep|date:"j" }}</td>
+                                {% else %}
+                                    <td>{{ calendar.Sep|date:"n/j" }}</td>
+                                {% endif %}
+<!--                                １０月-->
+                                {% if calendar.no_sub == 1 %}
+                                    <td class="td-one">{{ calendar.Oct|date:"j" }}</td>
+                                {% else %}
+                                    <td>{{ calendar.Oct|date:"n/j" }}</td>
+                                {% endif %}
+<!--                                １１月-->
+                                {% if calendar.no_sub == 1 %}
+                                    <td class="td-one">{{ calendar.Nov|date:"j" }}</td>
+                                {% else %}
+                                    <td>{{ calendar.Nov|date:"n/j" }}</td>
+                                {% endif %}
+<!--                                １２月-->
+                                {% if calendar.no_sub == 1 %}
+                                    <td class="td-one">{{ calendar.Dec|date:"j" }}</td>
+                                {% else %}
+                                    <td>{{ calendar.Dec|date:"n/j" }}</td>
+                                {% endif %}
+                            </tr>
+                        {% empty %}
+                            <p>空室がありません</p>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

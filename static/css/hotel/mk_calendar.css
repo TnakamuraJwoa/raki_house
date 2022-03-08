@@ -1,0 +1,25 @@
+
+span {
+   display: inline-block;
+}
+
+.my-inline {
+    text-align: center;
+}
+
+#mk-calennder-table th {
+}
+
+#mk-calennder-table {
+    text-align: center;
+}
+
+.td-one {
+    border-top: 1px solid;
+    background: #eee;
+}
+
+#mk-calennder-table {
+    border: 1px solid;
+    width: 100%;
+}

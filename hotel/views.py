@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from .models import House
-from .models import Room, Reserve, Calendar
+from .models import Room, Reserve, Calendar, RFourCalendar
 from datetime import date
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -139,3 +139,7 @@ class ReserveReferenceConfView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         queryset = Room.objects.none()
         return queryset
+
+class MkCalendarView(LoginRequiredMixin, generic.ListView):
+    model = RFourCalendar
+    template_name = 'mk_calendar.html'

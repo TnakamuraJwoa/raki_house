@@ -99,21 +99,26 @@ class Calendar(models.Model):
     class Meta:
         verbose_name_plural = 'Calendar'
 
-#
-# class Movie(models.Model):
-#     # 動画
-#     title = models.CharField(max_length=30)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#
-#     class Meta:
-#       db_table = 'movie'
-#
-#
-# class DailyViews(models.Model):
-# # """日間再生数"""
-#     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-#     views = models.IntegerField()
-#     created_at = models.DateTimeField(auto_now_add=True)
-#
-#     class Meta:
-#       db_table = 'daily_views'
+
+
+class RFourCalendar(models.Model):
+    no = models.IntegerField('no', null=False, blank=False)
+    no_sub = models.IntegerField('no_sub', null=False, blank=False)
+    Jan = models.DateField('1月', null=True, blank=True)
+    Feb = models.DateField('2月', null=True, blank=True)
+    Mar = models.DateField('3月', null=True, blank=True)
+    Apr = models.DateField('4月', null=True, blank=True)
+    May = models.DateField('5月', null=True, blank=True)
+    Jun = models.DateField('6月', null=True, blank=True)
+    Jul = models.DateField('7月', null=True, blank=True)
+    Aug = models.DateField('8月', null=True, blank=True)
+    Sep = models.DateField('9月', null=True, blank=True)
+    Oct = models.DateField('10月', null=True, blank=True)
+    Nov = models.DateField('11月', null=True, blank=True)
+    Dec = models.DateField('12月', null=True, blank=True)
+
+    def __str__(self):
+        return str(self.no) + "-" + str(self.no_sub)
+
+    class Meta:
+        verbose_name_plural = 'RFourCalendar'
