@@ -29,7 +29,7 @@ class RoomView(LoginRequiredMixin, generic.DetailView):
 class RoomsView(LoginRequiredMixin, generic.ListView):
     model = Room
     template_name = 'room_list.html'
-    paginate_by = 3
+    paginate_by = 5
     ordering = '-room_number'  # order_by('-title')
     # queryset = Room.objects.filter(house_name_id='1')
 
@@ -122,3 +122,20 @@ class ReserveCreateView(LoginRequiredMixin, generic.View):
 
 
         return render(request, "reserve_create.html")
+
+
+class RoomView(LoginRequiredMixin, generic.DetailView):
+    model = Room
+    template_name = 'room.html'
+
+
+class ReserveReferenceConfView(LoginRequiredMixin, generic.ListView):
+    model = Room
+    template_name = 'reserve_reference_conf.html'
+    paginate_by = 5
+    ordering = '-room_number'  # order_by('-title')
+    # queryset = Room.objects.filter(house_name_id='1')
+
+    def get_queryset(self):
+        queryset = Room.objects.none()
+        return queryset
