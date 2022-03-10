@@ -52,24 +52,44 @@ function createProcess(year, month) {
         for (var j = 0; j < week.length; j++) {
             if (i == 0 && j < startDayOfWeek) {
                 // 1行目で1日まで先月の日付を設定
-                calendar += "<td class='disabled'>" + (lastMonthEndDate - startDayOfWeek + j + 1) + "</td>";
+                calendar += "<td class='disabled' onclick='onclickTd(this)'>" + (lastMonthEndDate - startDayOfWeek + j + 1) + "</td>";
             } else if (count >= endDate) {
                 // 最終行で最終日以降、翌月の日付を設定
                 count++;
-                calendar += "<td class='disabled'>" + (count - endDate) + "</td>";
+                calendar += "<td class='disabled' onclick='onclickTd(this)'>" + (count - endDate) + "</td>";
             } else {
                 // 当月の日付を曜日に照らし合わせて設定
                 count++;
                 if(year == today.getFullYear()
                   && month == (today.getMonth())
                   && count == today.getDate()){
-                    calendar += "<td class='today'>" + count + "</td>";
+                    calendar += "<td class='today' onclick='onclickTd(this)'>" + count + "</td>";
                 } else {
-                    calendar += "<td>" + count + "</td>";
+                    calendar += "<td onclick='onclickTd(this)'>" + count + "</td>";
                 }
             }
         }
         calendar += "</tr>";
     }
     return calendar;
+}
+
+function onclickTd(td){
+	try{
+
+        var this_coler = $(td).css("background-color");
+        var this_val = $(td).val();
+
+        if (this_val == '')
+        {
+            $(td).css("background-color", "#e9967a");
+            $(td).val("true");
+        }else {
+            $(td).css("background-color", "");
+            $(td).val("");
+        }
+	}
+	catch(e){
+		println("Error:"+e);
+	}
 }

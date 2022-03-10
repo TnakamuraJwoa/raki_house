@@ -46,7 +46,7 @@ td.disabled {
 }
 /*本日*/
 td.today {
-    background-color: #D65E72;
+    background-color: blue;;
     color: #fff;
 }
 
@@ -112,4 +112,8 @@ span {
 
 .member_table > span {
     padding: 0.4rem 1rem;
+}
+
+td:hover {
+    background:darksalmon; !important;
 }
