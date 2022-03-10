@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}room_list{% endblock %}
+{% block active_diary_list %}active{% endblock %}
+
+{% block head %}
+<link href="{% static 'css/hotel/my_page.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block contents %}
+<div class="container">
+    <div class="my-div-style w-100">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-bar">
+                <span class="page-coler">登録情報</span>
+                <span><a href="{% url 'hotel:reserve_syoukai' %}">予約照会</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

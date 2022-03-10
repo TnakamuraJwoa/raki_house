@@ -131,7 +131,7 @@ class RoomView(LoginRequiredMixin, generic.DetailView):
 
 class ReserveReferenceConfView(LoginRequiredMixin, generic.ListView):
     model = Room
-    template_name = 'reserve_reference_conf.html'
+    template_name = 'reserve_syoukai.html'
     paginate_by = 5
     ordering = '-room_number'  # order_by('-title')
     # queryset = Room.objects.filter(house_name_id='1')
@@ -161,3 +161,7 @@ class MkCalendarView(LoginRequiredMixin, generic.ListView):
 class TreeCalendarView(LoginRequiredMixin, generic.ListView):
     model = RFourCalendar
     template_name = 'tree_calendar.html'
+
+class MyPageView(LoginRequiredMixin, generic.ListView):
+    model = RFourCalendar
+    template_name = 'my_page.html'

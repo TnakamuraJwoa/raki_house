@@ -40,15 +40,18 @@
                                 <a class="nav-link" href="{% url 'hotel:house' %}">ホテル一覧 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'hotel:tree_calendar' %}">予約照会 </a>
+                                <a class="nav-link" href="{% url 'hotel:reserve_syoukai' %}">予約照会 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'hotel:my_page' %}">マイページ </a>
                             </li>
                             <li class="nav-item">
                                 {% if user.member_type == 12 %}
-                                    <a class="nav-link" href="{% url 'hotel:mk_calendar' %}">マイページ </a>
+                                    <a class="nav-link" href="{% url 'hotel:mk_calendar' %}">カレンダー </a>
                                 {% elif user.member_type == 6  %}
-                                    <a class="nav-link" href="{% url 'hotel:mk_calendar' %}">マイページ </a>
+                                    <a class="nav-link" href="{% url 'hotel:mk_calendar' %}">カレンダー </a>
                                 {% elif user.member_type == 3  %}
-                                    <a class="nav-link" href="{% url 'hotel:tree_calendar' %}">マイページ </a>
+                                    <a class="nav-link" href="{% url 'hotel:tree_calendar' %}">カレンダー </a>
                                 {% endif %}
                             </li>
                         {% endif %}

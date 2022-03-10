@@ -1,0 +1,16 @@
+
+.page-bar > span {
+    margin: 1em;
+    padding: 7px;
+    font-size: 1.2em;
+}
+
+.page-coler {
+    border-bottom: solid 4px coral;
+    color: #ee0979;
+}
+
+a {
+    text-decoration: none !important;
+    color: currentColor;
+}
