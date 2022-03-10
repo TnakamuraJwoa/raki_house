@@ -11,13 +11,37 @@
 <div class="container">
     <div class="row">
         <div class="my-div-style w-100">
-                <div class="my-inline">
-                    <h1><span>楽気ハウスタイムシェアー<span>カレンダー</span></span></h1>
+            <div class="my-inline">
+                <h1><span>楽気ハウスタイムシェア</span><span>カレンダー</span></h1>
+            </div>
+            <div class="my-container w-95">
+                <div class="member_table">
+                    <span>会員番号：{{ user.member_id }}</span>
+                    <span>会員名：{{ user.get_username }}</span>
+                    {% if user.member_type == 12 %}
+                        <span>会員権：正規会員件12泊</span>
+                    {% elif user.member_type == 6  %}
+                        <span>会員権：正規会員件6泊</span>
+                    {% elif user.member_type == 3  %}
+                        <span>会員権：正規会員件3泊</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <form class="cal_num_form">
+                        {% csrf_token %}
+                        <span>
+                            <label for="No">No:</label>
+                            {{ form.cal_num }}
+                        </span>
+                        <span>
+                            <button class= "cal-commit-btn" type="submit">確定する<img src="{% static 'assets/serch_ico.png' %}" width="20px" height="20px"></button>
+                        </span>
+                    </form>
                 </div>
                 <div>
                     <table id="mk-calennder-table">
                         <tr>
-                            <th>No</th>
+                            <th><br></th>
                             <th>1月</th>
                             <th>2月</th>
                             <th>3月</th>
@@ -38,73 +62,73 @@
                                 {% else %}
                                     <td><br></td>
                                 {% endif %}
-<!--                                1月-->
+    <!--                                1月-->
                                 {% if calendar.no_sub == 1 %}
                                     <td class="td-one">{{ calendar.Jan|date:"j" }}</td>
                                 {% else %}
                                     <td>{{ calendar.Jan|date:"n/j" }}</td>
                                 {% endif %}
-<!--                                ２月-->
+    <!--                                ２月-->
                                 {% if calendar.no_sub == 1 %}
                                     <td class="td-one">{{ calendar.Feb|date:"j" }}</td>
                                 {% else %}
                                     <td>{{ calendar.Feb|date:"n/j" }}</td>
                                 {% endif %}
-<!--                                ３月-->
+    <!--                                ３月-->
                                 {% if calendar.no_sub == 1 %}
                                     <td class="td-one">{{ calendar.Mar|date:"j" }}</td>
                                 {% else %}
                                     <td>{{ calendar.Mar|date:"n/j" }}</td>
                                 {% endif %}
-<!--                                ４月-->
+    <!--                                ４月-->
                                 {% if calendar.no_sub == 1 %}
                                     <td class="td-one">{{ calendar.Apr|date:"j" }}</td>
                                 {% else %}
                                     <td>{{ calendar.Apr|date:"n/j" }}</td>
                                 {% endif %}
-<!--                                ５月-->
+    <!--                                ５月-->
                                 {% if calendar.no_sub == 1 %}
                                     <td class="td-one">{{ calendar.May|date:"j" }}</td>
                                 {% else %}
                                     <td>{{ calendar.May|date:"n/j" }}</td>
                                 {% endif %}
-<!--                                ６月-->
+    <!--                                ６月-->
                                 {% if calendar.no_sub == 1 %}
                                     <td class="td-one">{{ calendar.Jun|date:"j" }}</td>
                                 {% else %}
                                     <td>{{ calendar.Jun|date:"n/j" }}</td>
                                 {% endif %}
-<!--                                ７月-->
+    <!--                                ７月-->
                                 {% if calendar.no_sub == 1 %}
                                     <td class="td-one">{{ calendar.Jul|date:"j" }}</td>
                                 {% else %}
                                     <td>{{ calendar.Jul|date:"n/j" }}</td>
                                 {% endif %}
-<!--                                ８月-->
+    <!--                                ８月-->
                                 {% if calendar.no_sub == 1 %}
                                     <td class="td-one">{{ calendar.Aug|date:"j" }}</td>
                                 {% else %}
                                     <td>{{ calendar.Aug|date:"n/j" }}</td>
                                 {% endif %}
-<!--                                ９月-->
+    <!--                                ９月-->
                                 {% if calendar.no_sub == 1 %}
                                     <td class="td-one">{{ calendar.Sep|date:"j" }}</td>
                                 {% else %}
                                     <td>{{ calendar.Sep|date:"n/j" }}</td>
                                 {% endif %}
-<!--                                １０月-->
+    <!--                                １０月-->
                                 {% if calendar.no_sub == 1 %}
                                     <td class="td-one">{{ calendar.Oct|date:"j" }}</td>
                                 {% else %}
                                     <td>{{ calendar.Oct|date:"n/j" }}</td>
                                 {% endif %}
-<!--                                １１月-->
+    <!--                                １１月-->
                                 {% if calendar.no_sub == 1 %}
                                     <td class="td-one">{{ calendar.Nov|date:"j" }}</td>
                                 {% else %}
                                     <td>{{ calendar.Nov|date:"n/j" }}</td>
                                 {% endif %}
-<!--                                １２月-->
+    <!--                                １２月-->
                                 {% if calendar.no_sub == 1 %}
                                     <td class="td-one">{{ calendar.Dec|date:"j" }}</td>
                                 {% else %}

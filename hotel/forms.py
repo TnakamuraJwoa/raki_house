@@ -31,6 +31,39 @@ num_kids = (
     ("5", "5名"),
 )
 
+cal_num = (
+    ("1", "No.1"),
+    ("2", "No.2"),
+    ("3", "No.3"),
+    ("4", "No.4"),
+    ("5", "No.5"),
+    ("6", "No.6"),
+    ("7", "No.7"),
+    ("8", "No.8"),
+    ("9", "No.9"),
+    ("10", "No.10"),
+    ("11", "No.11"),
+    ("12", "No.12"),
+    ("13", "No.13"),
+    ("14", "No.14"),
+    ("15", "No.15"),
+    ("16", "No.16"),
+    ("17", "No.17"),
+    ("18", "No.18"),
+    ("19", "No.19"),
+    ("20", "No.20"),
+    ("21", "No.21"),
+    ("22", "No.22"),
+    ("23", "No.23"),
+    ("24", "No.24"),
+    ("25", "No.25"),
+    ("26", "No.26"),
+    ("27", "No.27"),
+    ("28", "No.28"),
+    ("29", "No.29"),
+    ("30", "No.30"),
+    ("31", "No.31"),
+)
 class BoxSearchForm(forms.Form):
     room = forms.ChoiceField(choices=room_type)
     person = forms.ChoiceField(choices=num_people)
@@ -50,3 +83,7 @@ class ReserveConfirmationForm(forms.Form):
     Double_bed = forms.IntegerField(label='ダブルベッド', disabled=True)
     Queen_bed = forms.IntegerField(label='クイーン', disabled=True)
     Single_Bed = forms.IntegerField(label='シングルベッド', disabled=True)
+
+
+class CalendarForm(forms.Form):
+    cal_num = forms.ChoiceField(choices=cal_num)

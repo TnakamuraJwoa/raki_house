@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}room_list{% endblock %}
+{% block active_diary_list %}active{% endblock %}
+
+{% block head %}
+<link href="{% static 'css/hotel/tree_calendar.css' %}" rel="stylesheet">
+<script src="{% static 'js/tree_calendar.js' %}"></script>
+{% endblock %}
+
+{% block contents %}
+<div class="container">
+    <div class="row">
+        <div class="my-div-style w-100">
+            <div class="my-inline">
+                <h1 class="tree-cal-title"><span>楽気ハウスタイムシェア</span><span>カレンダー</span></h1>
+            </div>
+            <div class="my-container w-95">
+                <div class="member_table">
+                    <span>会員番号：{{ user.member_id }}</span>
+                    <span>会員名：{{ user.get_username }}</span>
+                    {% if user.member_type == 12 %}
+                        <span>会員権：正規会員件12泊</span>
+                    {% elif user.member_type == 6  %}
+                        <span>会員権：正規会員件6泊</span>
+                    {% elif user.member_type == 3  %}
+                        <span>会員権：正規会員件3泊</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <form class="cal_num_form">
+                        {% csrf_token %}
+                        <span>
+                            <label for="No">No:</label>
+                            {{ form.cal_num }}
+                        </span>
+                        <span>
+                            <button class= "cal-commit-btn" type="submit">確定する<img src="{% static 'assets/serch_ico.png' %}" width="20px" height="20px"></button>
+                        </span>
+                    </form>
+                </div>
+                <div>
+                    <div class="wrapper">
+                        <!-- xxxx年xx月を表示 -->
+                        <h1 id="header"></h1>
+
+                        <!-- ボタンクリックで月移動 -->
+                        <div id="next-prev-button">
+                            <button id="prev" onclick="prev()">‹</button>
+                            <button id="next" onclick="next()">›</button>
+                        </div>
+
+                        <!-- カレンダー -->
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

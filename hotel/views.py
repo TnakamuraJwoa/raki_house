@@ -7,7 +7,7 @@ from datetime import date
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime
-from .forms import BoxSearchForm, ReserveConfirmationForm
+from .forms import BoxSearchForm, ReserveConfirmationForm, CalendarForm
 from django.db.models import Q
 
 
@@ -143,3 +143,21 @@ class ReserveReferenceConfView(LoginRequiredMixin, generic.ListView):
 class MkCalendarView(LoginRequiredMixin, generic.ListView):
     model = RFourCalendar
     template_name = 'mk_calendar.html'
+
+    def get_queryset(self):
+        queryset = RFourCalendar.objects.all().values()
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        self.context = super().get_context_data( **kwargs )
+        form = CalendarForm()
+        # page_title を追加する
+        self.context['form'] = form
+
+        return self.context
+
+
+class TreeCalendarView(LoginRequiredMixin, generic.ListView):
+    model = RFourCalendar
+    template_name = 'tree_calendar.html'

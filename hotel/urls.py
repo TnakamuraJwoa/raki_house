@@ -14,4 +14,5 @@ urlpatterns = [
     path('reserve_create/', views.ReserveCreateView.as_view(), name = "reserve_create"),
     path('reserve_reference_conf/', views.ReserveReferenceConfView.as_view(), name = "reserve_reference_conf"),
     path('mk_calendar/', views.MkCalendarView.as_view(), name = "mk_calendar"),
+    path('tree_calendar/', views.TreeCalendarView.as_view(), name = "tree_calendar"),
 ]
