@@ -16,7 +16,19 @@
                 <span class="page-coler">予約照会</span>
             </div>
             <div class="my_container">
-                <h1>Hello!　{{ user.get_username }}さん</h1>
+                <img id="jw-img" src="{% static 'assets/imgs/bg_ptn_01.svg' %}" alt="" />
+                <div class="filter-container">
+                    <span class="this_select">予約済み</span>
+                    <span class="this_not_select">宿泊完了</span>
+                    <span class="this_not_select">キャンセル</span>
+                </div>
+                <div class="show-hotels">
+                    <p class="reserve-date">予約日：2022年1月25日火曜日</p>
+                    <div class="show-hotels-frame">
+                        <img id="hotel-img" src="{% static 'assets/imgs/title5.jpg' %}" alt="" />
+                        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
