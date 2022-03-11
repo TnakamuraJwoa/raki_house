@@ -15,6 +15,32 @@
                 <span class="page-coler">登録情報</span>
                 <span><a href="{% url 'hotel:reserve_syoukai' %}">予約照会</a></span>
             </div>
+            <div class="my_container">
+                <h1>Hello!　{{ user.get_username }}さん</h1>
+                <div class="my-card">
+                    <img id="my-card-img" src="{% static 'assets/imgs/star.jpeg' %}" alt="" />
+                    <p class="my-card_status">会員ステータス</p>
+                    {% if user.member_type == 12 %}
+                        <p class="my-card_status_name">正規会員権12泊</p>
+                    {% elif user.member_type == 6  %}
+                        <p class="my-card_status_name">正規会員権6泊</p>
+                    {% elif user.member_type == 3  %}
+                        <p class="my-card_status_name">特別会員権3泊</p>
+                    {% endif %}
+                    <p class="my-card_expiration_date">有効期限:  {{ date }}</p>
+                </div>
+
+                <table>
+                    <tr>
+                        <th>お名前</th>
+                        <td>{{ user.get_username }}</td>
+                    </tr>
+                    <tr>
+                        <th>会員番号</th>
+                        <td>{{ user.member_id }}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </div>

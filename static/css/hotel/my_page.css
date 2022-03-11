@@ -1,6 +1,5 @@
 
 .page-bar > span {
-    margin: 1em;
     padding: 7px;
     font-size: 1.2em;
 }
@@ -13,4 +12,55 @@
 a {
     text-decoration: none !important;
     color: currentColor;
+}
+
+.my_container {
+    margin-top: 33px;
+}
+
+h1 {
+    border-top: solid 2px;
+    padding: 14px 0;
+    border-top-color: blanchedalmond;
+}
+
+#my-card-img {
+    margin: 32px 5px 55px;
+    border-radius: 16px 16px 16px 16px;
+    width: 294px;
+    height: 161px;
+}
+
+.my-card {
+    position: relative;
+}
+
+.my-card_status {
+    position: absolute;
+    top: 40px;
+    left: 22px;
+    color: antiquewhite;
+}
+
+.my-card_status_name {
+    position: absolute;
+    font-size: 28px;
+    top: 88px;
+    left: 50px;
+    font-weight:bold;
+    color: transparent;
+    background: repeating-linear-gradient(0deg, #B67B03 0.1em, #DAAF08 0.2em, #FEE9A0 0.3em, #DAAF08 0.4em, #B67B03 0.5em);
+    -webkit-background-clip: text;
+}
+
+.my-card_expiration_date {
+    position: absolute;
+    font-size: 13px;
+    top: 163px;
+    left: 150px;
+    color: aqua;
+}
+
+table th {
+    padding: 5px 2em;
 }

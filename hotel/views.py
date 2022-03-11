@@ -1,3 +1,4 @@
+import calendar
 from django.shortcuts import render
 
 # Create your views here.
@@ -165,3 +166,13 @@ class TreeCalendarView(LoginRequiredMixin, generic.ListView):
 class MyPageView(LoginRequiredMixin, generic.ListView):
     model = RFourCalendar
     template_name = 'my_page.html'
+
+    def get_context_data(self, **kwargs):
+        today = datetime.date.today()
+        year = today.strftime('%Y')
+        day = calendar.monthrange(int(year), 12)[1]
+
+        self.context = super().get_context_data( **kwargs )
+        self.context['date'] = str(year) + "-12-" + str(day)
+
+        return self.context

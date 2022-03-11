@@ -1,6 +1,5 @@
 
 .page-bar > span {
-    margin: 1em;
     padding: 7px;
     font-size: 1.2em;
 }
@@ -13,4 +12,14 @@
 a {
     text-decoration: none !important;
     color: currentColor;
+}
+
+.my_container {
+    margin-top: 33px;
+}
+
+h1 {
+    border-top: solid 2px;
+    padding: 14px 0;
+    border-top-color: blanchedalmond;
 }
