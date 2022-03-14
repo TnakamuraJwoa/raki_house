@@ -53,12 +53,12 @@ class Room(models.Model):
         verbose_name_plural = 'Room'
 
 
+
 class Ticket(models.Model):
     Ticket_number = models.CharField('チケット番号', primary_key=True, max_length=20)
-    proprietary = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="所有者", on_delete=models.CASCADE,  null=True, blank=True)
+    proprietary = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="所有者", on_delete=models.PROTECT,  null=True, blank=True)
     issue_date = models.DateField('発行日')
     expiry = models.DateField('有効期限')
-    ticket_type = models.IntegerField('チケットタイプ', default=0, null=False, blank=False)
     ticket_status = models.BooleanField('利用権限', default=False)
 
 
@@ -69,13 +69,25 @@ class Ticket(models.Model):
         verbose_name_plural = 'Ticket'
 
 
+class GiveTicket(models.Model):
+    ticket_number = models.ForeignKey(Ticket, on_delete=models.PROTECT)
+    give_member_id = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="譲る会員番号", on_delete=models.PROTECT,  null=True, blank=True)
+    give_date = models.DateField('贈与日')
+
+    def __str__(self):
+        return str(self.Ticket_number)
+
+    class Meta:
+        verbose_name_plural = 'GiveTicket'
+
+
 
 class Reserve(models.Model):
     room_number = models.ForeignKey(Room, on_delete=models.CASCADE)
     Representative_name = models.CharField('代表者名', max_length=20, null=True, blank=True)
     reserve_date = models.DateField()
     Ticket_number = models.ForeignKey(Ticket, on_delete=models.CASCADE)
-    member_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    reserve_status = models.IntegerField('予約ステータス', default=1, null=False, blank=False)
 
     def __str__(self):
         return str(self.room_number) + ':　' + str(self.reserve_date)
@@ -98,6 +110,7 @@ class Calendar(models.Model):
 
     class Meta:
         verbose_name_plural = 'Calendar'
+
 
 
 
