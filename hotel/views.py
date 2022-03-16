@@ -8,7 +8,7 @@ from datetime import date
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime
-from .forms import BoxSearchForm, ReserveConfirmationForm, CalendarForm
+from .forms import BoxSearchForm, CalendarForm
 from django.db.models import Q
 
 
@@ -98,28 +98,29 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
 class ReserveConfirmationView(LoginRequiredMixin, generic.View):
 
     def post(self, request, *args, **kwargs):
-        form = ReserveConfirmationForm(initial={
-            'room_name': request.POST['room_name'],
-            'room_number': request.POST['room_number'],
-            'persons': request.POST['persons'],
-            'kids': request.POST['kids'],
-            'Double_bed': request.POST['Double_bed'],
-            'Queen_bed': request.POST['Queen_bed'],
-            'Single_Bed': request.POST['Single_Bed'],
-        })
 
-        context = {'form': form}
+        context = {
+            'room_name': request.POST.get('room_name', None),
+            'room_number': request.POST.get('room_number', None),
+            'persons': request.POST.get('persons', None),
+            'kids': request.POST.get('kids', None),
+            'Double_bed': request.POST.get('Double_bed', None),
+            'Queen_bed': request.POST.get('Queen_bed', None),
+            'Single_Bed': request.POST.get('Single_Bed', None),
+        }
+
 
         return render(request, 'reserve_confirmation.html', context)
 
 
 class ReserveCreateView(LoginRequiredMixin, generic.View):
+
     def post(self, request, *args, **kwargs):
         reserve_date = date.today()
-        # room_number_id = request.POST['room_number']
+        room_number = request.POST.get('room_number', None)
 
-        profile_content = Reserve(id=4, reserve_date=reserve_date, Ticket_number_id='tk-011222', \
-                                  room_number_id='102', Representative_name='tese2', reserve_status=1)
+        profile_content = Reserve(reserve_date=reserve_date, Ticket_number_id='tk-011222', \
+                                  room_number_id=room_number, Representative_name='tese3', reserve_status=1)
         profile_content.save()
 
 

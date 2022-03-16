@@ -18,12 +18,22 @@
                 <div class="main-content">
                     <form method="post" action="{% url 'hotel:reserve_create' %}">
                         {% csrf_token %}
+                        <input type="hidden" name="room_number" value="{{ room_number }}">
+                        <div>
+                            <table>
+                                <th>代表者名</th>
+                                <td>
+                                    <input type="text" name="namae">
+                                </td>
+                            </table>
+                        </div>
+
                         <div class="row">
                             <div class="col-3">
                                 <strong>客室名</strong>
                             </div>
                             <div class="col-4">
-                                {{ form.room_name }}
+                                {{ room_name }}
                             </div>
                         </div>
                         <hr>
@@ -32,7 +42,7 @@
                                 <strong>室番</strong>
                             </div>
                             <div class="col-4">
-                                {{ form.room_number }}
+                                {{ room_number }}
                             </div>
                         </div>
                         <hr>
@@ -41,7 +51,7 @@
                                 <strong>大人</strong>
                             </div>
                             <div class="col-4">
-                                {{ form.persons }}
+                                {{ persons }}
                             </div>
                         </div>
                         <hr>
@@ -50,7 +60,7 @@
                                 <strong>子供</strong>
                             </div>
                             <div class="col-4">
-                                {{ form.kids }}
+                                {{ kids }}
                             </div>
                         </div>
                         <hr>
@@ -59,7 +69,7 @@
                                 <strong>ダブルベッド</strong>
                             </div>
                             <div class="col-4">
-                                {{ form.Double_bed }}
+                                {{ Double_bed }}
                             </div>
                         </div>
                         <hr>
@@ -68,7 +78,7 @@
                                 <strong>クイーンベッド</strong>
                             </div>
                             <div class="col-4">
-                                {{ form.Queen_bed }}
+                                {{ Queen_bed }}
                             </div>
                         </div>
                         <hr>
@@ -77,12 +87,11 @@
                                 <strong>シングルベッド</strong>
                             </div>
                             <div class="col-4">
-                                {{ form.Single_Bed }}
+                                {{ Single_Bed }}
                             </div>
                         </div>
                         <hr>
                         <div class="div-btn">
-<!--                            <a href="" class="btn btn-flat"><span>PUSH！</span></a>-->
                             <button class="btn-flat"type="submit">予約</button>
                         </div>
                     </form>

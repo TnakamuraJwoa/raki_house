@@ -28,7 +28,13 @@
             <div class="room-detail">
                 <form method="post" action="{% url 'hotel:reserve_confirmation' %}">
                     {% csrf_token %}
-<!--                            <input type="button" class= "room-btn" value="予約">-->
+                    <input type="hidden" name="room_name" value={{ object.room_name }}>
+                    <input type="hidden" name="room_number" value={{ object.room_number }}>
+                    <input type="hidden" name="persons" value={{ object.persons }}>
+                    <input type="hidden" name="kids" value={{ object.kids }}>
+                    <input type="hidden" name="Double_bed" value={{ object.Double_bed }}>
+                    <input type="hidden" name="Queen_bed" value={{ object.Queen_bed }}>
+                    <input type="hidden" name="Single_Bed" value={{ object.Single_Bed }}>
                     <div id="room-reserve-text">
                         <button id= "room-reserve-btn" type="submit"><span>予約</span></button>
                         <div class="room-detail-table">
@@ -74,17 +80,6 @@
                             </table>
                         </div>
                     </div>
-
-
-                    <input type="hidden" name="room_name" value={{ object.room_name }}>
-                    <input type="hidden" name="room_number" value={{ object.room_number }}>
-                    <input type="hidden" name="persons" value={{ object.persons }}>
-                    <input type="hidden" name="kids" value={{ object.kids }}>
-                    <input type="hidden" name="Double_bed" value={{ object.Double_bed }}>
-                    <input type="hidden" name="Queen_bed" value={{ object.Queen_bed }}>
-                    <input type="hidden" name="Single_Bed" value={{ object.Single_Bed }}>
-
-
                 </form>
             </div>
         </div>

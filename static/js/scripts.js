@@ -25,6 +25,35 @@ $(function(){
     });
 
     $('.js-modal-people-close').on('click',function(){
+        var person = $('#id_person').val();
+        var kids1 = $('#id_kids1').val();
+        var kids2 = $('#id_kids2').val();
+        var kids3 = $('#id_kids3').val();
+        var kids4 = $('#id_kids4').val();
+        var serch_txt = "";
+
+        if (person >= 1) {
+            $('#hid-person').val(person);
+            serch_txt += person + "名"
+        }
+        if (kids1 >= 1) {
+//            $('#hid-kids1').val(kids1);
+            serch_txt += ", A:" + kids1 + "名"
+        }
+        if (kids2 >= 1) {
+//            $('#hid-kids2').val(kids2);
+            serch_txt += ", B:" + kids2 + "名"
+        }
+        if (kids3 >= 1) {
+//            $('#hid-kids3').val(kids3);
+            serch_txt += ", C:" + kids3 + "名"
+        }
+        if (kids4 >= 1) {
+//            $('#hid-kids4').val(kids4);
+            serch_txt += ", D:" + kids4 + "名"
+        }
+
+        $('#serch-box-person').val(serch_txt);
         $('.js-modal-people').fadeOut();
         return false;
     });

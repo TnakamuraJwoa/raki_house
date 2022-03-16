@@ -57,7 +57,7 @@ button.btn-flat:hover::before {
     border-bottom: 3px solid coral;
 }
 
-input {
+.col-4 {
     border: none;
     background: transparent;
 }

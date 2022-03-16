@@ -28,13 +28,18 @@
                         <li class="serch-item">
                             <p>宿泊数</p>
                             <span>
-                                <input type="number" name="order" min="0" max="10" style="width: 8em;">
+                                <input type="number" placeholder="未選択" name="order" min="1" max="10" style="width: 8em;">
                             </span>
                         </li>
                         <li class="serch-item">
                             <p>人数</p>
                             <span>
-                                <input type="text" class="js-modal-people-open" name="num_stays" placeholder="人数を選択" style="width: 8em;">
+                                <input type="text" id="serch-box-person" class="js-modal-people-open" name="num_stays" placeholder="人数を選択" autocomplete="off">
+                                <input type="hidden" id="hid-person" name="room_name" value="">
+                                <input type="hidden" id="hid-kids1" name="kids1" value="">
+                                <input type="hidden" id="hid-kids2" name="kids2" value="">
+                                <input type="hidden" id="hid-kids3" name="kids3" value="">
+                                <input type="hidden" id="hid-kids4" name="kids4" value="">
                             </span>
                         </li>
                         <li class="serch-item">
@@ -53,8 +58,8 @@
                 <div class="room_list_messege">
                     <table id="room_list_messege_table">
                         <tr>
-                            <th>検索条件</th>
-                            <td>全部屋 表示（上記の条件は加味されておりません。）</td>
+                            <th id="serch-th">検索条件</th>
+                            <td id="serch-td">全部屋 表示（上記の条件は加味されておりません。)</td>
                         </tr>
                     </table>
                 </div>
