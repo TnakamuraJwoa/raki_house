@@ -17,17 +17,23 @@ class House(models.Model):
     class Meta:
         verbose_name_plural = 'House'
 
-        # constraints = [
-        #             models.UniqueConstraint(fields=['house_name'], name='unique_constraint')
-        #         ]
 
 
+class RoomType(models.Model):
+    room_type = models.CharField('部屋タイプ', max_length=20, null=False, blank=False)
+
+
+    def __str__(self):
+        return str(self.room_type)
+
+    class Meta:
+        verbose_name_plural = 'RoomType'
 
 
 class Room(models.Model):
     room_number = models.CharField('部屋番号', primary_key=True, max_length=10, null=False, blank=False)
     house_name = models.ForeignKey(House, on_delete=models.CASCADE)
-    room_name = models.CharField('部屋名', max_length=30, null=True, blank=False)
+    room_name = models.ForeignKey(RoomType, on_delete=models.CASCADE)
     persons = models.IntegerField('大人 - 人数', validators=[MinValueValidator(0)], default=0, null=False, blank=False)
     kids = models.IntegerField('子供 - 人数', validators=[MinValueValidator(0)], default=0, null=False, blank=False)
     size = models.IntegerField('部屋のサイズ', validators=[MinValueValidator(0)], default=0, null=False, blank=False)
@@ -45,6 +51,7 @@ class Room(models.Model):
     description = models.TextField('説明', default="", blank=True)
     image = models.ImageField(upload_to='images', verbose_name='部屋画像メイン', null=True, blank=True)
     room_active = models.BooleanField('アクティブ', default=False)
+    room_price = models.IntegerField('価格', validators=[MinValueValidator(0)], null=True, blank=True)
 
     def __str__(self):
         return str(self.house_name) + ':　' + self.room_number
@@ -98,18 +105,18 @@ class Reserve(models.Model):
 
 
 
-class Calendar(models.Model):
-    member_id = models.ForeignKey(CustomUser, verbose_name="所有者", on_delete=models.SET_DEFAULT, default='不明')
-    no = models.IntegerField('チケット番号', validators=[MinValueValidator(0)], default=0, null=False, blank=False)
-    date = models.DateField('日付')
-    used = models.BooleanField('使用済', default=False)
-    cal_active = models.BooleanField('アクティブ', default=False)
-
-    def __str__(self):
-        return str(self.no) + ': ' + str(self.date)
-
-    class Meta:
-        verbose_name_plural = 'Calendar'
+# class Calendar(models.Model):
+#     member_id = models.ForeignKey(CustomUser, verbose_name="所有者", on_delete=models.SET_DEFAULT, default='不明')
+#     no = models.IntegerField('チケット番号', validators=[MinValueValidator(0)], default=0, null=False, blank=False)
+#     date = models.DateField('日付')
+#     used = models.BooleanField('使用済', default=False)
+#     cal_active = models.BooleanField('アクティブ', default=False)
+#
+#     def __str__(self):
+#         return str(self.no) + ': ' + str(self.date)
+#
+#     class Meta:
+#         verbose_name_plural = 'Calendar'
 
 
 

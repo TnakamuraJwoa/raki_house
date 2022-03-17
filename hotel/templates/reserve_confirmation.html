@@ -13,21 +13,30 @@
         <div class="my-div-style w-100">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div>
-                    <h1>予約詳細確認</h1>
+                    <h1>予約</h1>
                 </div>
                 <div class="main-content">
                     <form method="post" action="{% url 'hotel:reserve_create' %}">
                         {% csrf_token %}
                         <input type="hidden" name="room_number" value="{{ room_number }}">
-                        <div>
-                            <table>
-                                <th>代表者名</th>
-                                <td>
-                                    <input type="text" name="namae">
-                                </td>
-                            </table>
+                        <div class="row">
+                            <div class="col-3">
+                                <strong>代表者名</strong>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="namae">
+                            </div>
                         </div>
-
+                        <hr>
+                        <div class="row">
+                            <div class="col-3">
+                                <strong>朝食チケットの購入</strong>
+                            </div>
+                            <div class="col-4">
+                                <button type="button" onClick="window.open('https://www.jwoashop.jp/index.php?mode=logout','_blank')">購入ページへ</button>
+                            </div>
+                        </div>
+                        <hr>
                         <div class="row">
                             <div class="col-3">
                                 <strong>客室名</strong>
@@ -48,51 +57,15 @@
                         <hr>
                         <div class="row">
                             <div class="col-3">
-                                <strong>大人</strong>
+                                <strong>金額</strong>
                             </div>
                             <div class="col-4">
-                                {{ persons }}
+                                4,0000 円
                             </div>
                         </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-3">
-                                <strong>子供</strong>
-                            </div>
-                            <div class="col-4">
-                                {{ kids }}
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-3">
-                                <strong>ダブルベッド</strong>
-                            </div>
-                            <div class="col-4">
-                                {{ Double_bed }}
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-3">
-                                <strong>クイーンベッド</strong>
-                            </div>
-                            <div class="col-4">
-                                {{ Queen_bed }}
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-3">
-                                <strong>シングルベッド</strong>
-                            </div>
-                            <div class="col-4">
-                                {{ Single_Bed }}
-                            </div>
-                        </div>
-                        <hr>
+
                         <div class="div-btn">
-                            <button class="btn-flat"type="submit">予約</button>
+                            <button class="btn-flat" type="submit">予約</button>
                         </div>
                     </form>
                     <button class="return-btn" onclick="location.href='{{request.META.HTTP_REFERER}}'"><span>一覧へ戻る</span></button>

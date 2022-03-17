@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from .models import House
-from .models import Room, Reserve, Calendar, RFourCalendar
+from .models import Room, Reserve, RFourCalendar
 from datetime import date
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -102,11 +102,6 @@ class ReserveConfirmationView(LoginRequiredMixin, generic.View):
         context = {
             'room_name': request.POST.get('room_name', None),
             'room_number': request.POST.get('room_number', None),
-            'persons': request.POST.get('persons', None),
-            'kids': request.POST.get('kids', None),
-            'Double_bed': request.POST.get('Double_bed', None),
-            'Queen_bed': request.POST.get('Queen_bed', None),
-            'Single_Bed': request.POST.get('Single_Bed', None),
         }
 
 
