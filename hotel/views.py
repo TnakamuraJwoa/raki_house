@@ -35,52 +35,52 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
     # queryset = Room.objects.filter(house_name_id='1')
 
     def get_queryset(self):
-        in_date = '2022-02-17'
-        out_date = '2022-02-19'
+        # in_date = '2022-02-17'
+        # out_date = '2022-02-19'
+        #
+        # get_house_id = self.request.GET.get('house_number')
+        #
+        # if get_house_id is None:
+        #     house_id = self.request.session['house_id']
+        # else:
+        #     self.request.session['house_id'] = get_house_id
+        #     house_id = get_house_id
+        #
+        # member_id_id = self.request.user.id
+        # member_type = self.request.user.member_type
+        #
+        # print(house_id)
+        # print("member_id_id: %d" % member_id_id)
+        # print("member_type: %d" % member_type)
+        #
+        # # 使用可能カレンダの件数
+        # available_cal_cnt = Calendar.objects.filter(date__gte=in_date, date__lte=out_date, used=False, cal_active=True).count()
+        # #部屋の数
+        # active_room_cnt = Room.objects.filter(house_name_id=house_id, room_active=True).count()
+        # # 予約の件数
+        # reserve_cnt = Room.objects.filter(Q(house_name_id=house_id), Q(room_active=True) | Q(reserve__reserve_date__gte=in_date), Q(reserve__reserve_date__lte=out_date)).select_related().all().count()
+        #
+        # print("使用可能カレンダの件数: %d" % available_cal_cnt)
+        # print("部屋の数: %d" % active_room_cnt)
+        # print("予約の件数: %d" % reserve_cnt)
+        #
+        # if (active_room_cnt - reserve_cnt) > available_cal_cnt:
+        #     flg = True
+        # else:
+        #     if member_type >= 3 and (active_room_cnt - reserve_cnt) >= 1:
+        #         flg = True
+        #     else:
+        #         flg = False
+        #
+        #
+        # date = datetime.datetime.now() - datetime.timedelta(days=14)
+        #
+        # if house_id and flg == True:
+        #     queryset = Room.objects.filter(Q(house_name_id=house_id), Q(reserve__reserve_date__isnull=True) | Q(reserve__reserve_date__gt=date)).select_related().all().filter(Q(reserve__reserve_date__gt=out_date) | Q(reserve__reserve_date__lt=in_date) | Q(reserve__reserve_date__isnull=True))
+        # else:
+        #     queryset = Room.objects.none()
 
-        get_house_id = self.request.GET.get('house_number')
-
-        if get_house_id is None:
-            house_id = self.request.session['house_id']
-        else:
-            self.request.session['house_id'] = get_house_id
-            house_id = get_house_id
-
-        member_id_id = self.request.user.id
-        member_type = self.request.user.member_type
-
-        print(house_id)
-        print("member_id_id: %d" % member_id_id)
-        print("member_type: %d" % member_type)
-
-        # 使用可能カレンダの件数
-        available_cal_cnt = Calendar.objects.filter(date__gte=in_date, date__lte=out_date, used=False, cal_active=True).count()
-        #部屋の数
-        active_room_cnt = Room.objects.filter(house_name_id=house_id, room_active=True).count()
-        # 予約の件数
-        reserve_cnt = Room.objects.filter(Q(house_name_id=house_id), Q(room_active=True) | Q(reserve__reserve_date__gte=in_date), Q(reserve__reserve_date__lte=out_date)).select_related().all().count()
-
-        print("使用可能カレンダの件数: %d" % available_cal_cnt)
-        print("部屋の数: %d" % active_room_cnt)
-        print("予約の件数: %d" % reserve_cnt)
-
-        if (active_room_cnt - reserve_cnt) > available_cal_cnt:
-            flg = True
-        else:
-            if member_type >= 3 and (active_room_cnt - reserve_cnt) >= 1:
-                flg = True
-            else:
-                flg = False
-
-
-        date = datetime.datetime.now() - datetime.timedelta(days=14)
-
-        if house_id and flg == True:
-            queryset = Room.objects.filter(Q(house_name_id=house_id), Q(reserve__reserve_date__isnull=True) | Q(reserve__reserve_date__gt=date)).select_related().all().filter(Q(reserve__reserve_date__gt=out_date) | Q(reserve__reserve_date__lt=in_date) | Q(reserve__reserve_date__isnull=True))
-        else:
-            queryset = Room.objects.none()
-
-        # print(queryset.query)
+        queryset = Room.objects.all()
 
         return queryset
 
@@ -113,9 +113,10 @@ class ReserveCreateView(LoginRequiredMixin, generic.View):
     def post(self, request, *args, **kwargs):
         reserve_date = date.today()
         room_number = request.POST.get('room_number', None)
+        representative_name = request.POST.get('representative_name', None)
 
         profile_content = Reserve(reserve_date=reserve_date, Ticket_number_id='tk-011222', \
-                                  room_number_id=room_number, Representative_name='tese3', reserve_status=1)
+                                  room_number_id=room_number, Representative_name=representative_name, reserve_status=1)
         profile_content.save()
 
 

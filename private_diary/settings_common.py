@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+    'import_export',
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
