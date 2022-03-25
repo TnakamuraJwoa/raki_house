@@ -8,8 +8,13 @@ from datetime import date
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime
+import time
 from .forms import BoxSearchForm, CalendarForm
 from django.db.models import Q
+
+from django.db.models import Max
+import math
+from django.db.models import OuterRef, Subquery
 
 
 class HouseView(LoginRequiredMixin, generic.TemplateView):
@@ -99,6 +104,7 @@ class ReserveConfirmationView(LoginRequiredMixin, generic.View):
 
     def post(self, request, *args, **kwargs):
 
+
         context = {
             'room_name': request.POST.get('room_name', None),
             'room_number': request.POST.get('room_number', None),
@@ -112,10 +118,14 @@ class ReserveCreateView(LoginRequiredMixin, generic.View):
 
     def post(self, request, *args, **kwargs):
         reserve_date = date.today()
+        ut = time.time()
+        u_time = math.floor(ut)
+        id = self.request.user.id
+        order_number = str(id) + "-" + str(u_time)
         room_number = request.POST.get('room_number', None)
         representative_name = request.POST.get('representative_name', None)
 
-        profile_content = Reserve(reserve_date=reserve_date, Ticket_number_id='tk-011222', \
+        profile_content = Reserve(order_number=order_number, member_id_id=id, reserve_date=reserve_date, Ticket_number_id='tk-011222', \
                                   room_number_id=room_number, Representative_name=representative_name, reserve_status=1)
         profile_content.save()
 
@@ -132,11 +142,22 @@ class ReserveReferenceConfView(LoginRequiredMixin, generic.ListView):
     model = Room
     template_name = 'reserve_syoukai.html'
     paginate_by = 5
-    ordering = '-room_number'  # order_by('-title')
-    # queryset = Room.objects.filter(house_name_id='1')
+    ordering = '-reserve_date'  # order_by('-title')
 
     def get_queryset(self):
-        queryset = Room.objects.none()
+        # 宿泊完了: 2
+        # 予約: 1
+        # キャンセル: 0
+        status = 1
+        id = self.request.user.id
+        reserve = Reserve.objects.select_related("room_number")
+        queryset1 = Reserve.objects.filter(member_id_id=id, reserve_status=status).values("order_number").annotate(fav_max=Max('reserve_date'))
+        que_order_num = queryset1.values("order_number")
+        que_fav_max = queryset1.values("fav_max")
+        queryset = reserve.filter(order_number__in=Subquery(que_order_num), reserve_date__in=Subquery(que_fav_max))
+
+        print(queryset.query)
+        # print(queryset)
         return queryset
 
 class MkCalendarView(LoginRequiredMixin, generic.ListView):

@@ -90,6 +90,8 @@ class GiveTicket(models.Model):
 
 
 class Reserve(models.Model):
+    order_number = models.CharField('注文番号', max_length=30, null=False, blank=False)
+    member_id = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="所有者", on_delete=models.PROTECT,  null=False, blank=False)
     room_number = models.ForeignKey(Room, on_delete=models.CASCADE)
     Representative_name = models.CharField('代表者名', max_length=20, null=True, blank=True)
     reserve_date = models.DateField()
