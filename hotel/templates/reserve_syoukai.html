@@ -11,60 +11,76 @@
 <div class="container">
     <div class="my-div-style w-100">
         <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="page-bar">
-                <span><a href="{% url 'hotel:my_page' %}">登録情報</a></span>
-                <span class="page-coler">予約照会</span>
-            </div>
+            {% include 'reserve_inc_top.html' %}
             <div class="my_container">
-                <img id="jw-img" src="{% static 'assets/imgs/bg_ptn_01.svg' %}" alt="" />
+                <video id="ocean_video" role="presentation" crossorigin="anonymous"
+                       playsinline="" preload="auto" muted="" loop="" tabindex="-1" width="100%" height="100%"
+                       autoplay="" src="https://video.wixstatic.com/video/11062b_9d96f7c1f9444bfdbd37edb7281e6af7/720p/mp4/file.mp4">
+                </video>
                 <div class="filter-container">
                     <span class="this_select">予約済み</span>
-                    <span class="this_not_select">宿泊完了</span>
-                    <span class="this_not_select">キャンセル</span>
+                    <span class="this_not_select"><a href="{% url 'hotel:reserve_conp' %}">宿泊完了</a></span>
+                    <span class="this_not_select"><a href="{% url 'hotel:reserve_cancel' %}">キャンセル</a></span>
                 </div>
                 {% for reserve in object_list %}
                     <div class="show-hotels">
                         <p class="reserve-date">予約日：2022年1月25日火曜日</p>
                         <div class="show-hotels-frame">
                             <img id="hotel-img" src="{{ reserve.room_number.image.url }}" alt="" />
-                            <span>{{ reserve.room_number.description }}</span>
+                            <div class="panel-flam">
+                                <div class="panel-top">
+                                    <div class="panel-title">
+                                        <ui>
+                                            <li class="room-type">スタンダードツイーン</li>
+                                            <li class="room-id panel-pa">ご予約ID: 111111111111111</li>
+                                        </ui>
+                                    </div>
+                                    <div class="checkin-checkout-info-panel">
+                                        <div class="check-dates">
+                                            <div class="check-info">
+                                                <div class="check-title" data-selenium="check-in-label">チェックイン</div>
+                                                <div class="check-date">
+                                                    <div class="check-day" data-selenium="check-in-day">26</div>
+                                                    <div class="check-mon-weekday">
+                                                        <div class="check-mon" data-selenium="check-in-month-year">1月</div>
+                                                        <div class="check-weekday" data-selenium="check-in-weekday">水</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="check-spacer"></div>
+                                            <div class="check-info">
+                                                <div class="check-title" data-selenium="check-out-label">チェックアウト</div>
+                                                <div class="check-date">
+                                                    <div class="check-day" data-selenium="check-out-day">27</div>
+                                                    <div class="check-mon-weekday">
+                                                        <div class="check-mon" data-selenium="check-out-month-year">1月</div>
+                                                        <div class="check-weekday" data-selenium="check-out-weekday">木</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pay-status-panel panel-pa">
+                                    <img class="check-ico" src="{% static 'assets/imgs/check.jpg' %}" alt="" />
+                                    <span>決済完了</span>
+                                </div>
+                                <div class="panel-price-btn panel-pa">
+                                    <div>
+                                        <span class="price-jp">JPY</span><span class="price">15,000</span>
+                                        <button class="action-btn" type="submit">予約の変更管理</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 {% empty %}
-                    <p>予約がありません</p>
+                    <p>キャンセル情報がありません</p>
                 {% endfor %}
 
                 <!--ページネーション処理-->
-                {% if is_paginated %}
-                    <ul class="pagination">
-                        <!-- 前ページへのリンク -->
-                        {% if page_obj.has_previous %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
-                                    <span aria-hidden="true"> &laquo;</span>
-                                </a>
-                            </li>
-                        {% endif %}
-
-                        <!-- ページ数表示 -->
-                        {% for page_num in page_obj.paginator.page_range %}
-                            {% if page_obj.number == page_num %}
-                                <li class="page-item active"> <a class="page-link" href="#">{{page_num }}</a></li>
-                            {% else %}
-                                <li class="page-item"><a class="page-link" href="?page={{ page_num }}">{{ page_num }} </a></li>
-                            {% endif %}
-                        {% endfor %}
-
-                        <!-- 次ページへのリンク -->
-                        {% if page_obj.has_next %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">
-                                    <span aria-hidden="true"> &raquo;</span>
-                                </a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                {% endif %}
+                {% include 'paginated.html' %}
             </div>
         </div>
     </div>

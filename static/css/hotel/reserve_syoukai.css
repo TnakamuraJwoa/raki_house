@@ -44,24 +44,171 @@ a {
     border-bottom-color: #dddfe2;
 }
 
-#jw-img {
+#ocean_video {
     width: 100%;
-    height: 63px;
+    height: 100px;
     object-fit: cover;
-    margin-bottom: 29px;
+    object-position: center center;
+    opacity: 1;
 }
 
 #hotel-img {
-    height: 221px;
-    width: 362px;
+    height: auto;
+    width: 231px;
     object-fit: cover;
 }
 
 .reserve-date {
     text-align: end;
+    font-size: 12px;
+    line-height: 30px;
+    min-width: 150px;
+    text-align: right;
+    color: #737373
+}
+
+.show-hotels-frame {
+    display: flex;
+    box-shadow: rgb(0 0 0 / 20%) 0px 2px 8px 3px;
+    margin-bottom: 37px;
 }
 
 .show-hotels-frame > span {
     display: block;
     background-color: aqua;
+}
+
+ui {
+    list-style: none;
+}
+
+li.room-type {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 12px 16px 0;
+}
+
+li.room-id {
+    font-size: 14px;
+}
+
+.check-info {
+    display: inline-table;
+    vertical-align: top;
+}
+
+.check-day {
+    letter-spacing: 1.2px;
+    color: #737373;
+    font-size: 30px;
+    line-height: .8;
+}
+
+
+.check-spacer {
+    border: 1px dashed;
+    display: inline-table;
+    height: 64px;
+    margin-left: 8px;
+    margin-right: 8px;
+    border-right-width: 0;
+    border-color: #e9ebee;
+}
+
+.check-info {
+    display: inline-table;
+    vertical-align: top;
+}
+
+.check-date {
+    display: flex;
+}
+
+.check-mon {
+    margin-bottom: -10px;
+    margin-top: -5px;
+    letter-spacing: .4px;
+    color: #737373;
+    font-size: 10px;
+    font-weight: 200;
+    line-height: 2.4;
+}
+
+.check-title {
+    letter-spacing: .4px;
+    font-size: 10px;
+    line-height: 1.2;
+    margin-bottom: 4px;
+    padding-bottom: 8px;
+    color: #737373;
+}
+
+div.check-weekday {
+    font-size: 10px;
+    line-height: 2.4;
+}
+
+.panel-title {
+    width: 65%;
+}
+
+.checkin-checkout-info-panel {
+    float: right;
+}
+
+.panel-flam {
+    width: 100%;
+}
+
+.check-dates {
+    padding: 10px;
+}
+
+
+.panel-top {
+    display: flex;
+}
+
+.check-ico {
+    width: 29px;
+}
+
+.pay-status-panel {
+
+}
+
+.pay-status-panel > span {
+    color: #32a923;
+}
+
+.panel-pa {
+    padding: 0 16px 0;
+}
+
+.action-btn {
+    float: right;
+    background-color: #5392f9;
+    color: #fff;
+    padding: 0 16px;
+    border: 1px solid;
+    font-size: 14px;
+    font-weight: 700;
+    height: 40px;
+    border-radius: 3px;
+    margin: 0 14px 14px 1px;
+}
+
+.price {
+    color: #e12d2d;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.price-jp {
+    color: #737373;
+    margin-right: 8px;
+}
+
+.panel-price-btn {
+    margin-top: 14px;
 }

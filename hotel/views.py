@@ -160,6 +160,55 @@ class ReserveReferenceConfView(LoginRequiredMixin, generic.ListView):
         # print(queryset)
         return queryset
 
+
+class ReserveConpView(LoginRequiredMixin, generic.ListView):
+    model = Room
+    template_name = 'reserve_conp.html'
+    paginate_by = 5
+    ordering = '-reserve_date'  # order_by('-title')
+
+    def get_queryset(self):
+        # 宿泊完了: 2
+        # 予約: 1
+        # キャンセル: 0
+        status = 2
+        id = self.request.user.id
+        reserve = Reserve.objects.select_related("room_number")
+        queryset1 = Reserve.objects.filter(member_id_id=id, reserve_status=status).values("order_number").annotate(fav_max=Max('reserve_date'))
+        que_order_num = queryset1.values("order_number")
+        que_fav_max = queryset1.values("fav_max")
+        queryset = reserve.filter(order_number__in=Subquery(que_order_num), reserve_date__in=Subquery(que_fav_max))
+
+        print(queryset.query)
+        # print(queryset)
+        return queryset
+
+
+
+class ReserveCancelView(LoginRequiredMixin, generic.ListView):
+    model = Room
+    template_name = 'reserve_cancel.html'
+    paginate_by = 5
+    ordering = '-reserve_date'  # order_by('-title')
+
+    def get_queryset(self):
+        # 宿泊完了: 2
+        # 予約: 1
+        # キャンセル: 0
+        status = 0
+        id = self.request.user.id
+        reserve = Reserve.objects.select_related("room_number")
+        queryset1 = Reserve.objects.filter(member_id_id=id, reserve_status=status).values("order_number").annotate(fav_max=Max('reserve_date'))
+        que_order_num = queryset1.values("order_number")
+        que_fav_max = queryset1.values("fav_max")
+        queryset = reserve.filter(order_number__in=Subquery(que_order_num), reserve_date__in=Subquery(que_fav_max))
+
+        print(queryset.query)
+        # print(queryset)
+        return queryset
+
+
+
 class MkCalendarView(LoginRequiredMixin, generic.ListView):
     model = RFourCalendar
     template_name = 'mk_calendar.html'
