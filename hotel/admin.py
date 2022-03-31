@@ -28,6 +28,7 @@ class TicketResource(resources.ModelResource):
     # Modelに対するdjango-import-exportの設定
     class Meta:
         model = Ticket
+        import_id_fields = ['Ticket_number']
 
 
 @admin.register(Ticket)
@@ -44,15 +45,16 @@ class RoomResource(resources.ModelResource):
     # Modelに対するdjango-import-exportの設定
     class Meta:
         model = Room
+        import_id_fields = ['room_number']
 
 
 @admin.register(Room)
 class RoomAdmin(ImportExportModelAdmin):
     # ImportExportModelAdminを利用するようにする
     ordering = ['room_number']
-    # list_display = ('room_number', 'persons', 'kids', 'size', 'futon', 'Queen_bed', 'semi_Double_bed', \
-    #                 'Double_bed', 'Single_Bed', 'smoking', 'open_bath', 'corner_room', 'ja_style', \
-    #                 'we_style', 'dog', 'description', 'image', 'room_active', 'room_price', 'house_name_id', 'room_name_id')
+    list_display = ('house_name_id', 'room_number', 'persons', 'kids', 'size', 'futon', 'Queen_bed', 'semi_Double_bed', \
+                    'Double_bed', 'Single_Bed', 'smoking', 'open_bath', 'corner_room', 'ja_style', \
+                    'we_style', 'dog', 'room_active', 'room_price')
 
     # django-import-exportsの設定
     resource_class = RoomResource

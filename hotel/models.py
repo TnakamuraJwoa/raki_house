@@ -20,7 +20,7 @@ class House(models.Model):
 
 
 class RoomType(models.Model):
-    room_type = models.CharField('部屋タイプ', max_length=20, null=False, blank=False)
+    room_type = models.CharField('部屋タイプ', max_length=40, null=False, blank=False)
 
 
     def __str__(self):
@@ -54,7 +54,7 @@ class Room(models.Model):
     room_price = models.IntegerField('価格', validators=[MinValueValidator(0)], null=True, blank=True)
 
     def __str__(self):
-        return str(self.house_name) + ':　' + self.room_number
+        return str(self.room_number)
 
     class Meta:
         verbose_name_plural = 'Room'
@@ -95,6 +95,7 @@ class Reserve(models.Model):
     room_number = models.ForeignKey(Room, on_delete=models.CASCADE)
     Representative_name = models.CharField('代表者名', max_length=20, null=True, blank=True)
     reserve_date = models.DateField()
+    processing_date = models.DateField()
     Ticket_number = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     reserve_status = models.IntegerField('予約ステータス', default=1, null=False, blank=False)
 
