@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block title %}room_list{% endblock %}
 {% block active_diary_list %}active{% endblock %}
 
@@ -24,15 +25,31 @@
                 </div>
                 {% for reserve in object_list %}
                     <div class="show-hotels">
-                        <p class="reserve-date">予約日：2022年1月25日火曜日</p>
+                        {% if reserve.processing_date|date:"w" == '1' %}
+                            <p class="reserve-date">予約日：{{ reserve.processing_date }} 月曜日</p>
+                        {% elif reserve.processing_date|date:"w" == '2' %}
+                            <p class="reserve-date">予約日：{{ reserve.processing_date }} 火曜日</p>
+                        {% elif reserve.processing_date|date:"w" == '3' %}
+                            <p class="reserve-date">予約日：{{ reserve.processing_date }} 水曜日</p>
+                        {% elif reserve.processing_date|date:"w" == '4' %}
+                            <p class="reserve-date">予約日：{{ reserve.processing_date }} 木曜日</p>
+                        {% elif reserve.processing_date|date:"w" == '5' %}
+                            <p class="reserve-date">予約日：{{ reserve.processing_date }} 金曜日</p>
+                        {% elif reserve.processing_date|date:"w" == '6' %}
+                            <p class="reserve-date">予約日：{{ reserve.processing_date }} 土曜日</p>
+                        {% elif reserve.processing_date|date:"w" == '0' %}
+                            <p class="reserve-date">予約日：{{ reserve.processing_date }} 日曜日</p>
+                        {% else %}
+                            <p class="reserve-date">予約日：{{ reserve.processing_date }}</p>
+                        {% endif %}
                         <div class="show-hotels-frame">
                             <img id="hotel-img" src="{{ reserve.room_number.image.url }}" alt="" />
                             <div class="panel-flam">
                                 <div class="panel-top">
                                     <div class="panel-title">
                                         <ui>
-                                            <li class="room-type">スタンダードツイーン</li>
-                                            <li class="room-id panel-pa">ご予約ID: 111111111111111</li>
+                                            <li class="room-type">{{ reserve.room_number.room_name.room_type }}</li>
+                                            <li class="room-id panel-pa">ご予約ID: {{ reserve.order_number }}</li>
                                         </ui>
                                     </div>
                                     <div class="checkin-checkout-info-panel">
@@ -40,10 +57,26 @@
                                             <div class="check-info">
                                                 <div class="check-title" data-selenium="check-in-label">チェックイン</div>
                                                 <div class="check-date">
-                                                    <div class="check-day" data-selenium="check-in-day">26</div>
+                                                    <div class="check-day" data-selenium="check-in-day">{{ reserve.check_in_date|date:"j" }}</div>
                                                     <div class="check-mon-weekday">
-                                                        <div class="check-mon" data-selenium="check-in-month-year">1月</div>
-                                                        <div class="check-weekday" data-selenium="check-in-weekday">水</div>
+                                                        <div class="check-mon" data-selenium="check-in-month-year">{{ reserve.check_in_date|date:"n月" }}</div>
+                                                        {% if reserve.check_out_date|date:"w" == '1' %}
+                                                            <div class="check-weekday" data-selenium="check-in-weekday">月</div>
+                                                        {% elif reserve.check_out_date|date:"w" == '2' %}
+                                                            <div class="check-weekday" data-selenium="check-in-weekday">火</div>
+                                                        {% elif reserve.check_out_date|date:"w" == '3' %}
+                                                            <div class="check-weekday" data-selenium="check-in-weekday">水</div>
+                                                        {% elif reserve.check_out_date|date:"w" == '4' %}
+                                                            <div class="check-weekday" data-selenium="check-in-weekday">木</div>
+                                                        {% elif reserve.check_out_date|date:"w" == '5' %}
+                                                            <div class="check-weekday" data-selenium="check-in-weekday">金</div>
+                                                        {% elif reserve.check_out_date|date:"w" == '6' %}
+                                                            <div class="check-weekday" data-selenium="check-in-weekday">土</div>
+                                                        {% elif reserve.check_out_date|date:"w" == '0' %}
+                                                            <div class="check-weekday" data-selenium="check-in-weekday">日</div>
+                                                        {% else %}
+                                                            <div class="check-weekday" data-selenium="check-in-weekday"></div>
+                                                        {% endif %}
                                                     </div>
                                                 </div>
                                             </div>
@@ -51,10 +84,26 @@
                                             <div class="check-info">
                                                 <div class="check-title" data-selenium="check-out-label">チェックアウト</div>
                                                 <div class="check-date">
-                                                    <div class="check-day" data-selenium="check-out-day">27</div>
+                                                    <div class="check-day" data-selenium="check-out-day">{{ reserve.check_out_date|date:"j" }}</div>
                                                     <div class="check-mon-weekday">
-                                                        <div class="check-mon" data-selenium="check-out-month-year">1月</div>
-                                                        <div class="check-weekday" data-selenium="check-out-weekday">木</div>
+                                                        <div class="check-mon" data-selenium="check-out-month-year">{{ reserve.check_out_date|date:"n月" }}</div>
+                                                        {% if reserve.check_out_date|date:"w" == '1' %}
+                                                            <div class="check-weekday" data-selenium="check-out-weekday">月</div>
+                                                        {% elif reserve.check_out_date|date:"w" == '2' %}
+                                                            <div class="check-weekday" data-selenium="check-out-weekday">火</div>
+                                                        {% elif reserve.check_out_date|date:"w" == '3' %}
+                                                            <div class="check-weekday" data-selenium="check-out-weekday">水</div>
+                                                        {% elif reserve.check_out_date|date:"w" == '4' %}
+                                                            <div class="check-weekday" data-selenium="check-out-weekday">木</div>
+                                                        {% elif reserve.check_out_date|date:"w" == '5' %}
+                                                            <div class="check-weekday" data-selenium="check-out-weekday">金</div>
+                                                        {% elif reserve.check_out_date|date:"w" == '6' %}
+                                                            <div class="check-weekday" data-selenium="check-out-weekday">土</div>
+                                                        {% elif reserve.check_out_date|date:"w" == '0' %}
+                                                            <div class="check-weekday" data-selenium="check-out-weekday">日</div>
+                                                        {% else %}
+                                                            <div class="check-weekday" data-selenium="check-out-weekday"></div>
+                                                        {% endif %}
                                                     </div>
                                                 </div>
                                             </div>
@@ -67,7 +116,7 @@
                                 </div>
                                 <div class="panel-price-btn panel-pa">
                                     <div>
-                                        <span class="price-jp">JPY</span><span class="price">15,000</span>
+                                        <span class="price-jp">JPY</span><span class="price">{{ reserve.room_number.room_price | intcomma }}</span>
                                         <button class="action-btn" type="submit">予約の変更管理</button>
                                     </div>
                                 </div>
@@ -76,7 +125,7 @@
 
                     </div>
                 {% empty %}
-                    <p>キャンセル情報がありません</p>
+                    <p>予約情報がありません</p>
                 {% endfor %}
 
                 <!--ページネーション処理-->

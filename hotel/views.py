@@ -63,7 +63,7 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
         # #部屋の数
         # active_room_cnt = Room.objects.filter(house_name_id=house_id, room_active=True).count()
         # # 予約の件数
-        # reserve_cnt = Room.objects.filter(Q(house_name_id=house_id), Q(room_active=True) | Q(reserve__reserve_date__gte=in_date), Q(reserve__reserve_date__lte=out_date)).select_related().all().count()
+        # reserve_cnt = Room.objects.filter(Q(house_name_id=house_id), Q(room_active=True) | Q(reserve__check_in_date__gte=in_date), Q(reserve__check_in_date__lte=out_date)).select_related().all().count()
         #
         # print("使用可能カレンダの件数: %d" % available_cal_cnt)
         # print("部屋の数: %d" % active_room_cnt)
@@ -81,7 +81,7 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
         # date = datetime.datetime.now() - datetime.timedelta(days=14)
         #
         # if house_id and flg == True:
-        #     queryset = Room.objects.filter(Q(house_name_id=house_id), Q(reserve__reserve_date__isnull=True) | Q(reserve__reserve_date__gt=date)).select_related().all().filter(Q(reserve__reserve_date__gt=out_date) | Q(reserve__reserve_date__lt=in_date) | Q(reserve__reserve_date__isnull=True))
+        #     queryset = Room.objects.filter(Q(house_name_id=house_id), Q(reserve__check_in_date__isnull=True) | Q(reserve__check_in_date__gt=date)).select_related().all().filter(Q(reserve__check_in_date__gt=out_date) | Q(reserve__check_in_date__lt=in_date) | Q(reserve__check_in_date__isnull=True))
         # else:
         #     queryset = Room.objects.none()
 
@@ -117,16 +117,22 @@ class ReserveConfirmationView(LoginRequiredMixin, generic.View):
 class ReserveCreateView(LoginRequiredMixin, generic.View):
 
     def post(self, request, *args, **kwargs):
-        reserve_date = date.today()
+        check_in_date = datetime.datetime.now()
+        check_out_date = datetime.datetime.now()
+
         ut = time.time()
+        dt_now = datetime.datetime.now()
+        # 注文番号の取得
         u_time = math.floor(ut)
         id = self.request.user.id
+        # 注文番号の設定
         order_number = str(id) + "-" + str(u_time)
         room_number = request.POST.get('room_number', None)
         representative_name = request.POST.get('representative_name', None)
 
-        profile_content = Reserve(order_number=order_number, member_id_id=id, reserve_date=reserve_date, Ticket_number_id='tk-011222', \
-                                  room_number_id=room_number, Representative_name=representative_name, reserve_status=1)
+        profile_content = Reserve(order_number=order_number, Representative_name=representative_name, check_in_date=check_in_date, \
+                                  check_out_date=check_out_date, processing_date=dt_now, \
+                                  Ticket_number_id='tk-000001', room_number_id=room_number, reserve_status=1, member_id_id=id)
         profile_content.save()
 
 
@@ -142,7 +148,7 @@ class ReserveReferenceConfView(LoginRequiredMixin, generic.ListView):
     model = Room
     template_name = 'reserve_syoukai.html'
     paginate_by = 5
-    ordering = '-reserve_date'  # order_by('-title')
+    ordering = '-check_in_date'  # order_by('-title')
 
     def get_queryset(self):
         # 宿泊完了: 2
@@ -150,11 +156,11 @@ class ReserveReferenceConfView(LoginRequiredMixin, generic.ListView):
         # キャンセル: 0
         status = 1
         id = self.request.user.id
-        reserve = Reserve.objects.select_related("room_number")
-        queryset1 = Reserve.objects.filter(member_id_id=id, reserve_status=status).values("order_number").annotate(fav_max=Max('reserve_date'))
+        reserve = Reserve.objects.select_related().all()
+        queryset1 = Reserve.objects.filter(member_id_id=id, reserve_status=status).values("order_number").annotate(fav_max=Max('check_in_date'))
         que_order_num = queryset1.values("order_number")
         que_fav_max = queryset1.values("fav_max")
-        queryset = reserve.filter(order_number__in=Subquery(que_order_num), reserve_date__in=Subquery(que_fav_max))
+        queryset = reserve.filter(order_number__in=Subquery(que_order_num), check_in_date__in=Subquery(que_fav_max))
 
         print(queryset.query)
         # print(queryset)
@@ -165,7 +171,7 @@ class ReserveConpView(LoginRequiredMixin, generic.ListView):
     model = Room
     template_name = 'reserve_conp.html'
     paginate_by = 5
-    ordering = '-reserve_date'  # order_by('-title')
+    ordering = '-check_in_date'  # order_by('-title')
 
     def get_queryset(self):
         # 宿泊完了: 2
@@ -173,11 +179,11 @@ class ReserveConpView(LoginRequiredMixin, generic.ListView):
         # キャンセル: 0
         status = 2
         id = self.request.user.id
-        reserve = Reserve.objects.select_related("room_number")
-        queryset1 = Reserve.objects.filter(member_id_id=id, reserve_status=status).values("order_number").annotate(fav_max=Max('reserve_date'))
+        reserve = Reserve.objects.all().select_related().all()
+        queryset1 = Reserve.objects.filter(member_id_id=id, reserve_status=status).values("order_number").annotate(fav_max=Max('check_in_date'))
         que_order_num = queryset1.values("order_number")
         que_fav_max = queryset1.values("fav_max")
-        queryset = reserve.filter(order_number__in=Subquery(que_order_num), reserve_date__in=Subquery(que_fav_max))
+        queryset = reserve.filter(order_number__in=Subquery(que_order_num), check_in_date__in=Subquery(que_fav_max))
 
         print(queryset.query)
         # print(queryset)
@@ -189,7 +195,7 @@ class ReserveCancelView(LoginRequiredMixin, generic.ListView):
     model = Room
     template_name = 'reserve_cancel.html'
     paginate_by = 5
-    ordering = '-reserve_date'  # order_by('-title')
+    ordering = '-check_in_date'  # order_by('-title')
 
     def get_queryset(self):
         # 宿泊完了: 2
@@ -198,10 +204,10 @@ class ReserveCancelView(LoginRequiredMixin, generic.ListView):
         status = 0
         id = self.request.user.id
         reserve = Reserve.objects.select_related("room_number")
-        queryset1 = Reserve.objects.filter(member_id_id=id, reserve_status=status).values("order_number").annotate(fav_max=Max('reserve_date'))
+        queryset1 = Reserve.objects.filter(member_id_id=id, reserve_status=status).values("order_number").annotate(fav_max=Max('check_in_date'))
         que_order_num = queryset1.values("order_number")
         que_fav_max = queryset1.values("fav_max")
-        queryset = reserve.filter(order_number__in=Subquery(que_order_num), reserve_date__in=Subquery(que_fav_max))
+        queryset = reserve.filter(order_number__in=Subquery(que_order_num), check_in_date__in=Subquery(que_fav_max))
 
         print(queryset.query)
         # print(queryset)

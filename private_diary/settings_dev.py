@@ -10,6 +10,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+NUMBER_GROUPING = 3
+
 #ロギング設定
 LOGGING = {
     'version': 1, # 1固定

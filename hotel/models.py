@@ -52,6 +52,7 @@ class Room(models.Model):
     image = models.ImageField(upload_to='images', verbose_name='部屋画像メイン', null=True, blank=True)
     room_active = models.BooleanField('アクティブ', default=False)
     room_price = models.IntegerField('価格', validators=[MinValueValidator(0)], null=True, blank=True)
+    room_sub_price = models.IntegerField('サブ価格', validators=[MinValueValidator(0)], null=False, blank=False)
 
     def __str__(self):
         return str(self.room_number)
@@ -94,13 +95,14 @@ class Reserve(models.Model):
     member_id = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="所有者", on_delete=models.PROTECT,  null=False, blank=False)
     room_number = models.ForeignKey(Room, on_delete=models.CASCADE)
     Representative_name = models.CharField('代表者名', max_length=20, null=True, blank=True)
-    reserve_date = models.DateField()
+    check_in_date = models.DateField()
+    check_out_date = models.DateField()
     processing_date = models.DateField()
     Ticket_number = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     reserve_status = models.IntegerField('予約ステータス', default=1, null=False, blank=False)
 
     def __str__(self):
-        return str(self.room_number) + ':　' + str(self.reserve_date)
+        return str(self.room_number) + ':　' + str(self.check_in_date)
 
     class Meta:
         verbose_name_plural = 'Reserve'
