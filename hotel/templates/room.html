@@ -28,7 +28,7 @@
             <div class="room-detail">
                 <form method="post" action="{% url 'hotel:reserve_confirmation' %}">
                     {% csrf_token %}
-                    <input type="hidden" name="room_name" value={{ object.room_name }}>
+                    <input type="hidden" name="room_name" value={{ person.room_name }}>
                     <input type="hidden" name="room_number" value={{ object.room_number }}>
                     <input type="hidden" name="persons" value={{ object.persons }}>
                     <input type="hidden" name="kids" value={{ object.kids }}>

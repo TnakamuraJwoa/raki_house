@@ -144,6 +144,16 @@ class RoomView(LoginRequiredMixin, generic.DetailView):
     template_name = 'room.html'
 
 
+    # def get(self, request, *args, **kwargs):
+    #
+    #     self.context = {
+    #         'stay_date': request.GET.get('stay_date', None),
+    #         'num_stays': request.GET.get('num_stays', None),
+    #     }
+    #
+    #     return render(request, 'room.html', self.context)
+
+
 class ReserveReferenceConfView(LoginRequiredMixin, generic.ListView):
     model = Room
     template_name = 'reserve_syoukai.html'

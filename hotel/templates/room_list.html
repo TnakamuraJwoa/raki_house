@@ -15,26 +15,26 @@
         <div class="my-div-style w-100">
             {% include 'room_list_modal.html' %}
             {% include 'room_list_modal_people.html' %}
-            <div class="room-list-box_search">
-                <form method="get" action="{% url 'hotel:room_list' %}">
-                    {% csrf_token %}
+            <form method="get" action="{% url 'hotel:room_list' %}">
+            {% csrf_token %}
+                <div class="room-list-box_search">
                     <ui class="layout_search">
                         <li class="serch-item">
                             <p>宿泊日</p>
                             <span>
-                               <input type="date">
+                               <input type="date" name="stay_date">
                             </span>
                         </li>
                         <li class="serch-item">
                             <p>宿泊数</p>
                             <span>
-                                <input type="number" placeholder="未選択" name="order" min="1" max="10" style="width: 8em;">
+                                <input type="number" placeholder="未選択" name="stays" min="1" max="10" style="width: 8em;">
                             </span>
                         </li>
                         <li class="serch-item">
                             <p>人数</p>
                             <span>
-                                <input type="text" id="serch-box-person" class="js-modal-people-open" name="num_stays" placeholder="人数を選択" autocomplete="off">
+                                <input type="text" id="serch-box-person" class="js-modal-people-open" name="num_people" placeholder="人数を選択" autocomplete="off">
                                 <input type="hidden" id="hid-person" name="room_name" value="">
                                 <input type="hidden" id="hid-kids1" name="kids1" value="">
                                 <input type="hidden" id="hid-kids2" name="kids2" value="">
@@ -51,110 +51,110 @@
                             <button class= "room-list-search-btn" type="submit">検索する<img src="{% static 'assets/serch_ico.png' %}" width="20px" height="20px"></button>
                         </li>
                     </ui>
-                </form>
-            </div>
-
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="room_list_messege">
-                    <table id="room_list_messege_table">
-                        <tr>
-                            <th id="serch-th">検索条件</th>
-                            <td id="serch-td">全部屋 表示（上記の条件は加味されておりません。)</td>
-                        </tr>
-                    </table>
                 </div>
-                {% for room in object_list %}
-                    <div class="post-preview">
-                            <div>
-                                <div id="room-number">
-                                    <span><a href="{% url 'hotel:room' room.pk %}">{{ room.room_number }}号室　【</a></span>
-                                    <span><a href="{% url 'hotel:room' room.pk %}">{{ room.room_name }}】</a></span>
-                                </div>
-                                <div id="style-flg">
-                                    {% if room.smoking %}
-                                        <span>喫煙可</span>
-                                    {% endif %}
-                                    {% if room.open_bath %}
-                                        <span>露天風呂</span>
-                                    {% endif %}
-                                    {% if room.dog %}
-                                        <span>介護犬対応</span>
-                                    {% endif %}
-                                    {% if room.corner_room %}
-                                        <span>角部屋</span>
-                                    {% endif %}
-                                    {% if room.ja_style %}
-                                        <span>和室</span>
-                                    {% endif %}
-                                    {% if room.we_style %}
-                                        <span>洋室</span>
-                                    {% endif %}
-                                </div>
-                                <div id="room-description">
-                                    <div>
-                                        <img class="img-fluid room-description-img" src="{{ room.image.url }}" width="135px" alt="" />
+
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="room_list_messege">
+                        <table id="room_list_messege_table">
+                            <tr>
+                                <th id="serch-th">検索条件</th>
+                                <td id="serch-td">全部屋 表示（上記の条件は加味されておりません。)</td>
+                            </tr>
+                        </table>
+                    </div>
+                    {% for room in object_list %}
+                        <div class="post-preview">
+                                <div>
+                                    <div id="room-number">
+                                        <span><a href="{% url 'hotel:room' room.pk %}">{{ room.room_number }}号室　【</a></span>
+                                        <span><a href="{% url 'hotel:room' room.pk %}">{{ room.room_name }}】</a></span>
                                     </div>
-                                    <div id="room-description-text">
+                                    <div id="style-flg">
+                                        {% if room.smoking %}
+                                            <span>喫煙可</span>
+                                        {% endif %}
+                                        {% if room.open_bath %}
+                                            <span>露天風呂</span>
+                                        {% endif %}
+                                        {% if room.dog %}
+                                            <span>介護犬対応</span>
+                                        {% endif %}
+                                        {% if room.corner_room %}
+                                            <span>角部屋</span>
+                                        {% endif %}
+                                        {% if room.ja_style %}
+                                            <span>和室</span>
+                                        {% endif %}
+                                        {% if room.we_style %}
+                                            <span>洋室</span>
+                                        {% endif %}
+                                    </div>
+                                    <div id="room-description">
                                         <div>
-                                            {{ room.description }}
+                                            <img class="img-fluid room-description-img" src="{{ room.image.url }}" width="135px" alt="" />
                                         </div>
-                                        <div>
-                                            <table>
-                                                <tr>
-                                                    <th>食事</th>
-                                                    <td>2食付（夕食・朝食）</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>アメニティー</th>
-                                                    <td>タオル</td>
-                                                </tr>
-                                            </table>
-                                            <div id="room-description-btn">
-                                                <button onclick="location.href='{% url 'hotel:room' room.pk %}'"><span>部屋の詳細</span></button>
+                                        <div id="room-description-text">
+                                            <div>
+                                                {{ room.description }}
+                                            </div>
+                                            <div>
+                                                <table>
+                                                    <tr>
+                                                        <th>食事</th>
+                                                        <td>2食付（夕食・朝食）</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>アメニティー</th>
+                                                        <td>タオル</td>
+                                                    </tr>
+                                                </table>
+                                                <div id="room-description-btn">
+                                                    <button formaction="{% url 'hotel:room' room.pk %}"><span>部屋の詳細</span></button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
+                        </div>
+                        <hr>
+                    {% empty %}
+                        <p>部屋がありません</p>
+                    {% endfor %}
 
-                            </div>
-                    </div>
-                    <hr>
-                {% empty %}
-                    <p>部屋がありません</p>
-                {% endfor %}
-
-                <!--ページネーション処理-->
-                {% if is_paginated %}
-                    <ul class="pagination">
-                        <!-- 前ページへのリンク -->
-                        {% if page_obj.has_previous %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
-                                    <span aria-hidden="true"> &laquo;</span>
-                                </a>
-                            </li>
-                        {% endif %}
-
-                        <!-- ページ数表示 -->
-                        {% for page_num in page_obj.paginator.page_range %}
-                            {% if page_obj.number == page_num %}
-                                <li class="page-item active"> <a class="page-link" href="#">{{page_num }}</a></li>
-                            {% else %}
-                                <li class="page-item"><a class="page-link" href="?page={{ page_num }}">{{ page_num }} </a></li>
+                    <!--ページネーション処理-->
+                    {% if is_paginated %}
+                        <ul class="pagination">
+                            <!-- 前ページへのリンク -->
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                        <span aria-hidden="true"> &laquo;</span>
+                                    </a>
+                                </li>
                             {% endif %}
-                        {% endfor %}
 
-                        <!-- 次ページへのリンク -->
-                        {% if page_obj.has_next %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">
-                                    <span aria-hidden="true"> &raquo;</span>
-                                </a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                {% endif %}
-            </div>
+                            <!-- ページ数表示 -->
+                            {% for page_num in page_obj.paginator.page_range %}
+                                {% if page_obj.number == page_num %}
+                                    <li class="page-item active"> <a class="page-link" href="#">{{page_num }}</a></li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ page_num }}">{{ page_num }} </a></li>
+                                {% endif %}
+                            {% endfor %}
+
+                            <!-- 次ページへのリンク -->
+                            {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                        <span aria-hidden="true"> &raquo;</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </form>
         </div>
     </div>
 </div>
