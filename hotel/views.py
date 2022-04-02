@@ -1,5 +1,6 @@
 import calendar
 from django.shortcuts import render
+from datetime import datetime as dt
 
 # Create your views here.
 from .models import House
@@ -25,11 +26,6 @@ class HouseView(LoginRequiredMixin, generic.TemplateView):
         return render(request, 'house.html', {
             'house_data': house_data,
         })
-
-
-class RoomView(LoginRequiredMixin, generic.DetailView):
-    model = Room
-    template_name = 'room.html'
 
 
 class RoomsView(LoginRequiredMixin, generic.ListView):
@@ -104,10 +100,11 @@ class ReserveConfirmationView(LoginRequiredMixin, generic.View):
 
     def post(self, request, *args, **kwargs):
 
-
         context = {
             'room_name': request.POST.get('room_name', None),
             'room_number': request.POST.get('room_number', None),
+            'check_in': request.POST.get('check_in', None),
+            'check_out': request.POST.get('check_out', None),
         }
 
 
@@ -117,8 +114,11 @@ class ReserveConfirmationView(LoginRequiredMixin, generic.View):
 class ReserveCreateView(LoginRequiredMixin, generic.View):
 
     def post(self, request, *args, **kwargs):
-        check_in_date = datetime.datetime.now()
-        check_out_date = datetime.datetime.now()
+        check_in_date = request.POST.get('check_in', None)
+        check_out_date = request.POST.get('check_out', None)
+
+        check_in_date = dt.strptime(check_in_date, '%Y-%m-%d')
+        check_out_date = dt.strptime(check_out_date, '%Y-%m-%d')
 
         ut = time.time()
         dt_now = datetime.datetime.now()
@@ -143,15 +143,24 @@ class RoomView(LoginRequiredMixin, generic.DetailView):
     model = Room
     template_name = 'room.html'
 
+    def get_context_data(self, **kwargs):
+        stay_date = self.request.GET.get('stay_date', None)
+        stays = self.request.GET.get('stays', None)
 
-    # def get(self, request, *args, **kwargs):
-    #
-    #     self.context = {
-    #         'stay_date': request.GET.get('stay_date', None),
-    #         'num_stays': request.GET.get('num_stays', None),
-    #     }
-    #
-    #     return render(request, 'room.html', self.context)
+        stay_date = dt.strptime(stay_date, '%Y-%m-%d')
+        if stays == "":
+            check_out = None
+            print(stays)
+            print(type(stays))
+        else:
+            check_out = stay_date + datetime.timedelta(days=int(stays))
+
+
+        self.context = super().get_context_data(**kwargs)
+        self.context['check_in'] = str(stay_date)
+        self.context['check_out'] = str(check_out)
+        self.context['num_people'] = self.request.GET.get('num_people', None)
+        return self.context
 
 
 class ReserveReferenceConfView(LoginRequiredMixin, generic.ListView):
@@ -246,6 +255,7 @@ class MkCalendarView(LoginRequiredMixin, generic.ListView):
 class TreeCalendarView(LoginRequiredMixin, generic.ListView):
     model = RFourCalendar
     template_name = 'tree_calendar.html'
+
 
 class MyPageView(LoginRequiredMixin, generic.ListView):
     model = RFourCalendar

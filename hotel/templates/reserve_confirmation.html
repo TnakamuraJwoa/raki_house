@@ -19,6 +19,8 @@
                     <form method="post" action="{% url 'hotel:reserve_create' %}">
                         {% csrf_token %}
                         <input type="hidden" name="room_number" value="{{ room_number }}">
+                        <input type="hidden" name="check_in" value="{{ check_in }}">
+                        <input type="hidden" name="check_out" value="{{ check_out }}">
                         <div class="row">
                             <div class="col-3">
                                 <strong>代表者名</strong>
