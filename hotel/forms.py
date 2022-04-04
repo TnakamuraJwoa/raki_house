@@ -22,6 +22,19 @@ num_people = (
     ("10", "10名"),
 )
 
+num_stay = (
+    ("1", "1泊"),
+    ("2", "2泊"),
+    ("3", "3泊"),
+    ("4", "4泊"),
+    ("5", "5泊"),
+    ("6", "6泊"),
+    ("7", "7泊"),
+    ("8", "8泊"),
+    ("9", "9泊"),
+    ("10", "10泊"),
+)
+
 num_kids = (
     ("0", "0名"),
     ("1", "1名"),
@@ -64,19 +77,39 @@ cal_num = (
     ("30", "No.30"),
     ("31", "No.31"),
 )
-class BoxSearchForm(forms.Form):
-    room = forms.ChoiceField(choices=room_type)
-    person = forms.ChoiceField(choices=num_people)
-    kids1 = forms.ChoiceField(choices=num_kids)
-    kids2 = forms.ChoiceField(choices=num_kids)
-    kids3 = forms.ChoiceField(choices=num_kids)
-    kids4 = forms.ChoiceField(choices=num_kids)
-    # person = forms.IntegerField(label='大人')
-    # kids = forms.IntegerField(label='子供')
-    smoking = forms.BooleanField(help_text='喫煙')
-    open_bath = forms.BooleanField(help_text='露天風呂')
-    dog = forms.BooleanField(help_text='介護犬')
+# class BoxSearchForm(forms.Form):
+#     room = forms.ChoiceField(choices=room_type)
+#     person = forms.ChoiceField(choices=num_people)
+#     kids1 = forms.ChoiceField(choices=num_kids)
+#     kids2 = forms.ChoiceField(choices=num_kids)
+#     kids3 = forms.ChoiceField(choices=num_kids)
+#     kids4 = forms.ChoiceField(choices=num_kids)
+#     # person = forms.IntegerField(label='大人')
+#     # kids = forms.IntegerField(label='子供')
+#     smoking = forms.BooleanField(help_text='喫煙')
+#     open_bath = forms.BooleanField(help_text='露天風呂')
+#     dog = forms.BooleanField(help_text='介護犬')
 
 
 class CalendarForm(forms.Form):
     cal_num = forms.ChoiceField(choices=cal_num)
+
+
+class RoomsForm(forms.Form):
+    stays = forms.ChoiceField(choices=num_stay)
+
+    date_field = forms.DateField(
+        widget=forms.DateInput(attrs={"type":"date"})
+    )
+    person = forms.ChoiceField(choices=num_people)
+    smoking = forms.BooleanField(help_text='喫煙')
+    open_bath = forms.BooleanField(help_text='露天風呂')
+    dog = forms.BooleanField(help_text='介護犬')
+    room = forms.ChoiceField(choices=room_type)
+    kids1 = forms.ChoiceField(choices=num_kids)
+    kids2 = forms.ChoiceField(choices=num_kids)
+    kids3 = forms.ChoiceField(choices=num_kids)
+    kids4 = forms.ChoiceField(choices=num_kids)
+    num_people = forms.ChoiceField(required=True,
+            widget=forms.TextInput(
+            attrs={'placeholder':'人数を選択', 'class':"js-modal-people-open", 'id':"serch-box-person", 'autocomplete': 'off'}))

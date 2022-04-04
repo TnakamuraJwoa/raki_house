@@ -22,19 +22,19 @@
                         <li class="serch-item">
                             <p>宿泊日</p>
                             <span>
-                               <input type="date" name="stay_date">
+                               {{ form.date_field }}
                             </span>
                         </li>
                         <li class="serch-item">
                             <p>宿泊数</p>
                             <span>
-                                <input type="number" placeholder="未選択" name="stays" min="1" max="10" style="width: 8em;">
+                                {{ form.stays }}
                             </span>
                         </li>
                         <li class="serch-item">
                             <p>人数</p>
                             <span>
-                                <input type="text" id="serch-box-person" class="js-modal-people-open" name="num_people" placeholder="人数を選択" autocomplete="off">
+                                {{ form.num_people }}
                                 <input type="hidden" id="hid-person" name="room_name" value="">
                                 <input type="hidden" id="hid-kids1" name="kids1" value="">
                                 <input type="hidden" id="hid-kids2" name="kids2" value="">

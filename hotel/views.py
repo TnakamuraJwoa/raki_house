@@ -10,7 +10,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime
 import time
-from .forms import BoxSearchForm, CalendarForm
+from .forms import CalendarForm, RoomsForm
 from django.db.models import Q
 
 from django.db.models import Max
@@ -86,14 +86,14 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
         return queryset
 
 
-
     def get_context_data(self, **kwargs):
         self.context = super().get_context_data( **kwargs )
-        form = BoxSearchForm()
+        form = RoomsForm()
         # page_title を追加する
         self.context['form'] = form
 
         return self.context
+
 
 
 class ReserveConfirmationView(LoginRequiredMixin, generic.View):
@@ -144,7 +144,7 @@ class RoomView(LoginRequiredMixin, generic.DetailView):
     template_name = 'room.html'
 
     def get_context_data(self, **kwargs):
-        stay_date = self.request.GET.get('stay_date', None)
+        stay_date = self.request.GET.get('date_field', None)
         stays = self.request.GET.get('stays', None)
 
         stay_date = dt.strptime(stay_date, '%Y-%m-%d')
