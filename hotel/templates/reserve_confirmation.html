@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block title %}room_list{% endblock %}
 {% block active_diary_list %}active{% endblock %}
 
@@ -62,7 +63,7 @@
                                 <strong>金額</strong>
                             </div>
                             <div class="col-4">
-                                4,0000 円
+                                {{ room_price | intcomma }}円
                             </div>
                         </div>
 

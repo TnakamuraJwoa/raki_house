@@ -66,8 +66,7 @@
                         <div class="post-preview">
                                 <div>
                                     <div id="room-number">
-                                        <span><a href="{% url 'hotel:room' room.pk %}">{{ room.room_number }}号室　【</a></span>
-                                        <span><a href="{% url 'hotel:room' room.pk %}">{{ room.room_name }}】</a></span>
+                                        <button class ="room-name-btn" formaction="{% url 'hotel:room' room.pk %}"><span class="room-name">{{ room.room_number }}号室　【{{ room.room_name }}】</span></button>
                                     </div>
                                     <div id="style-flg">
                                         {% if room.smoking %}
@@ -90,8 +89,8 @@
                                         {% endif %}
                                     </div>
                                     <div id="room-description">
-                                        <div>
-                                            <img class="img-fluid room-description-img" src="{{ room.image.url }}" width="135px" alt="" />
+                                        <div class="room-img-sub-fram">
+                                            <img class="room-description-img" src="{{ room.image.url }}" alt="" />
                                         </div>
                                         <div id="room-description-text">
                                             <div>
@@ -159,3 +158,4 @@
     </div>
 </div>
 {% endblock %}
+

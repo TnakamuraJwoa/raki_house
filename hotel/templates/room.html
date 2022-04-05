@@ -30,6 +30,7 @@
                     {% csrf_token %}
                     <input type="hidden" name="room_name" value={{ object.room_name }}>
                     <input type="hidden" name="room_number" value={{ object.room_number }}>
+                    <input type="hidden" name="room_price" value={{ object.room_price }}>
                     <input type="hidden" name="persons" value={{ num_people }}>
                     <input type="hidden" name="kids" value={{ object.kids }}>
                     <input type="hidden" name="check_in" value={{ check_in }}>

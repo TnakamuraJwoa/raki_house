@@ -103,6 +103,7 @@ class ReserveConfirmationView(LoginRequiredMixin, generic.View):
         context = {
             'room_name': request.POST.get('room_name', None),
             'room_number': request.POST.get('room_number', None),
+            'room_price': request.POST.get('room_price', None),
             'check_in': request.POST.get('check_in', None),
             'check_out': request.POST.get('check_out', None),
         }
