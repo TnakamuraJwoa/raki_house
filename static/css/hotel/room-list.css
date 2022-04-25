@@ -6,12 +6,39 @@ img.ui-datepicker-trigger {
 }
 
 .layout_search {
-    display: flex;
-    flex-wrap: wrap;
+    flex-wrap: inherit;
     justify-content: center;
     align-items: center;
     background: #f9f9f8;
     list-style: none;
+}
+@media (max-width:767px) {
+    .serch-item > p {
+        margin: 7px 0 7px 0;
+        font-weight: bold;
+    }
+
+    .serch-item-btn {
+        text-align: center !important;
+    }
+
+    #id_date_field {
+        width: 230px;
+    }
+
+    #id_stays {
+        width: 230px;
+    }
+
+    #serch-box-person {
+        width: 230px;
+    }
+}
+
+@media (min-width:768px) {
+    .layout_search {
+        display: flex;
+    }
 }
 
 img.ui-datepicker-trigger {
@@ -19,14 +46,6 @@ img.ui-datepicker-trigger {
     background-color: beige;
 }
 
-.layout_search {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    background: #f9f9f8;
-    list-style: none;
-}
 
 li.serch-item {
     margin: 1em;
@@ -87,6 +106,12 @@ li.serch-item {
     text-align: center;
 }
 
+@media (max-width:861px) {
+.modal__content{
+    width: 92% !important;
+}
+}
+
 #modalBody {
   white-space: pre-wrap;
 }
@@ -112,9 +137,8 @@ img.js-modal-close {
 }
 
 .modal-main-table {
-    width: 80%;
+    width: 100%;
     position: relative;
-    left: 68px;
 }
 
 .modal-main-table th {
@@ -129,6 +153,35 @@ img.js-modal-close {
     padding: 15px;
 }
 
+
+@media (max-width:602px) {
+    .modal-main-table td {
+        padding: 8px !important;
+    }
+
+    .hide-item {
+        display: none;
+    }
+
+    .block-item > p {
+        text-align: left;
+        font-size: 12px;
+        margin-bottom: 7px !important;
+    }
+
+    #id_kids1,
+    #id_kids2,
+    #id_kids3,
+    #id_kids4 {
+        width: 100%;
+        height: 28px;
+    }
+
+    .block-item {
+        display: block;
+    }
+}
+
 select#id_room {
     width: 100%;
     height: 38px;
@@ -136,13 +189,31 @@ select#id_room {
 
 select#id_person {
     width: 100%;
-    height: 38px;
+    height: 28px;
+}
+
+#id_smoking,
+#id_open_bath,
+#id_dog {
+    margin-right: 7px;
 }
 
 .modal-main-table ul {
-    display: flex;
     list-style: none;
     text-align: left;
+}
+@media (max-width:682px) {
+
+.modal-main-table ul {
+    padding-left: 0 !important;
+    margin-bottom: 0 !important;
+}
+}
+
+@media (min-width:683px) {
+.modal-main-table ul {
+    display: flex;
+}
 }
 
 .modal-main-table li {
@@ -184,8 +255,23 @@ select#id_person {
     border-bottom: 1px solid #DBDBDB;
 }
 
+@media (max-width:660px) {
+
+.room_list_messege table {
+    writing-mode: vertical-lr;
+}
+
 #room_list_messege_table th {
     padding: 11px;
+    writing-mode: horizontal-tb;
+}
+
+#room_list_messege_table td {
+    writing-mode: horizontal-tb;
+    text-align: center;
+    white-space: nowrap;
+    font-size: small;
+}
 }
 
 div#room-number > span {
@@ -209,7 +295,7 @@ div#room-number > span {
     margin-top: 41px;
 }
 
-@media screen and (max-width:767px) {
+@media (max-width:993px) {
     /*　for iPhone Landscape　(iPhone 横)　*/
     #room-description {
         flex-wrap: wrap;
@@ -222,37 +308,37 @@ div#room-number > span {
     margin-bottom: 15px;
 }
 
+
+
+@media screen and (max-width:993px) {
+    /*　for iPhone Landscape　(iPhone 横)　*/
 .room-img-sub-fram img {
-    width: 350px;
+    width: 95%;
 }
 
-@media screen and (max-width:767px) {
-    /*　for iPhone Landscape　(iPhone 横)　*/
     #room-description-text {
         margin-top: 59px;
     }
 }
 
-@media screen and (min-width:768px) {
+@media screen and (min-width:993px) {
     /*　for iPhone Landscape　(iPhone 横)　*/
+    .room-img-sub-fram img {
+        width: 350px;
+    }
+
     #room-description-text {
        margin: 16px 24px 31px;
     }
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width:993px) {
     /*　for iPhone Landscape　(iPhone 横)　*/
     #room-description-text div > table {
         width: 100%;
     }
 }
 
-@media screen and (min-width:768px) {
-    /*　for iPhone Landscape　(iPhone 横)　*/
-    #room-description-text div > table {
-       width: auto;
-    }
-}
 #room-description-text div > table {
     border:solid gainsboro ;
     border-width:1px 0px 1px 0px;
@@ -274,7 +360,7 @@ div#room-number > span {
     margin-bottom: 26px;
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width:992px) {
     /*　for iPhone Landscape　(iPhone 横)　*/
     #room-description-btn {
         text-align: right;
@@ -282,7 +368,7 @@ div#room-number > span {
     }
 }
 
-@media screen and (min-width:768px) {
+@media screen and (min-width:993px) {
     /*　for iPhone Landscape　(iPhone 横)　*/
     #room-description-btn {
        margin: 30px 0 0 0;
@@ -315,3 +401,4 @@ span.room-name {
     color: deeppink;
     text-decoration: underline;
 }
+

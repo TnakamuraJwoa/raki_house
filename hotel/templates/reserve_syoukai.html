@@ -52,6 +52,18 @@
                                             <li class="room-id panel-pa">ご予約ID: {{ reserve.order_number }}</li>
                                         </ui>
                                     </div>
+                                    <div class="panel-check-date">
+                                        <table>
+                                            <tr>
+                                                <th>チェックイン</th>
+                                                <td>: {{ reserve.check_in_date }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>チェックアウト</th>
+                                                <td>: {{ reserve.check_out_date }}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                     <div class="checkin-checkout-info-panel">
                                         <div class="check-dates">
                                             <div class="check-info">
@@ -115,7 +127,7 @@
                                     <span>決済完了</span>
                                 </div>
                                 <div class="panel-price-btn panel-pa">
-                                    <div>
+                                    <div class="panel-under">
                                         <span class="price-jp">JPY</span><span class="price">{{ reserve.room_number.room_price | intcomma }}</span>
                                         <button class="action-btn" type="submit">予約の変更管理</button>
                                     </div>

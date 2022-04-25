@@ -19,16 +19,16 @@
                 </tr>
                 <tr>
                     <th rowspan="2">こども</th>
-                    <td>寝具 〇<br>食事 〇</td>
-                    <td>寝具 〇<br>食事 ✕</td>
-                    <td>寝具 ✕<br>食事 〇</td>
-                    <td>寝具 ✕<br>食事 ✕</td>
+                    <td class="hide-item">寝具 〇<br>食事 〇</td>
+                    <td class="hide-item">寝具 〇<br>食事 ✕</td>
+                    <td class="hide-item">寝具 ✕<br>食事 〇</td>
+                    <td class="hide-item">寝具 ✕<br>食事 ✕</td>
                 </tr>
                 <tr>
-                    <td>{{ form.kids1 }}</td>
-                    <td>{{ form.kids2 }}</td>
-                    <td>{{ form.kids3 }}</td>
-                    <td>{{ form.kids4 }}</td>
+                    <td class="block-item"><p>食事寝具ありA</p>{{ form.kids1 }}</td>
+                    <td class="block-item"><p>食事なし寝具ありB</p>{{ form.kids2 }}</td>
+                    <td class="block-item"><p>食事あり寝具なしC</p>{{ form.kids3 }}</td>
+                    <td class="block-item"><p>食事寝具なしD</p>{{ form.kids4 }}</td>
                 </tr>
             </table>
 

@@ -50,10 +50,19 @@ footer{
   padding: 20px; /*内側余白*/
   margin: auto; /*中央揃え*/
   margin-top: 10px; /*上部余白*/
-  width: 400px; /*横幅*/
   border-radius: 4px; /*外角の丸み*/
-  border: 1px solid #ddd; /*枠線*/
   text-align: center; /*内部の要素を中央ぞろえ*/
+}
+
+@media (max-width:524px) {
+    width: 100%; /*横幅*/
+}
+
+@media (min-width:525px) {
+.form-container {
+  border: 1px solid #ddd; /*枠線*/
+  width: 400px; /*横幅*/
+}
 }
 
 #login-contents {
@@ -75,17 +84,19 @@ input.btn1 {
 }
 
 input#id_login {
-    width: 100% !important;
+    width: 306px!important;
     text-align: center;
+    margin: 10px 5px !important;
 }
 
 input#id_password {
-    width: 100% !important;
+    width: 306px !important;
     text-align: center;
+    margin: 10px 5px !important;
 }
 
 div.form-text {
-    margin: 1em;
+    margin: 32px 5px;
 
 }
 
@@ -144,4 +155,5 @@ input#house-button {
 
 .house-img-fram-in {
     background-color: ghostwhite;
+    padding: 19px;
 }

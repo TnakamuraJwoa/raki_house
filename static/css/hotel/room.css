@@ -97,19 +97,40 @@ div#room-slider{
     width: 440px;
 }
 
+@media (max-width:986px) {
+    div#room-slider{
+        margin: auto;
+        width: 100% !important;
+    }
+}
+
+@media (min-width:987px) and (max-width:1081px) {
+    div#room-slider{
+        margin: auto;
+        width: 502px !important;
+    }
+}
+
 .room-detail > a {
     margin-bottom: 10px;
 }
 
 div#room-main {
-    display: flex;
     margin-left: auto;
     margin-right: auto;
     width: 80%;
 }
 
-div.room-detail {
-    margin-left: 6em;
+@media (min-width:1082px) {
+    div#room-main {
+        display: flex;
+    }
+}
+
+@media (min-width:1082px) {
+    div.room-detail {
+        margin-left: 6em;
+    }
 }
 
 button.room-btn {
@@ -120,8 +141,21 @@ button.room-btn {
 }
 
 .room-detail-table {
-    width: 420px;
     margin-top: 33px;
+}
+
+@media (max-width:1081px) {
+    .room-detail-table > table {
+        width: 100%;
+        margin: auto;
+        max-width: 500px;
+    }
+}
+
+@media (min-width: 1082px) {
+.room-detail-table {
+    width: 420px;
+}
 }
 
 .room-detail-table th {
@@ -131,8 +165,13 @@ button.room-btn {
 }
 
 .room-detail-table td {
-    padding: 5px 40px;
     text-align: left;
+}
+
+@media (min-width: 1082px) {
+.room-detail-table td {
+    padding: 5px 40px;
+}
 }
 
 #room-reserve-text {
