@@ -23,15 +23,18 @@ img.ui-datepicker-trigger {
     }
 
     #id_date_field {
-        width: 230px;
+        width: 95%;
+        height: 31px;
     }
 
     #id_stays {
-        width: 230px;
+        width: 95%;
+        height: 31px;
     }
 
     #serch-box-person {
-        width: 230px;
+        width: 95%;
+        height: 31px;
     }
 }
 
@@ -357,7 +360,7 @@ div#room-number > span {
 }
 
 #room-description-text > div {
-    margin-bottom: 26px;
+    margin-bottom: 42px;
 }
 
 @media screen and (max-width:992px) {

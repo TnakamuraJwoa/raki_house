@@ -140,8 +140,17 @@ input#house-button {
 
 #base-home-img {
     position: fixed;
-    top: 5px;
+    top: 10px;
     left: 46px;
+    width: 200px;
+}
+
+@media (max-width:798px) {
+#base-home-img {
+    width: 169px !important;
+    top: 16px !important;
+    left: 25px !important;
+}
 }
 
 .my-point {
@@ -156,4 +165,14 @@ input#house-button {
 .house-img-fram-in {
     background-color: ghostwhite;
     padding: 19px;
+}
+
+.inquity-btn {
+    text-align: center;
+    margin: 31px 0;
+}
+
+.my-btn {
+    width: 131px;
+    height: 41px;
 }

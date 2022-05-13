@@ -99,6 +99,7 @@ div#room-slider{
 
 @media (max-width:986px) {
     div#room-slider{
+        max-width: 587px;
         margin: auto;
         width: 100% !important;
     }
@@ -121,6 +122,12 @@ div#room-main {
     width: 80%;
 }
 
+@media (max-width:1081px) {
+    div#room-main {
+        width: 95% !important;
+    }
+}
+
 @media (min-width:1082px) {
     div#room-main {
         display: flex;
@@ -141,12 +148,12 @@ button.room-btn {
 }
 
 .room-detail-table {
-    margin-top: 33px;
+    margin-top: 54px;
 }
 
 @media (max-width:1081px) {
     .room-detail-table > table {
-        width: 100%;
+        width: 100%%;
         margin: auto;
         max-width: 500px;
     }
@@ -161,7 +168,7 @@ button.room-btn {
 .room-detail-table th {
     padding: 5px 0;
     text-align: left;
-    width: 50%;
+    width: 80%;
 }
 
 .room-detail-table td {
@@ -187,27 +194,62 @@ button.room-btn {
     background: #fff;
 }
 
+@media (max-width:1081px) {
+    #room-reserve-btn {
+        display: none;
+    }
+}
+
 #room-reserve-btn:hover {
     color: #fff;
     background: dimgrey;
 }
 
+#room-reserve-btn2 {
+    width: 157px;
+    height: 50px;
+    border: 2px solid #000;
+    border-radius: 0;
+    background: #fff;
+    display: block;
+    margin: auto;
+    margin-top: 49px;
+}
+
+@media (min-width:1082px) {
+    #room-reserve-btn2 {
+        display: none;
+    }
+}
+
 #room-description {
-    margin-top: 37px;
+    margin-top: 54px;
     margin-left: auto;
     margin-right: auto;
-    width: 70%;
+    width: 100%;
+}
+
+@media (max-width:1081px) {
+#room-description {
+    max-width: 516px;
+}
 }
 
 #room-checkin-table {
     margin-left: auto;
     margin-right: auto;
-    width: 70%;
+    width: 100%;
+}
+
+@media (max-width:1081px) {
+#room-checkin-table {
+    max-width: 516px;
+}
 }
 
 #room-checkin-table > table {
     width: 100%;
-    margin-top: 31px;
+    margin-top: 49px;
 }
 
 #room-checkin-table > table th {
@@ -240,4 +282,8 @@ button.room-btn {
 #room-return-btn:hover {
     text-decoration: none;
     background-image: linear-gradient(-170deg, #659de6, #5abab8);
+}
+
+.my-div-style {
+    margin-top: 7rem !important;
 }

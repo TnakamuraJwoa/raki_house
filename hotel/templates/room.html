@@ -14,20 +14,20 @@
 {% block contents %}
 <div class="container">
     <div class="my-div-style w-100">
-        <div id="room-main">
-            <div id="room-slider">
-                <ul class="slider">
-                  <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_01.jpg" alt=""></li>
-                  <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_02.jpg" alt=""></li>
-                  <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_03.jpg" alt=""></li>
-                  <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_04.jpg" alt=""></li>
-                  <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_05.jpg" alt=""></li>
-                  <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_06.jpg" alt=""></li>
-                </ul>
-            </div>
-            <div class="room-detail">
-                <form method="post" action="{% url 'hotel:reserve_confirmation' %}">
-                    {% csrf_token %}
+        <form method="post" action="{% url 'hotel:reserve_confirmation' %}">
+        {% csrf_token %}
+            <div id="room-main">
+                <div id="room-slider">
+                    <ul class="slider">
+                      <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_01.jpg" alt=""></li>
+                      <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_02.jpg" alt=""></li>
+                      <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_03.jpg" alt=""></li>
+                      <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_04.jpg" alt=""></li>
+                      <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_05.jpg" alt=""></li>
+                      <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-6/img/img_06.jpg" alt=""></li>
+                    </ul>
+                </div>
+                <div class="room-detail">
                     <input type="hidden" name="room_name" value={{ object.room_name }}>
                     <input type="hidden" name="room_number" value={{ object.room_number }}>
                     <input type="hidden" name="room_price" value={{ object.room_price }}>
@@ -80,26 +80,29 @@
                             </table>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-        <div>
-            <div id="room-description">{{ object.description }}</div>
-        </div>
-        <div id="room-checkin-table">
-            <table>
-                <tr>
-                    <th>チェックイン</th>
-                    <td>15：00～</td>
-                </tr>
-                <tr>
-                    <th>チェックアウト</th>
-                    <td>～11：00</td>
-                </tr>
-            </table>
+            <div>
+                <div id="room-description">{{ object.description }}</div>
+            </div>
+            <div id="room-checkin-table">
+                <table>
+                    <tr>
+                        <th>チェックイン</th>
+                        <td>15：00～</td>
+                    </tr>
+                    <tr>
+                        <th>チェックアウト</th>
+                        <td>～11：00</td>
+                    </tr>
+                </table>
 
-            <button id="room-return-btn" onclick="location.href='{{request.META.HTTP_REFERER}}'"><span>一覧へ戻る</span></button>
-        </div>
+                <button id= "room-reserve-btn2" type="submit"><span>予約</span></button>
+
+
+            </div>
+        </form>
+        <button id="room-return-btn" onclick="location.href='{{request.META.HTTP_REFERER}}'"><span>一覧へ戻る</span></button>
     </div>
 </div>
 {% endblock %}
