@@ -21,6 +21,39 @@ $(function(){
 
     $('.js-modal-people-open').on('click',function(){
         $('.js-modal-people').fadeIn();
+
+        var str = $('#serch-box-person').val();
+        var str_arry = str.split(',');
+
+//        人数を設定
+        if (str_arry[0] != "") {
+            $('#id_person').val(str_arry[0].replace("名", ''));
+        }
+
+        for (let i = 1; i < str_arry.length; i++) {
+            switch (str_arry[i].charAt(1)) {
+                case "A":
+                    a = str_arry[i].replace("名", '')
+                    a = a.replace(" A:", '')
+                    $('#id_kids1').val(a);
+                    break;
+                case "B":
+                    b = str_arry[i].replace("名", '')
+                    b = b.replace(" B:", '')
+                    $('#id_kids2').val(b);
+                    break;
+                case "C":
+                    c = str_arry[i].replace("名", '')
+                    c = c.replace(" C:", '')
+                    $('#id_kids3').val(c);
+                    break;
+                case "D":
+                    d = str_arry[i].replace("名", '')
+                    d = d.replace(" D:", '')
+                    $('#id_kids4').val(d);
+                    break;
+            }
+        }
         return false;
     });
 

@@ -35,6 +35,7 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
     ordering = '-room_number'  # order_by('-title')
     # queryset = Room.objects.filter(house_name_id='1')
 
+
     def get_queryset(self):
         # in_date = '2022-02-17'
         # out_date = '2022-02-19'
@@ -87,8 +88,21 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
 
 
     def get_context_data(self, **kwargs):
+        print("person")
+        print(self.request.session.get('session_person'))
+
         self.context = super().get_context_data( **kwargs )
-        form = RoomsForm()
+
+        initial_values = {'date_field': self.request.session.get('session_date_field'), \
+                          'stays': self.request.session.get('session_stays'), \
+                          'num_people': self.request.session.get('session_num_people'), \
+                          'kids1': self.request.session.get('session_kids1'), \
+                          'kids2': self.request.session.get('session_kids2'), \
+                          'kids3': self.request.session.get('session_kids3'), \
+                          'kids4': self.request.session.get('session_kids4')
+                          }
+        form = RoomsForm(initial = initial_values)
+
         # page_title を追加する
         self.context['form'] = form
 
@@ -145,6 +159,14 @@ class RoomView(LoginRequiredMixin, generic.DetailView):
     template_name = 'room.html'
 
     def get_context_data(self, **kwargs):
+        self.request.session['session_date_field'] = self.request.GET.get('date_field', None)
+        self.request.session['session_stays'] = self.request.GET.get('stays', None)
+        self.request.session['session_num_people'] = self.request.GET.get('num_people', None)
+        self.request.session['session_kids1'] = self.request.GET.get('kids1', None)
+        self.request.session['session_kids2'] = self.request.GET.get('kids2', None)
+        self.request.session['session_kids3'] = self.request.GET.get('kids3', None)
+        self.request.session['session_kids4'] = self.request.GET.get('kids4', None)
+
         stay_date = self.request.GET.get('date_field', None)
         stays = self.request.GET.get('stays', None)
 

@@ -102,7 +102,7 @@
 
             </div>
         </form>
-        <button id="room-return-btn" onclick="location.href='{{request.META.HTTP_REFERER}}'"><span>一覧へ戻る</span></button>
+        <button id="room-return-btn" onclick="location.href='{% url 'hotel:room_list' %}'"><span>一覧へ戻る</span></button>
     </div>
 </div>
 {% endblock %}
