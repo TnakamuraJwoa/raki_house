@@ -13,33 +13,59 @@
         <div class="col-lg-8 col-md-10 mx-auto">
             <div class="page-bar">
                 <span class="page-coler">登録情報</span>
+                <span><a href="{% url 'hotel:select_create' %}">ホテル選択</a></span>
                 <span><a href="{% url 'hotel:reserve_syoukai' %}">予約照会</a></span>
             </div>
             <div class="my_container">
                 <h1>Hello!　{{ user.get_username }}さん</h1>
-                <div class="my-card">
-                    <img id="my-card-img" src="{% static 'assets/imgs/star.jpeg' %}" alt="" />
-                    <p class="my-card_status">会員ステータス</p>
-                    {% if user.member_type == 12 %}
-                        <p class="my-card_status_name">正規会員権12泊</p>
-                    {% elif user.member_type == 6  %}
-                        <p class="my-card_status_name">正規会員権6泊</p>
-                    {% elif user.member_type == 3  %}
-                        <p class="my-card_status_name">特別会員権3泊</p>
-                    {% endif %}
-                    <p class="my-card_expiration_date">有効期限:  {{ date }}</p>
+                <div class="main-content">
+                    <div class="content-left">
+                        <div class="my-card">
+                            <img id="my-card-img" src="{% static 'assets/imgs/star.jpeg' %}" alt="" />
+                            <p class="my-card_status">会員ステータス</p>
+                            {% if user.member_type == 12 %}
+                                <p class="my-card_status_name">正規会員権12泊</p>
+                            {% elif user.member_type == 6  %}
+                                <p class="my-card_status_name">正規会員権6泊</p>
+                            {% elif user.member_type == 3  %}
+                                <p class="my-card_status_name">特別会員権3泊</p>
+                            {% endif %}
+                            <p class="my-card_expiration_date">有効期限:  {{ date }}</p>
+                        </div>
+                        <p>ユーザ情報</p>
+                        <table>
+                            <tr>
+                                <th>お名前</th>
+                                <td>{{ user.get_username }}</td>
+                            </tr>
+                            <tr>
+                                <th>会員番号</th>
+                                <td>{{ user.member_id }}</td>
+                            </tr>
+                            <tr>
+                                <th>年会費</th>
+                                <td>未納</td>
+                            </tr>
+                            <tr>
+                                <th>会員権管理手数料</th>
+                                <td>未納</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="content-right">
+                        <p class="stay-title">宿泊可能数 12泊</p>
+                        <p class="stay-text">
+                            ※年会費のお支払いが完了しましたら宿泊可能日が表示されます。<br><br>
+                            年会費と会員権管理手数料をお振込みの上、
+                            タイムシェアカレンダーから宿泊日を選択してください。<br>
+                            入金確認、又は決済完了しましたらホテル選択からカレンダーへお進みください。
+                        </p>
+                        <ul>
+                            <li><button type="button">銀行振込</button></li>
+                            <li><button type="button">PayPal決済</button></li>
+                        </ul>
+                    </div>
                 </div>
-                <p>ユーザ情報</p>
-                <table>
-                    <tr>
-                        <th>お名前</th>
-                        <td>{{ user.get_username }}</td>
-                    </tr>
-                    <tr>
-                        <th>会員番号</th>
-                        <td>{{ user.member_id }}</td>
-                    </tr>
-                </table>
             </div>
         </div>
     </div>

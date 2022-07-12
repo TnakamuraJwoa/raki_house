@@ -73,7 +73,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_REQUIRED = True
 
 # ログイン/ログアウト後の遷移先を設定
-LOGIN_REDIRECT_URL = 'hotel:house'
+LOGIN_REDIRECT_URL = 'hotel:my_page'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
 MEDIA_URL = '/media/'

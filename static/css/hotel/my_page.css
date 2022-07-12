@@ -64,3 +64,42 @@ h1 {
 table th {
     padding: 5px 2em;
 }
+
+.main-content {
+    display: flex;
+}
+
+.stay-title{
+    color: palevioletred;
+    text-align: center;
+    margin-top: 28px;
+    margin-bottom: 26px;
+    font-size: 1.3em;
+}
+
+.content-right {
+    padding: 21px;
+    width: 45%;
+    background-color: aliceblue;
+}
+
+.content-left {
+    width: 55%;
+}
+
+.stay-text {
+    font-size: 0.8em;
+}
+
+.content-right > ul {
+    list-style: none;
+    padding:16px;
+}
+
+li > button {
+    margin-bottom: 20px;
+}
+
+.my-div-style {
+    margin-bottom: 79px;
+}

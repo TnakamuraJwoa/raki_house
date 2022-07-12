@@ -293,3 +293,13 @@ class MyPageView(LoginRequiredMixin, generic.ListView):
         self.context['date'] = str(year) + "-12-" + str(day)
 
         return self.context
+
+
+class SelectCreateView(LoginRequiredMixin, generic.TemplateView):
+
+    def get(self, request, *args, **kwargs):
+        ticket_data = House.objects.all()
+
+        return render(request, 'select_calender.html', {
+            'ticket_data': ticket_data,
+        })
