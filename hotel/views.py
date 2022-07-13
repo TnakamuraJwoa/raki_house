@@ -295,11 +295,6 @@ class MyPageView(LoginRequiredMixin, generic.ListView):
         return self.context
 
 
-class SelectCreateView(LoginRequiredMixin, generic.TemplateView):
-
-    def get(self, request, *args, **kwargs):
-        ticket_data = House.objects.all()
-
-        return render(request, 'select_calender.html', {
-            'ticket_data': ticket_data,
-        })
+class SelectCreateView(LoginRequiredMixin, generic.DetailView):
+    model = House
+    template_name = 'select_calender.html'

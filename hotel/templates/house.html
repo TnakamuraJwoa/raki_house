@@ -12,7 +12,7 @@
     <div class="row">
       {% for house in house_data %}
       <div class="col-lg-3 col-md-6 mb-5 house-img-fram">
-        <form method="get" action="{% url 'hotel:room_list' %}">
+        <form method="get" action="{% url 'hotel:select_create' house.pk %}">
             {% csrf_token %}
             <input type="hidden" name="house_number" value={{ house.id }}>
 <!--            <a href="{% url 'hotel:room_list' %}" onclick="document.a_form.submit();">{{ house.house_name }}</a>-->
