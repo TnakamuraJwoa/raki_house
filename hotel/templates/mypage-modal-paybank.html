@@ -1,0 +1,42 @@
+{% load static %}
+
+<div class="modal js-modal-paybank">
+    <div class="modal__bg js-modal-paybank-close"></div>
+    <div class="modal__content">
+        <div>
+            <div>
+                <img class="js-modal-close js-modal-paybank-close" src="{% static 'assets/batu.png' %}" alt="閉じる">
+            </div>
+            <div>
+                <p class="modal-title">振込先情報</p>
+            </div>
+        </div>
+        <div class="modal-main">
+            <table class="modal-main-table">
+                <tr>
+                    <th>銀行名</th>
+                    <td>りそな銀行</td>
+                </tr>
+                <tr>
+                    <th>支店名</th>
+                    <td>test支店</td>
+                </tr>
+                <tr>
+                    <th>種別</th>
+                    <td>普通</td>
+                </tr>
+                <tr>
+                    <th>口座番号</th>
+                    <td>1234567</td>
+                </tr>
+                <tr>
+                    <th>口座名義</th>
+                    <td>ｼﾞｬﾊﾟﾝﾜｰｳﾄﾞｶﾌﾞｼｷｶｲｼｬ</td>
+                </tr>
+            </table>
+
+            <button class= "modal-close-btn js-modal-paybank-close" type="submit">閉じる</button>
+<!--            <a class="js-modal-close" href="">閉じる</a>-->
+        </div><!--modal__inner-->
+    </div>
+</div><!--modal-->

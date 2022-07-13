@@ -9,6 +9,16 @@
 
 $(function(){
 
+    $('.js-modal-paybank-open').on('click',function(){
+        $('.js-modal-paybank').fadeIn();
+        return false;
+    });
+
+    $('.js-modal-paybank-close').on('click',function(){
+        $('.js-modal-paybank').fadeOut();
+        return false;
+    });
+
     $('.js-modal-open').on('click',function(){
         $('.js-modal').fadeIn();
         return false;

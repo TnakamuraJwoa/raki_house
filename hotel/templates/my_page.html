@@ -5,11 +5,13 @@
 
 {% block head %}
 <link href="{% static 'css/hotel/my_page.css' %}" rel="stylesheet">
+<link href="{% static 'css/hotel/room-list.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block contents %}
 <div class="container">
     <div class="my-div-style w-100">
+        {% include 'mypage-modal-paybank.html' %}
         <div class="col-lg-8 col-md-10 mx-auto">
             <div class="page-bar">
                 <span class="page-coler">登録情報</span>
@@ -61,8 +63,8 @@
                             入金確認、又は決済完了しましたらホテル選択からカレンダーへお進みください。
                         </p>
                         <ul>
-                            <li><button type="button">銀行振込</button></li>
-                            <li><button type="button">PayPal決済</button></li>
+                            <li class="pay-btn"><a href="" class="js-modal-paybank-open btn btn--orange btn-c">銀行振込</a></li>
+                            <li class="pay-btn"><a href="" class="btn btn--orange btn-c">PayPal決済</a></li>
                         </ul>
                     </div>
                 </div>
