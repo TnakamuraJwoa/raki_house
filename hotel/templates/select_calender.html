@@ -5,42 +5,132 @@
 
 {% block head %}
 <link href="{% static 'css/hotel/select_calender.css' %}" rel="stylesheet">
-<script src="{% static 'js/select_calender.js' %}"></script>
+<link href="{% static 'css/hotel/bic_calendar.css' %}" rel="stylesheet">
+<script src="{% static 'js/bic_calendar.js' %}"></script>
+
+<meta name="description"
+      content="BIC Calendar es un simple calendari per marcar esdeveniments. Un plugin de jQuery i Twitter Bootstrap"/>
+<meta name="author" content="bic.cat">
+
+<!-- Long live the font Ubuntu ! -->
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
+
+<script src="lib/js/jquery.js"></script>
+
+<script src="lib/js/bootstrap.min.js"></script>
+
+<script src="https://rawgithub.com/moment/moment/develop/min/moment-with-langs.min.js"></script>
+
 {% endblock %}
 
 {% block contents %}
 <div class="container">
     <div class="row">
         <div class="my-div-style w-100">
-            <div class="row">
-                <div class="col col-lg-12" style="text-align: center;background: rgba(211,211,211,0.8);padding: 20 0;">
-                    <span style="font-size:19px;font-weight:bold;">2023　{{ object.house_name }}　Resort&amp;Spa</span></br></br>
-                    <span>カレンダーから空いてる日にちを選択し1年分の宿泊日を仮押さえしてください。</span></br>
-                    <span>3ヵ月毎に3泊まで選択可能　3連泊選択可</span></br></br>
-                    <span style="font-size:19px;font-weight:bold;">宿泊可能日：１２泊</span>
-                </div>
+            <div class="col col-lg-12" style="text-align: center;background: rgba(211,211,211,0.8);padding: 20 0;">
+                <span style="font-size:19px;font-weight:bold;">2023　{{ object.house_name }}　Resort&amp;Spa</span></br></br>
+                <span>カレンダーから空いてる日にちを選択し1年分の宿泊日を仮押さえしてください。</span></br>
+                <span>3ヵ月毎に3泊まで選択可能　3連泊選択可</span></br></br>
+                <span style="font-size:19px;font-weight:bold;">宿泊可能日：１２泊</span>
             </div>
-            <div class="row">
-                <div id="calendarId1" class="col col-lg-4 "></div>
-                <div id="calendarId2" class="col col-lg-4 "></div>
-                <div id="calendarId3" class="col col-lg-4"></div>
+            <br>
+            <div class="col-md-12">
+                <script>
+                $(document).ready(function() {
+                    document.addEventListener('bicCalendarSelect', function(e) {
+                        moment.lang('es'); // default the language to English
+                        var dateFirst = new moment(e.detail.dateFirst);
+                        var dateLast = new moment(e.detail.dateLast);
+
+                        $('#from-day').val(dateFirst.format('LL'));
+                        $('#to-day').val(dateLast.format('LL'));
+
+                        /*
+                         * more about moment.js
+                         * http://momentjs.com/docs/#/displaying/
+                         */
+
+                        /*
+                         * obtener calculo dias vacaciones desde el servidor
+                         * (solo podria obtener los dias que tengo listados
+                         * activamente en el calendario)
+                         * por ejemplo, si el usuario elige una fecha de un ano
+                         * diferente al actual no podria obtener los dias preestablecidos
+                         */
+                        /*$.ajax({
+                         type: "POST",
+                         url: "vacaciones",
+                         data: {fromDay: e.detail.dateFirst, toDay: e.detail.dateLast}
+                         }).done(function(data) {
+                         $('#dias-no-laborales').html(data.n);
+                         });*/
+                    });
+                });
+
+
+                </script>
+                <form>
+                    <label>チェックイン日</label>
+                    <input id="from-day" value="" disabled>
+                    <label>チェックアウト日</label>
+                    <input id="to-day" value="" disabled>
+                    <input type="submit" value="検索">
+                </form>
             </div>
-            <div class="row">
-                <div id="calendarId4" class="col col-lg-4 "></div>
-                <div id="calendarId5" class="col col-lg-4"></div>
-                <div id="calendarId6" class="col col-lg-4 "></div>
+        </div>
+
+
+        <div id="row">
+            <div class="col-md-12">
+                <br>
+                <script>
+                $(document).ready(function() {
+
+                    var monthNames = ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"];
+
+                    var dayNames = ["月", "火", "水", "木", "金", "土", "日"];
+
+                    var events = [
+                        {
+                            date: "28/10/2013",
+                            title: 'SPORT & WELLNESS',
+                            link: '',
+                            color: '',
+                            content: '<img src="http://gettingcontacts.com/upload/jornadas/sport-wellness_portada.png" ><br>06-11-2013 - 09:00 <br> Tecnocampus Mataró Auditori',
+                            class: '',
+                        }
+                    ];
+
+                    $('#calendari_lateral1').bic_calendar({
+                        //list of events in array
+                        events: events,
+                        //enable select
+                        enableSelect: true,
+                        //enable multi-select
+                        multiSelect: true,
+                        //set day names
+                        dayNames: dayNames,
+                        //set month names
+                        monthNames: monthNames,
+                        //show dayNames
+                        showDays: true,
+                        //set ajax call
+                        reqAjax: {
+                            type: 'get',
+                            url: 'http://bic.cat/bic_calendar/index.php'
+                        }
+                        //set popover options
+                        //popoverOptions: {}
+                        //set tooltip options
+                        //tooltipOptions: {}
+                    });
+                });
+
+
+                </script>
+                <div id="calendari_lateral1"></div>
+                <br><br>
             </div>
-            <div class="row">
-                <div id="calendarId7" class="col col-lg-4"></div>
-                <div id="calendarId8" class="col col-lg-4 "></div>
-                <div id="calendarId9" class="col col-lg-4"></div>
-            </div>
-            <div class="row">
-                <div id="calendarId10" class="col col-lg-4 "></div>
-                <div id="calendarId11" class="col col-lg-4"></div>
-                <div id="calendarId12" class="col col-lg-4 "></div>
-            </div>
-            <div id="msg"></div>
         </div>
     </div>
 </div>

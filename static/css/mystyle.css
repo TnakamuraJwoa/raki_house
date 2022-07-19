@@ -84,13 +84,13 @@ input.btn1 {
 }
 
 input#id_login {
-    width: 306px!important;
+    width: 90%!important;
     text-align: center;
     margin: 10px 5px !important;
 }
 
 input#id_password {
-    width: 306px !important;
+    width: 90%!important;
     text-align: center;
     margin: 10px 5px !important;
 }
