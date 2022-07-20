@@ -96,9 +96,10 @@ class CalendarForm(forms.Form):
 
 
 class RoomsForm(forms.Form):
-    stays = forms.ChoiceField(choices=num_stay)
-
-    date_field = forms.DateField(
+    check_in_date = forms.DateField(
+        widget=forms.DateInput(attrs={"type":"date"})
+    )
+    check_out_date = forms.DateField(
         widget=forms.DateInput(attrs={"type":"date"})
     )
     person = forms.ChoiceField(choices=num_people)

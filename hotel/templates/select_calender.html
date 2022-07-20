@@ -69,11 +69,12 @@
 
 
                 </script>
-                <form>
+                <form method="get" action="{% url 'hotel:room_list' %}">
+                {% csrf_token %}
                     <label>チェックイン日</label>
-                    <input id="from-day" value="" disabled>
+                    <input id="from-day" name="check_in_date" value="" readonly="readonly">
                     <label>チェックアウト日</label>
-                    <input id="to-day" value="" disabled>
+                    <input id="to-day" name="check_out_date" value="" readonly="readonly">
                     <input type="submit" value="検索">
                 </form>
             </div>

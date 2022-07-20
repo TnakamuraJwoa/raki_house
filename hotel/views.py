@@ -35,6 +35,34 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
     ordering = '-room_number'  # order_by('-title')
     # queryset = Room.objects.filter(house_name_id='1')
 
+    def get_context_data(self, **kwargs):
+        self.context = super().get_context_data( **kwargs )
+
+        str_check_in_date = self.request.GET.get('check_in_date', None)
+        str_check_out_date = self.request.GET.get('check_out_date', None)
+
+        if str_check_in_date is None:
+            dte_check_in_date = self.request.GET.get('check_in_date', None)
+            dte_check_out_date = self.request.GET.get('check_out_date', None)
+        else:
+            dte_check_in_date = datetime.datetime.strptime(str_check_in_date, '%Y-%m-%d')
+            dte_check_out_date = datetime.datetime.strptime(str_check_out_date, '%Y-%m-%d')
+
+        initial_values = {'check_in_date': dte_check_in_date, \
+                          'check_out_date': dte_check_out_date, \
+                          'num_people': self.request.session.get('session_num_people'), \
+                          'kids1': self.request.session.get('session_kids1'), \
+                          'kids2': self.request.session.get('session_kids2'), \
+                          'kids3': self.request.session.get('session_kids3'), \
+                          'kids4': self.request.session.get('session_kids4')
+                          }
+        form = RoomsForm(initial = initial_values)
+
+        # page_title を追加する
+        self.context['form'] = form
+
+        return self.context
+
 
     def get_queryset(self):
         # in_date = '2022-02-17'
@@ -87,28 +115,6 @@ class RoomsView(LoginRequiredMixin, generic.ListView):
         return queryset
 
 
-    def get_context_data(self, **kwargs):
-        print("person")
-        print(self.request.session.get('session_person'))
-
-        self.context = super().get_context_data( **kwargs )
-
-        initial_values = {'date_field': self.request.session.get('session_date_field'), \
-                          'stays': self.request.session.get('session_stays'), \
-                          'num_people': self.request.session.get('session_num_people'), \
-                          'kids1': self.request.session.get('session_kids1'), \
-                          'kids2': self.request.session.get('session_kids2'), \
-                          'kids3': self.request.session.get('session_kids3'), \
-                          'kids4': self.request.session.get('session_kids4')
-                          }
-        form = RoomsForm(initial = initial_values)
-
-        # page_title を追加する
-        self.context['form'] = form
-
-        return self.context
-
-
 
 class ReserveConfirmationView(LoginRequiredMixin, generic.View):
 
@@ -159,29 +165,18 @@ class RoomView(LoginRequiredMixin, generic.DetailView):
     template_name = 'room.html'
 
     def get_context_data(self, **kwargs):
-        self.request.session['session_date_field'] = self.request.GET.get('date_field', None)
-        self.request.session['session_stays'] = self.request.GET.get('stays', None)
+        self.request.session['session_check_in_date'] = self.request.GET.get('check_in_date', None)
+        self.request.session['session_check_out_date'] = self.request.GET.get('check_out_date', None)
         self.request.session['session_num_people'] = self.request.GET.get('num_people', None)
         self.request.session['session_kids1'] = self.request.GET.get('kids1', None)
         self.request.session['session_kids2'] = self.request.GET.get('kids2', None)
         self.request.session['session_kids3'] = self.request.GET.get('kids3', None)
         self.request.session['session_kids4'] = self.request.GET.get('kids4', None)
 
-        stay_date = self.request.GET.get('date_field', None)
-        stays = self.request.GET.get('stays', None)
-
-        stay_date = dt.strptime(stay_date, '%Y-%m-%d')
-        if stays == "":
-            check_out = None
-            print(stays)
-            print(type(stays))
-        else:
-            check_out = stay_date + datetime.timedelta(days=int(stays))
-
 
         self.context = super().get_context_data(**kwargs)
-        self.context['check_in'] = str(stay_date)
-        self.context['check_out'] = str(check_out)
+        self.context['check_in'] = self.request.GET.get('check_in_date', None)
+        self.context['check_out'] = self.request.GET.get('check_out_date', None)
         self.context['num_people'] = self.request.GET.get('num_people', None)
         return self.context
 

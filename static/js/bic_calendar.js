@@ -476,12 +476,12 @@ $.fn.bic_calendar = function(options) {
             if (daySelected != '' && firstDaySelected == '') {
                 var arrayDate = daySelected.split('/');
                 $('#bic_calendar_' + arrayDate[1] + '_' + arrayDate[0] + '_' + arrayDate[2] + ' div').addClass('selection');
-                $('#from-day').val(arrayDate[2]+"/"+arrayDate[0]+"/"+arrayDate[1]);
+                $('#from-day').val(arrayDate[2]+"-"+arrayDate[0]+"-"+arrayDate[1]);
             } else if (firstDaySelected != '') {
                 //create array from dates
                 var arrayFirstDay = firstDaySelected.split('/');
                 var arrayLastDay = lastDaySelected.split('/');
-                $('#to-day').val(arrayLastDay[2]+"/"+arrayLastDay[0]+"/"+arrayLastDay[1]);
+                $('#to-day').val(arrayLastDay[2]+"-"+arrayLastDay[0]+"-"+arrayLastDay[1]);
 
                 //remove all selected classes
                 elem.find('td.selection').removeClass('selection');
