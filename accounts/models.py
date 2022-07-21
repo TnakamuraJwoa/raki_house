@@ -9,6 +9,8 @@ class CustomUser(AbstractUser):
     gender = models.IntegerField('性別', null=True, blank=True)
     member_type = models.IntegerField('メンバータイプ', null=True, blank=True)
 
+
+
     def __str__(self):
         return self.member_id
 
