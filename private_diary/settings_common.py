@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'import_export',
+    'django_ses',
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
@@ -125,7 +126,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'private_diary',
-        'USER': 'postgres',
+        'USER': 'app_admin',
         'PASSWORD': 'admin',
         'HOST': '',
         'POST': '',
